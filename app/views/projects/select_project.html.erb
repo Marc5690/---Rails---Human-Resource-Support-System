@@ -1,0 +1,23 @@
+<% provide(:title, "Project") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1></h1>
+        <div style="white-space: nowrap">
+      
+<%= form_tag(projectsplanning_path) do %>
+  <%= label_tag(:x, "Task:") %>
+  <%= text_field_tag(:x )%></br>
+   <%= label_tag(:y, "Year:") %>
+  <%= text_field_tag(:y )%></br>
+   <%= label_tag(:z, "Month:") %>
+  <%= text_field_tag(:z )%></br>
+  <%= submit_tag("Continue") %>
+   <%end%>   
+
+       
+      </div>
+      <%#end%>
+    </section>
+  </aside>
+</div>

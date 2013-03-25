@@ -1,0 +1,36 @@
+<% provide(:title, "Project") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1></h1>
+      	<div style="white-space: nowrap">
+        <%= form_for @project do |f| %>
+<%#= render 'shared/error_messages' %> 
+     
+      <%= f.label :Title %>
+      <%= f.text_field :title %>
+      <%= f.label :Date_Started %>
+      <%= f.text_field :date_started %>
+      <%= f.label :Date_Ended %>
+      <%= f.text_field :date_ended %>
+      <%= f.label :Estimated_Hours %>
+      <%= f.text_field :estimated_hours %>
+      <%#= f.label :Number_Of_Tasks%>
+      <%#= f.text_field :number_of_tasks %>
+      <%#= form_tag("/absenceadd") do %>
+  <%#= label_tag(:q, "Number of tasks:") %>
+  <%#= text_field_tag(:q )%>
+  <%#= submit_tag("Continue") %>
+      
+      </br>
+      <%= f.submit "Create Project", class: "btn btn-large btn-primary"%>
+<%end%>
+       <%#,:controller => :static_pages :action => :menu%>
+      </div>
+      <%#end%>
+    </section>
+  </aside>
+</div>
+
+
+

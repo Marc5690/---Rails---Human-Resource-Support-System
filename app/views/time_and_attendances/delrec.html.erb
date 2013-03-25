@@ -1,0 +1,26 @@
+<% provide(:title, 'Delete an Employee Record') %>
+<h1>Enter details below:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <div style="white-space: nowrap">
+         
+         Employee 1 ID:1</br>
+         Employee 2 ID:2</br>
+         Employee 3 ID:3</br>
+         Employee 4 ID:4</br>
+         Employee 5 ID:5</br></br></br></br>
+         <%= form_for(Employee.new) do |f| %>
+         <%= f.label :Enter_ID %>
+             <%= f.text_field :name %>
+  <%#= submit_tag("Search") %>
+<% end %>
+<%= link_to "Continue", del_path , class: "btn btn-info btn-small" %>
+
+         <%# form_tag Employee.new do |f|%>
+            <%#= f.label :Personnel_Number %>
+            <%#= f.text_field :name %>
+            <%#= f.submit "Add record for Employee", class: "btn btn-large btn-primary" %>
+         <%# end %>
+    </div>
+  </div>
+</div>

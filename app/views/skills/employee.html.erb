@@ -1,0 +1,19 @@
+<% provide(:title, 'Add Skill') %>
+<h1>Skill:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    routes to updateemp.html.erb
+    <%= form_tag(updateempskills_path) do %>
+  <%#= label_tag(:x, "Task:") %>
+  <%#= text_field_tag(:x )%>
+  <%= label_tag(:x, "Skill:") %>
+  <%= text_field_tag(:x )%></br>
+  <%= label_tag(:y, "User:") %>
+  <%= text_field_tag(:y )%>
+  <%= submit_tag("Continue") %>
+   <%end%>   
+
+   <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>
+
+  </div>  </div>
+</div>

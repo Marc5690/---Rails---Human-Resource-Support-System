@@ -1,0 +1,19 @@
+<% provide(:title, 'Send a Private Message') %>
+<h1>Choose an option</h1>
+
+<div class="row">
+  <div class="span6 offset2">
+
+   
+     <div style="white-space: nowrap">
+      
+     
+      </br>
+      <%= link_to "Create Message", private_messages_create_path, class: "btn btn-large btn-primary" %>
+     </br></br>
+     <%= link_to "Sent Messages", private_messages_sent_path, class: "btn btn-large btn-primary" %>
+      </br></br>
+     <%= link_to "Received Messages", private_messages_received_path, class: "btn btn-large btn-primary" %>
+      </div>
+    </div>
+ </div>

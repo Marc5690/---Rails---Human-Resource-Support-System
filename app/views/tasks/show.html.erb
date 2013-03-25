@@ -1,0 +1,31 @@
+<% provide(:title, 'Add Task') %>
+<h1>Task:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    
+  This task belongs to project:  <%=@task.project.title%>
+  </br></br>
+ID:<%= @task.id %></br>
+Title:<%= @task.title %></br>
+Start date:<%= @task.start_date.to_date %></br>
+End date:<%= @task.end_date.to_date %></br>
+
+Description: <%= @task.description %></br></br>
+<% @g = 0%>
+<% @task.time_and_attendances.each do |f| %>
+<% @g += f.hours_worked %>
+<%end%>
+
+Estimated hours: <%= @task.estimated_hours %></br>
+Total hours spent on this task: <%= @g%> hours </br></br>
+Time left:<%= distance_of_time_in_words(@task.end_date.to_datetime, DateTime.now)%></br>
+</br></br></br>Time and Attendance Records for this task:</br>
+<% @task.time_and_attendances.each do |f| %>
+Employee ID: <%= f.user_id %></br>
+Hours Worked: <%= f.hours_worked %></br>
+Date: <%= f.date %></br>
+<%= link_to "See Record Details", f %></br>
+<%end%>
+
+  </div>  </div>
+</div>

@@ -1,0 +1,94 @@
+<% provide(:title, "Project") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1></h1>
+      	<div style="white-space: nowrap">
+      <%#= form_for @user do |f| %>
+        <%#=f.id%>
+      <%#= f.label :Task_Id %>
+      <%#= f.text_field :task_id %></br>
+        </br></br>
+      <%#= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
+
+
+ <%  @task.each do |f| %>
+<%#= render 'shared/error_messages' %> 
+<%= f.id %></br>
+      <%= f.title %></br>
+      <%= f.start_date %></br>
+      <%= f.end_date %></br>
+    </br></br>
+      <%end%>
+
+
+       <%#  @user1.each do |f| %>
+      <%#= f.id %></br>
+      <%#= f.name %>
+     
+    </br></br>
+      <%#end%>
+
+</br></br></br>Available Employees:</br>
+<% @available = []%>
+
+<%@users.each do |f|%>
+<%if f.task_id =! nil && f.task.end_date.future? %>
+The task itself:
+<%= f.task %>
+<%#=f.task_id%> 
+<%@available << f%>
+<%#else %>
+<%=f.name%>
+<%end%>
+
+
+<%end%></br></br></br>
+<%=@available%></br></br></br>
+<%= form_tag(projectsupdate_path) do %>
+  <%#= label_tag(:x, "Task:") %>
+  <%#= text_field_tag(:x )%>
+  <%= label_tag(:x, "Task:") %>
+  <%= text_field_tag(:x )%></br>
+  <%= label_tag(:y, "User:") %>
+  <%= text_field_tag(:y )%>
+  <%= submit_tag("Continue") %>
+   <%end%>   
+
+ <%#end%>
+
+
+<%#=@user.name%>
+        <%#= form_tag(projectstest2_path) do %>
+        <%#= label_tag(:y, "User:") %>
+        <%#= text_field_tag(:y )%>
+  
+        <%#= submit_tag("Add") %>
+        <%#end%> 
+
+
+      <%# form_for @user2 do |f| %>     
+      <%# @user2.task_id = @x %>
+
+      <%#= f.submit "Create Project", class: "btn btn-large btn-primary"%>
+
+      <%#end%>
+      <%# form_for @user do |f| %>
+<%#f.task_id = @x%>
+      <%#end%>
+@user2.task_id = @x
+
+      <%#= form_tag(root_path) do %>
+  <%#= label_tag(:y, "User:") %>
+  <%#= text_field_tag(:y )%>
+  <%#= submit_tag("Continue") %>
+      <%#end%>
+      </br>
+      <%#= f.submit "Create Project", class: "btn btn-large btn-primary"%>
+<%#end%>
+       <%#,:controller => :static_pages :action => :menu%>
+      </div>
+      <%#end%>
+    </section>
+  </aside>
+</div>

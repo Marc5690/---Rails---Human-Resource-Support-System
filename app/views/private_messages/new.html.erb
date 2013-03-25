@@ -1,0 +1,24 @@
+<% provide(:title, 'Send a Private Message') %>
+<h1>Enter details below:</h1>
+
+<div class="row">
+  <div class="span6 offset2">
+
+    <%= form_for @private do |f| %>
+<%#= render 'shared/error_messages' %> 
+     <div style="white-space: nowrap">
+      
+      <%= f.label :To %>
+      <%= f.text_field :receiver %>
+      <%= f.label :Title %>
+      <%= f.text_field :title %>
+      <%= f.label :Content %>
+      <%= f.text_field :content %>
+      <%=f.hidden_field :date, :value => DateTime.now%>
+      <%=f.hidden_field :sender, :value => current_user.id%>
+      </br>
+      <%= f.submit "Send Message", class: "btn btn-large btn-primary" %>
+      <%end%>
+      </div>
+    </div>
+ </div>

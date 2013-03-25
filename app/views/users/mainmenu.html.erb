@@ -1,0 +1,20 @@
+<% provide(:title, "Main Menu") %>
+<div class="row">
+  <%#= form_for(@user) do |f| %>
+  <%# form_tag do |f|%>
+   <div style="white-space: nowrap">
+<%#= f.submit "Time and Attendance", class: "btn btn-large btn-primary" %>
+
+<%= link_to "Time and Attendance", menu_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "Absence Management", menu_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "Project Planner", menu_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "Add Employee Account", menu_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "View Employee Records", menu_path , class: "btn btn-info btn-small" %>
+
+      <%#= f.submit "Absence Management", class: "btn btn-large btn-primary" %>
+      <%#= f.submit "Project Planner", class: "btn btn-large btn-primary" %>
+      <%#= f.submit "Add Employee", class: "btn btn-large btn-primary" %>
+      <%#= f.submit "View Employee records", class: "btn btn-large btn-primary" %>
+      <%#end%>
+</div>
+

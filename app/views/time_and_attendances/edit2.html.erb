@@ -1,0 +1,42 @@
+<% provide(:title, 'Edit an Employee Record') %>
+<h1>Enter the ID of the record you want to delete:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <div style="white-space: nowrap">
+       
+       <% if @user.time_and_attendances.any? %>
+<h3>Time and Attendance Records </h3>
+      <ol>
+        <%= render @time_and_attendances %>
+      </ol>
+
+      <% else %>
+    
+   <div style="white-space: nowrap">
+
+<h2> No time and attendance records found!</h2>
+ 
+    <% end %>
+
+
+<%#= @user.time_and_attendance %>
+
+
+
+         <%#= form_for(User.new) do |f| %>
+         <%#= f.label :Enter_ID %>
+             <%#= f.text_field :name %>
+  <%#= submit_tag("Search") %>
+<%# end %>
+
+
+<%= link_to "Home", root_path , class: "btn btn-info btn-small" %>
+
+         <%# form_tag Employee.new do |f|%>
+            <%#= f.label :Personnel_Number %>
+            <%#= f.text_field :name %>
+            <%#= f.submit "Add record for Employee", class: "btn btn-large btn-primary" %>
+         <%# end %>
+    </div>
+  </div>
+</div>

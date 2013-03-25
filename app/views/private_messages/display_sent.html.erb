@@ -1,0 +1,23 @@
+<% provide(:title, 'Send a Private Message') %>
+<h1>Enter details below:</h1>
+
+<div class="row">
+  <div class="span6 offset2">
+
+</br>
+</br>
+Inbox:</br></br>
+<%@sent_messages.each do |f|%>
+<%=f.title%></br>
+<% @sender = User.find_by_id(f.sender)%>
+<%=@sender.name%></br>
+<%= link_to "Open", f, method: :get%></br></br>
+</br>
+<%#show didn't work: http://railsforum.com/viewtopic.php?id=38460%>
+<%end%>
+</br>
+
+
+      </div>
+    </div>
+ </div>

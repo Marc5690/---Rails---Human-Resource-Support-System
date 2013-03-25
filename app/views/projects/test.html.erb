@@ -1,0 +1,25 @@
+<% provide(:title, "Test") %>
+
+<%# if @project1.time_and_attendances.any? %>
+<h3>TEST </h3>
+      <ol>
+        <%#= render @project %>
+      </ol>
+
+      <%#@user.each do |f|%>
+<% f.skills.each do |f| %>
+	<%= f.skill_type %>
+<%end%><%end%></br></br></br>
+      <%@avail = []%>
+<%@user.each do |f|%>taint
+<% f.skills.each do |f| %>
+<% if f == @task1.skills%>
+<% @avail << f%>
+<%else%>
+<%end%>
+<%end%>
+<%end%></br></br></br>
+      <%@task1.skills.each do |f|%>
+      <%=f.skill_type%></br></br></br>
+      <%end%>
+      <%#=@avail.name if%>

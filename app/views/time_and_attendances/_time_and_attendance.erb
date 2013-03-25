@@ -1,0 +1,19 @@
+<li>
+  <span class="timestamp">
+    Date: <%=time_and_attendance.date.to_date%></br>
+    Hours: <%=time_and_attendance.hours_worked%></br>
+    Project: <%=time_and_attendance.project%></br>
+    Task: <%=time_and_attendance.task%></br>
+
+       <%#= link_to 'Show', book %>
+    <%#= link_to 'Edit', edit_book_path(book) %>
+    <%#= link_to 'Remove', book, :confirm => 'Are you sure?', :method => :delete %>
+
+ <%#= link_to "delete", time_and_attendance, method: :delete,
+                                     data: { confirm: "Are you sure that you want to delete this record?" }
+                                      %>
+              
+  </span>
+      
+  <%# end %>
+</li>

@@ -1,0 +1,37 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+   <div style="white-space: nowrap">
+  
+<% if @user.absences.any? %>
+<h3>Absence Records </h3>
+      <ol>
+        <%= render @absences %>
+        </ol>
+
+      <% else %>
+    
+   <div style="white-space: nowrap">
+
+<h2> No Absence records found!</h2>
+ <%= link_to "Return to main menu", root_path, class: "btn btn-large btn-primary" %>
+    <% end %>
+
+<%@array = [] %>
+<%@user.absences.each do |d|
+
+
+@array << d.date
+
+end
+  %></br></br></br></br>
+
+</br></br>
+  <%=@array %>
+</br></br></br></br></br></br></br></br>
+   <img src="<%=Gchart.bar(:data => [1,2], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF')%>"/>
+<%=@array%>
+      </h1>
+    </section>
+  </aside>
+</div>
+

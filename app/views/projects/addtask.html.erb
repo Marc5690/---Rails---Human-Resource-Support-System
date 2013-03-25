@@ -1,0 +1,29 @@
+<% provide(:title, 'Add Task') %>
+<h1>Task:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <%= form_for @task do |f| %>
+<%#= render 'shared/error_messages' %> 
+     <div style="white-space: nowrap">
+<%#= f.label :Identification_Number %>
+      <%#= f.text_field :name %>
+      <%= f.label :Title %>
+      <%= f.text_field :title %>
+       <%= f.label :Start_Date %>
+      <%= f.text_field :start_date %>
+       <%= f.label :End_Date %>
+      <%= f.text_field :end_date %>
+      <%= f.label :Estimated_Hours %>
+      <%= f.text_field :estimated_hours %>
+       <%= f.label :Description %>
+      <%= f.text_area :description %>
+      <%= f.label :Project %>
+      <%= f.text_area :project_id %>
+      
+               <%= f.submit "Add Task", class: "btn btn-large btn-primary" %></br>
+   <% end %>
+
+   <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>
+
+  </div>  </div>
+</div>

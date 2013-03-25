@@ -1,0 +1,41 @@
+<% provide(:title, 'Add an Employee Account') %>
+<h1>Enter details below:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <div style="white-space: nowrap">
+
+         <%#=User.all%>
+         <% @user.each do |user| %>
+<ol class="users">
+Name: <%= user.name %>
+ID: <%= user.id %>
+<%#= link_to "More", user %>
+<p>__________________________________</p>
+</ol>
+
+<% end %>
+
+<%= will_paginate @user, :previous_label => t("<-"), :next_label => t("->") %>
+      <%= page_entries_info @user %>
+
+
+
+
+
+
+         
+         <%= form_tag("/addtime2") do %>
+  <%= label_tag(:q, "Enter ID:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Continue") %>
+<% end %>
+<%#= link_to "Continue", addtime2_path , class: "btn btn-info btn-small" %>
+
+         <%# form_tag Employee.new do |f|%>
+            <%#= f.label :Personnel_Number %>
+            <%#= f.text_field :name %>
+            <%#= f.submit "Add record for Employee", class: "btn btn-large btn-primary" %>
+         <%# end %>
+    </div>
+  </div>
+</div>

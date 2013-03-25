@@ -1,0 +1,22 @@
+<% provide(:title, 'Edit Time and Attendance Record') %>
+<h1>Edit Time and Attendance Record:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <%= form_for(Employee.new) do |f| %>
+<%#= render 'shared/error_messages' %> 
+     <div style="white-space: nowrap">
+<%= f.label :Date %>
+             <%= f.text_field :name %>
+            <%= f.label :Hours_Worked %>
+      <%= f.text_field :name %>
+       <%= f.label :Task %>
+      <%= f.text_field :name %>
+       <%= f.label :Project %>
+      <%= f.text_field :name %>
+      
+               <%#= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
+   <% end %>
+   <%= link_to "Update Record", menu_path, class: "btn btn-large btn-primary" %>
+
+  </div>  </div>
+</div>
