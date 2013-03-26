@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ProjectsHelper
   before_filter :signed_in_user, only: [:create, :destroy]
 
   def new
@@ -156,7 +157,7 @@ end
 
   def month
     @task = params[:x]
-    @year = params[:y]
+    @year = params[:y].to_i
     @month = params[:z].to_i# DateTime.new(:month = params[:z])
     @task = Task.find_by_id(@task)
     @array = []
@@ -165,19 +166,64 @@ end
 
     #@task.time_and_attendances.each do |f|
     
+    #@days = []
+    @day = days_in_month(@month, @year)
+
+    @day1 = (1..@day)
+    @days = []
+    
+    @day1.each do |f|
+      @days << f#.to_s
+    end
+
+    @empty_data = []
+    @days.each do |f|
+    @empty_data << 0
+
+    end
+
+
     @hours = @task.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
  
- @hours.each do |f|
-   if f.date.month == @month
-    @array3 << f.total_hours_worked.to_i
-  else
-    @array2 << f
+
+ ###############################################################
+#   @hours.each do |f|
+#    if f.date.month == @month && if f.date.year == @year
+#      @array3 << f.total_hours_worked.to_i
+#     else
+#      @array2 << f
+#   end
+# else @array2 << f
+# end
+#end
+
+
+#@hours.each do |f|
+#  @empty_data[f.date.day.to_i - 1] = f.total_hours_worked
+#end   
+###################################################################
+
+   @hours.each do |f|
+    if f.date.month == @month && if f.date.year == @year
+     @array3 << f
+     else
+      @array2 << f
+   end
+ else @array2 << f
+ end
 end
+
+
+@array3.each do |f|
+  @empty_data[f.date.day.to_i - 1] = f.total_hours_worked
+end   
 
 #@array3.each do |f|
 #@array << f.total_hours_worked
 #  end
-end
+#end
+
+
 
 
 

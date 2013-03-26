@@ -9,10 +9,15 @@
               :data => [@array])%>"/></br></br></br></br></br></br>
 <%#unless @array.empty? %>
       <img src="<%=Gchart.line(#:size => '300x300', 
-              #:title => "example title",
+              :size => '500x360', 
+              :title => "Hours of work done for month",
               #:bg => 'efefef',
-             # :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF',
-              :data => @array3)%>"/>
+          #    :chartArea => 'left:100',
+              :axis_with_labels => 'x',
+              :axis_labels => [@days],
+               :axis_range => [nil, [2,17,5]],
+             # :legend => ['Hours Worked'], #:bar_colors => '3300CC,3399FF',
+              :data => @empty_data)%>"/>  @array3 @empty_data
 
              <%# graph<img src="%><%#=Gchart.bar(:data => [@b.to_f, @project.estimated_hours.to_f], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => ['3300CC','3399FF'])%>"/>
              <%#else%>
@@ -34,8 +39,6 @@ Record</br>
 <%#=f.date%>
 </br>
 <%#end%>
-3
-2012-01-03 00:00:00.000000 12 4 12
 </br></br></br>
 @array3
 
@@ -49,3 +52,8 @@ Record</br>
 <% @hours.each do |f|%>
   <%= f.date%></br>
 <%end%>
+
+</br></br></br></br></br></br>
+<%=@days%>
+</br></br></br></br></br></br>
+<%=@empty_data%>
