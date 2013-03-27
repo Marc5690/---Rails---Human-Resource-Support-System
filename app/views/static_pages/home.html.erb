@@ -1,50 +1,36 @@
-<% if signed_in? %>
+<% if signed_in? && @current_user.admin==true %>
   <div class="row">
     <aside class="span4">
 
       <% provide(:title, "Main Menu") %>
 <div class="row">
-  <%#= form_for(@user) do |f| %>
-  <%# form_tag do |f|%>
    <div style="white-space: nowrap">
-<%#= f.submit "Time and Attendance", class: "btn btn-large btn-primary" %>
+   <h3> Welcome <%= @current_user.name %></h3>
 
-<h3> Welcome <%= @current_user.name %>
-
-
-</h3>
 <%= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "Absence Management", absences_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "Project Planner", projects_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "Add Employee Account", signup_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "View Employee Records", root_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "Manage Skills", skills_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "View Employee Records", root_path , class: "btn btn-info btn-small" %></br></br>
 <%= link_to "Message Centre", private_messages_path , class: "btn btn-info btn-small" %>
 
-      <%#= f.submit "Absence Management", class: "btn btn-large btn-primary" %>
-      <%#= f.submit "Project Planner", class: "btn btn-large btn-primary" %>
-      <%#= f.submit "Add Employee", class: "btn btn-large btn-primary" %>
-      <%#= f.submit "View Employee records", class: "btn btn-large btn-primary" %>
-      <%#end%>
+  
 </div>
 
-<%#
+<% elsif signed_in? && current_user.admin==false %>
+
+<h3> Welcome <%= @current_user.name %></h3>
+<%= link_to "Message Centre", private_messages_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %></br></br>
+<%= link_to "View Record", current_user , class: "btn btn-info btn-small" %></br></br>
 
 
-      <section>
-        <%= render 'shared/user_info' %>
-<%#</section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-  <%#    </section>
-    </aside>
-  </div>%>
 
-    
-<% else %>
+<%else%>
   <div class="center hero-unit">
     <h1>Welcome to the Human Resource Support System</h1>
+
 
     <%= link_to "Sign in here", signin_path, 
                                 class: "btn btn-large btn-primary" %>

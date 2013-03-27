@@ -1,0 +1,23 @@
+<% provide(:title, 'Add Time and Attendance Record') %>
+<h1>Add Time and Attendance Record:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    <%= form_for @timeandattendance do |f| %>
+<%#= render 'shared/error_messages' %> 
+     <div style="white-space: nowrap">
+      <%= f.label :Date %>
+      <%= f.text_field :date %>
+      <%= f.label :Hours_Worked %>
+      <%= f.text_field :hours_worked %>
+      <%= f.label :Project_Id %>
+      <%= f.text_field :project_id %>
+      <%= f.label :Task_Id %>
+      <%= f.text_field :task_id %>
+      <%= f.hidden_field :user_id, :value => current_user.id%>
+      
+      <%= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
+   <% end %>
+   <%#= link_to "Add Record", root_path, class: "btn btn-large btn-primary" %>
+
+  </div>  </div>
+</div>

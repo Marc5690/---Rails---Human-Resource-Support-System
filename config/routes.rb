@@ -21,13 +21,17 @@ Mytwitter2::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   # match '/menu', to: 'static_pages#menu'
 
-  #Time and Attendance Routes
+  #Time and Attendance Routes for project manager
   match '/timemenu', to: 'time_and_attendances#menu'
   match '/addtime', to: 'time_and_attendances#select'
   match '/addtime2', to: 'time_and_attendances#add'
   match '/viewtime', to: 'time_and_attendances#editrec'
   match '/viewtime2', to: 'time_and_attendances#edit2'
-  
+  #Time and Attendance routes for employee
+  #match '/times', to: 'time_and_attendances#emptime'
+  match '/viewemptimes', to: 'time_and_attendances#emptime'
+  match '/addemptimes', to: 'time_and_attendances#addemptime'
+
   #project routes
   match '/projects', to: 'projects#index'
   match '/projectsaddemployee', to: 'projects#new'

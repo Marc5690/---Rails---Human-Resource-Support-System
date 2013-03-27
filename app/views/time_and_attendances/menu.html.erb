@@ -3,8 +3,15 @@
    <div style="white-space: nowrap">
  
    <div style="white-space: nowrap">
+   	<% if current_user.admin == true%>
    	<%= link_to "Add Time and Attendance record", addtime_path , class: "btn btn-large btn-primary" %></br></br>
+   	
 <%= link_to "View Time and Attendance record", viewtime_path , class: "btn btn-large btn-primary" %></br></br>
+<%else%>
+<%= link_to "Add Time and Attendance record", addemptimes_path , class: "btn btn-large btn-primary" %></br></br>
+<%= link_to "View Time and Attendance record", viewemptimes_path , class: "btn btn-large btn-primary" %></br></br>
+<%end%>
+
       </h1>
 
     </section>

@@ -9,6 +9,14 @@
       <ol>
         <%= render @time_and_attendances %>
       </ol>
+<%= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
+      <%= page_entries_info @time_and_attendances %>
+
+
+      <img src="<%=Gchart.pie(:size => '500x360', 
+              :title => "Workload for this month",
+              :labels => @label,
+              :data => @data)%>"/>
 
       <% else %>
     

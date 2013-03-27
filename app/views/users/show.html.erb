@@ -2,19 +2,33 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+      <h4>
+        <%= gravatar_for @user %></br></br></br>
+  Name:<%= @user.name %></br></br>
+  Email:<%=@user.email%></br></br>
+  Personnel Number:<%= @user.personnel_number %></br></br>
+  Address:<%= @user.address %></br></br>
+  Telephone: <%=@user.telephone%></br></br>
+  Date Of Birth:<%= @user.date_of_birth %></br></br>
+  Sex:<%= @user.sex %></br></br>
+  Commencement:<%=@user.commencement%></br></br>
+  Termination:<%= @user.termination%></br></br>
+  Insurance:<%= @user.insurance %></br></br>
+  Grade:<%=@user.grade%></br></br>
+  Post:<%= @user.post %></br></br>
+  Centre:<%= @user.centre %></br></br>
+  Division:<%=@user.division%></br></br>
+  Location:<%= @user.location %></br></br>
+  Salary Scale:<%= @user.salary_scale %></br></br>
+  Scale Point:<%=@user.scale_point%></br></br>
+  Pay Centre:<%= @user.pay_center%></br></br>
+  Reason For Employment:<%= @user.reason_for_employment%></br></br>
+      </h4>
     </section>
   </aside>
    <div class="span8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-    <% end %>
+     
+    
   </div>
 </div>
 
