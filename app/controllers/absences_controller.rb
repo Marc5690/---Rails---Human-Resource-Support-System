@@ -10,7 +10,7 @@ class AbsencesController < ApplicationController
   def display
    @user = User.find_by_id(params[:q])
    @current_emp = params[:q]
-    @absences = @user.absences
+    @absences = @user.absences.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
 
     
   end
@@ -57,6 +57,13 @@ class AbsencesController < ApplicationController
  
       @current_emp2 = params[:q]
 
+      @userall = User.all
+    @array = []
+
+    @userall.each do |f|
+      @array << [f.name, f.id]
+    end
+
 
   end
  
@@ -64,6 +71,13 @@ class AbsencesController < ApplicationController
      @user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
    
      @current_emp2 = params[:q]
+
+       @userall = User.all
+    @array = []
+
+    @userall.each do |f|
+      @array << [f.name, f.id]
+    end
 
 
   end

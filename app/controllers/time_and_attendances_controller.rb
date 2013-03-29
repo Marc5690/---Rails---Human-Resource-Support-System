@@ -2,6 +2,7 @@ class TimeAndAttendancesController < ApplicationController
   def add
     @timeandattendance = TimeAndAttendance.new
     @q = params[:q]
+    @task = Task.all
   end
 
   def index 
@@ -10,7 +11,7 @@ class TimeAndAttendancesController < ApplicationController
   @time_and_attendance = TimeAndAttendance.find_by_id(params[:id])
  end
 
- 
+
   def create
     @timeandattendance = TimeAndAttendance.new(params[:time_and_attendance])
     if @timeandattendance.save
@@ -86,15 +87,21 @@ end
   end
 
   def edit2
-     #@q = params[:q]
-     
-     @user = User.find_by_id(params[:q])#params[:q])
-@time_and_attendances = @user.time_and_attendances
+  @user = User.find_by_id(params[:q])#params[:q])
+  @time_and_attendances = @user.time_and_attendances.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+  
   end
 
   def editrec
   @user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
   @q = params[:q]
+   @userall = User.all
+    @array = []
+
+    @userall.each do |f|
+      @array << [f.name, f.id]
+    end
+
   end
 
   def menu
@@ -103,6 +110,14 @@ end
   def select
     @user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
     @q = params[:q]
+    @userall = User.all
+    @array = []
+
+    @userall.each do |f|
+      @array << [f.name, f.id]
+    end
+
+
   end
 
   def selectedit

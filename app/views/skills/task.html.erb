@@ -2,14 +2,16 @@
 <h1>Skill:</h1>
 <div class="row">
   <div class="span6 offset2">
-     routes to updatetask.html.erb
+    
     <%= form_tag(updatetaskskills_path) do %>
   <%#= label_tag(:x, "Task:") %>
   <%#= text_field_tag(:x )%>
   <%= label_tag(:x, "Skill:") %>
-  <%= text_field_tag(:x )%></br>
-  <%= label_tag(:y, "User:") %>
-  <%= text_field_tag(:y )%>
+  <%= select_tag :x, options_for_select(@skills) %> 
+  <%#= text_field_tag(:x )%></br>
+  <%= label_tag(:y, "Task:") %>
+  <%= select_tag :y, options_for_select(@tasks) %> 
+  <%#= text_field_tag(:y )%></br>
   <%= submit_tag("Continue") %>
    <%end%> 
 

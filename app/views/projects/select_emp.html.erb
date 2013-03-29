@@ -1,0 +1,51 @@
+<% provide(:title, "Project") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1></h1>
+        <div style="white-space: nowrap">
+      Task Skills:
+     <%@skills.each do |f|%>
+<%=f.skill_type%>
+     <%end%></br></br>
+
+Users assigned to task:
+ <%@users.each do |f|%>
+<%=f.name%>
+     <%end%>
+</br></br></br></br>
+
+
+     <%#=@available%>
+ <%= form_tag(projectempupdate_path) do %>
+
+  <%= label_tag(:x, "Employee:") %>
+  <%= select_tag :x, options_for_select(@available) %> </br>
+  <%# label_tag(:y, "Task:") %>
+
+  <%=hidden_field_tag :d,  @d %> :value => 
+
+  <%# hidden_field :y, :value => (@task1.to_i) %>
+  <%#:value =>  @task1.to_i %>
+  <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
+
+  <%= submit_tag("Continue") %>
+<%end%>
+
+    
+<%#= form_tag(projectsplanning_path) do %>
+  <%#= label_tag(:x, "Task:") %>
+  <%#= text_field_tag(:x )%></br>
+   <%#= label_tag(:y, "Year:") %>
+  <%#= text_field_tag(:y )%></br>
+   <%#= label_tag(:z, "Month:") %>
+  <%#= text_field_tag(:z )%></br>
+  <%#= submit_tag("Continue") %>
+   <%#end%>   
+
+       
+      </div>
+      <%#end%>
+    </section>
+  </aside>
+</div>

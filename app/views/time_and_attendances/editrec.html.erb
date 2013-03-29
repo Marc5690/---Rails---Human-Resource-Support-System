@@ -4,23 +4,25 @@
   <div class="span6 offset2">
     <div style="white-space: nowrap">
          
-        <% @user.each do |user| %>
+        <%# @user.each do |user| %>
 <ol class="users">
-Name: <%= user.name %>
-ID: <%= user.id %>
+<%#= user.name %>
+ <%#= user.id %>
 <%#= link_to "More", user %>
-<p>__________________________________</p>
+
 </ol>
 
-<% end %>
+<%# end %>
 
-<%= will_paginate @user, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @user %>
+<%#= will_paginate @user, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @user %>
       
 
  <%= form_tag("/viewtime2") do %>
   <%= label_tag(:q, "Enter ID:") %>
-  <%= text_field_tag(:q )%>
+
+  <%= select_tag :q, options_for_select(@array) %> 
+  <%#= text_field_tag(:q )%>
   <%= submit_tag("Continue") %>
 <% end %>
 

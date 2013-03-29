@@ -1,18 +1,20 @@
 <% provide(:title, 'Edit an Employee Record') %>
-<h1>Enter the ID of the record you want to delete:</h1>
+<h1>Time and Attendance Records</h1>
 <div class="row">
-  <div class="span6 offset2">
-    <div style="white-space: nowrap">
+  <div style="white-space: nowrap">
+    <div class="span6 offset2">
        
        <% if @user.time_and_attendances.any? %>
-<h3>Time and Attendance Records </h3>
+
       <ol>
         <%= render @time_and_attendances %>
       </ol>
+      <%= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
+      <%= page_entries_info @time_and_attendances %>
 
       <% else %>
     
-   <div style="white-space: nowrap">
+   
 
 <h2> No time and attendance records found!</h2>
  
@@ -20,4 +22,6 @@
 <%= link_to "Home", root_path , class: "btn btn-info btn-small" %>
   </div>
   </div>
+   
 </div>
+

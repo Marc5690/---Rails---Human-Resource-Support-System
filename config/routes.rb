@@ -39,12 +39,18 @@ Mytwitter2::Application.routes.draw do
   match '/projectsviewemployee', to: 'projects#addtask'
   match '/projectstest', to: 'projects#test'
   match '/projectsoverview', to: 'projects#display'
+
   match '/projectsearchemp', to: 'projects#choose_project'
+  match '/projectforemp', to: 'projects#addemp'
+ match '/projectempupdate', to: 'users#update'
+
   match '/projectsaddemp', to: 'projects#addemp'
-  match '/projectsupdate', to: 'users#update'
+  match '/projectsupdate', to: 'projects#select_emp'#users#update'
   match '/projectstest2', to: 'projects#test2'
   match '/projectsplanning', to: 'projects#month'
   match '/projectsselect', to: 'projects#select_project'
+  match '/projectschoose', to: 'projects#choose_project'
+  match '/projectschooseedit', to: 'projects#choose_project_edit'
   
   #Task routes
   match '/projectstask', to: 'tasks#new'

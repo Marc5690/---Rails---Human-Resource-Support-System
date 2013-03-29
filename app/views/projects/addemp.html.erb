@@ -1,4 +1,4 @@
-<% provide(:title, "Project") %>
+<%provide(:title, "Project") %>
 <div class="row">
   <aside class="span4">
     <section>
@@ -7,51 +7,44 @@
       <%#= form_for @user do |f| %>
         <%#=f.id%>
       <%#= f.label :Task_Id %>
-      <%#= f.text_field :task_id %></br>
-        </br></br>
-      <%#= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
+      <%#= f.text_field :task_id %>
+      <%#= f.submit "Add Record", class: "btn btn-large btn-primary" %>
 
 
- <%  @task.each do |f| %>
+ <%#  @task.each do |f| %>
 <%#= render 'shared/error_messages' %> 
-<%= f.id %></br>
-      <%= f.title %></br>
-      <%= f.start_date %></br>
-      <%= f.end_date %></br>
-    </br></br>
-      <%end%>
-
+<%#= f.id %>
+      <%#= f.title %>
+      <%#= f.start_date %>
+      <%#= f.end_date %>
+    
+            <%#end%>
 
        <%#  @user1.each do |f| %>
-      <%#= f.id %></br>
+      <%#= f.id %>
       <%#= f.name %>
      
-    </br></br>
       <%#end%>
 
-</br></br></br>Available Employees:</br>
-<% @available = []%>
+<%# @available = []%>
 
-<%@users.each do |f|%>
-<%if f.task_id =! nil && f.task.end_date.future? %>
-The task itself:
-<%= f.task %>
+<%#@users.each do |f|%>
+<%#if f.task_id =! nil && f.task.end_date.future? %>
+<%#= f.task %>
 <%#=f.task_id%> 
-<%@available << f%>
+<%#@available << f%>
 <%#else %>
-<%=f.name%>
-<%end%>
+<%#=f.name%>
+<%#end%>
 
 
-<%end%></br></br></br>
-<%=@available%></br></br></br>
+<%#end%>
+<%#=@available%>
 <%= form_tag(projectsupdate_path) do %>
   <%#= label_tag(:x, "Task:") %>
   <%#= text_field_tag(:x )%>
-  <%= label_tag(:x, "Task:") %>
-  <%= text_field_tag(:x )%></br>
-  <%= label_tag(:y, "User:") %>
-  <%= text_field_tag(:y )%>
+  <%= label_tag(:y, "Task:") %>
+   <%= select_tag :y, options_for_select(@task) %> </br></br>
   <%= submit_tag("Continue") %>
    <%end%>   
 
@@ -76,7 +69,6 @@ The task itself:
       <%# form_for @user do |f| %>
 <%#f.task_id = @x%>
       <%#end%>
-@user2.task_id = @x
 
       <%#= form_tag(root_path) do %>
   <%#= label_tag(:y, "User:") %>

@@ -3,12 +3,19 @@
 
 <div class="row">
   <div class="span6 offset2">
+     <script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker()
+</script>
+
 
     <%= form_for @absence do |f| %>
 <%#= render 'shared/error_messages' %> 
      <div style="white-space: nowrap">
       <%= f.label :Date %>
-      <%= f.text_field :date %>
+      <%#= f.text_field :date %>
+      <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
+
+
       <%= f.label :Status %>
       <%= f.text_field :status %>
       <%= f.label :Reason %>

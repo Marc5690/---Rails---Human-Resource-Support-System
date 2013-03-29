@@ -5,28 +5,44 @@
     <div style="white-space: nowrap">
 
          <%#=User.all%>
-         <% @user.each do |user| %>
+         <%# @user.each do |user| %>
 <ol class="users">
-Name: <%= user.name %>
-ID: <%= user.id %>
+ <%#= user.name %>
+ <%#= user.id %>
 <%#= link_to "More", user %>
-<p>__________________________________</p>
 </ol>
 
-<% end %>
+<%# end %>
 
-<%= will_paginate @user, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @user %>
-
-
+<%#= will_paginate @user, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @user %>
 
 
+
+
+<%#= f.label :Task_Id %>
+ 
+
+  <%#= select_tag(:user_id, @array.collect{|r| [r[1], r[0]]}, :prompt => "Select a user") %>
 
 
          
          <%= form_tag("/addtime2") do %>
   <%= label_tag(:q, "Enter ID:") %>
-  <%= text_field_tag(:q) %>
+
+
+  <%= select_tag :q, options_for_select(@array) %> 
+  <%#= select(:user_id, @userall{|r| [ r.name, r.id ] }, :prompt => "Select a user") %>
+
+<%#= select_tag (:q, @array)%> 
+
+   <%#=select( "task_id", @userall.collect {|r| [ r.name, r.id ] }, { :include_blank => true })%>
+ <%#=collection_select :q, @userall, (:id), (:name), :prompt => "Select a user" %> 
+  <%#=collection_select :q, @userall, User(:id), User(:name), :prompt => "Select a user" %> 
+<%#= collection_select( :q, @userall.collect{|r| [r.name, r.id]}, { :include_blank => true})%>
+
+  <%# {|r| [ r.name, r.id ] }, { :include_blank => true})%>
+  <%#= text_field_tag(:q) %>
   <%= submit_tag("Continue") %>
 <% end %>
 <%#= link_to "Continue", addtime2_path , class: "btn btn-info btn-small" %>

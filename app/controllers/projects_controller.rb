@@ -19,41 +19,103 @@ class ProjectsController < ApplicationController
 
  def addemp
 @users = User.all
+@tasks = Task.all
 
-@available = []#@users.task_id.date_ended.past?
+
+    @task = []
+
+    @tasks.each do |f|
+      @task << [f.title, f.id]
+    end
+
+
+
+
+#@available = []#@users.task_id.date_ended.past?
 
 #for @users.each do |f|
 #if f.task.date_ended.past?
 #@available << f
 #end
-@x = params[:x]
-@y = params[:y]
-@task = Task.all
-@user1 = User.all
-@user = User.find_by_id(@y)
+#@x = params[:x]
+#@y = params[:y]
+#@task = Task.all
+#@user1 = User.all
+#@user = User.find_by_id(@y)
 
-redirect_to root_path
+#redirect_to root_path
 
 
 
 ################TAKE OUT LATER
-if @user.update_column(:task_id,@x)
+#if @user.update_column(:task_id,@x)
 ################TAKE OUT LATER
 
 
 
 
 
-flash[:success] = "Success!"
-  else
-    flash[:failure] = "Failed!"
-  end
+#flash[:success] = "Success!"
+#  else
+#    flash[:failure] = "Failed!"
+#  end
 
 #@user.update_column(:task_id, @x)
 
 end
 
-def projectsupdate
+def select_emp
+@task = Task.find_by_id(params[:y])
+@skills = []
+ @task.skills.all.each do |f|
+@skills << f
+end
+
+@users = []
+@task.users.all.each do |f|
+@users << f
+end
+
+
+@user = User.all
+
+@employees = []
+ 
+ @user.each do |f|
+   f.skills.each do |g|
+    if @task.skills.include?(g)
+      @employees << f if f.task_id != @task.id
+    
+   end
+
+
+  end
+@available =[]
+
+  @employees.each do |f|
+      @available << [f.name, f.id]
+    end
+
+
+@d = params[:y].to_i#(Task.find_by_id(params[:y].to_i)).id#).to_i
+end
+
+
+#@task.skills
+#@task.users
+
+end
+
+def update
+@project = Project.find_by_id(params[:id])
+if @project.update_attributes(params[:project])
+  flash[:success] = "Project Updated!"
+  redirect_to root_path
+else
+  flash[:failure] = "Project was not updated!"
+  redirect_to root_path
+end
+
 end
 
 def projectstest2
@@ -134,6 +196,20 @@ end
   def index
   end
 
+  def choose_project
+    @project = Project.all
+    @array = []
+
+    @project.each do |f|
+      @array << [f.title, f.id]
+    end
+  end
+
+  def choose_project_edit
+    @project = Project.find_by_id(params[:q])
+
+  end
+
   def neweditproject
   end
 
@@ -143,7 +219,8 @@ end
       flash[:success] = "Project created!"
        redirect_to root_path
        else
-      render 'new'
+      flash[:failure] = "Project could not be created!"
+      redirect_to root_path
     end
   end
 

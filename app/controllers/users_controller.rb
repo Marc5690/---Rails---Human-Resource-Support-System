@@ -8,14 +8,25 @@ class UsersController < ApplicationController
   end
 
 def update
- # @x = params[:x]
-@y = params[:y]
+@task = params[:d]#task
 @x = params[:x]
-@user = User.find_by_id(@y)
+@user = User.find_by_id(@x)
 
-@user.update_column(:task_id,@x)
+
+@user.update_column(:task_id,@task)
+
 
 redirect_to root_path
+
+
+
+
+
+
+
+
+
+
 #@x = params[:x]
 #@y = params[:y]
 

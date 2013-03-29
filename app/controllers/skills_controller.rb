@@ -32,8 +32,13 @@ class SkillsController < ApplicationController
     @skill = Skill.find_by_id(params[:x])
     @task = Task.find_by_id(params[:y])
 
-    @task.skills << @skill
+    if @task.skills << @skill
+      flash[:success] = "Task successfully assigned skill"
     redirect_to root_path
+  else
+    flash[:failure] = "Task could not be assigned skill"
+    redirect_to root_path
+  end
    end
 
 
@@ -41,6 +46,19 @@ class SkillsController < ApplicationController
    end
 
    def task
+    @skill = Skill.all
+    @skills = []
+
+    @skill.each do |f|
+      @skills << [f.skill_type, f.id]
+    end
+
+        @task = Task.all
+    @tasks = []
+
+    @task.each do |f|
+      @tasks << [f.title, f.id]
+    end
    end
 
 

@@ -1,13 +1,15 @@
 <li>
   <span class="timestamp">
-       <%=absence.date.to_date%>
-       <%=absence.status%>
-       <%=absence.reason%>
-       <%=absence.form%>
+      ID: <%=absence.id%></br>
+      Date: <%=absence.date.to_date%></br>
+      Status <%=absence.status%></br>
+      Reason: <%=absence.reason%></br>
+      Form: <%=absence.form%></br>
        
-  </span>
+  
       <%= link_to "delete", absence, method: :delete,
                                      data: { confirm: "Are you sure that you want to delete this record?" }
                                       %>
+     </span>
   <%# end %>
 </li>

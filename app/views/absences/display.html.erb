@@ -1,16 +1,19 @@
 <% provide(:title, @user.name) %>
+<h1>Absence Records</h1>
 <div class="row">
    <div style="white-space: nowrap">
+    <div class="span6 offset2">
   
 <% if @user.absences.any? %>
-<h3>Absence Records </h3>
       <ol>
         <%= render @absences %>
-        </ol>
+      </ol>
+ <%= will_paginate @absences, :previous_label => t("<-"), :next_label => t("->") %>
+      <%= page_entries_info @absences %>
 
       <% else %>
     
-   <div style="white-space: nowrap">
+ 
 
 <h2> No Absence records found!</h2>
  <%= link_to "Return to main menu", root_path, class: "btn btn-large btn-primary" %>
@@ -31,7 +34,6 @@ end
    <img src="<%=Gchart.bar(:data => [1,2], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF')%>"/>
 <%=@array%>
       </h1>
-    </section>
-  </aside>
-</div>
+  
+</div></div></div>
 
