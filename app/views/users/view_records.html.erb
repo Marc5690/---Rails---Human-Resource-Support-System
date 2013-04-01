@@ -1,0 +1,15 @@
+<% provide(:title, @user.name) %>
+<h1>Employee:</h1>
+<div class="row">
+  <div class="span6 offset2">
+   
+
+   ID: <%= @user.id%> </br>
+   Name:  <%= @user.name%> </br>
+   Current Task: <%= @user.task.title%> </br>
+    <%= link_to "More", @user%> </br>
+    <%= link_to "View Absence Records", select_absence_year_path(:x => @user.id) , class: "btn btn-info btn-small" %>
+    <%= link_to "View Time And Attendance Records", select_time_year_path(:x => @user.id) , class: "btn btn-info btn-small" %>
+
+  </div></div>
+

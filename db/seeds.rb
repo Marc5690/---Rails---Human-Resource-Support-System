@@ -19,7 +19,7 @@ User.create(name:'Sofie Taylor', email:'st@gmail.com', personnel_number:'3', add
   insurance:'Irish Life Insurance', grade:'3.1', centre:'Dublin', post:'Dublin', division:'I.T. and Programming', location:'Dublin', 
   salary_scale:'1', pay_center:'Dublin', admin:true, password:'PASSWORD', password_confirmation:'PASSWORD')
 
-Project.create(title: 'API interface between Tesco and Cisco. Its coco', estimated_hours:300, current_hours:0, date_started:'2011-02-02 00:00:00.000000', date_ended:'2013-05-05 00:00:00.000000')
+Project.create(title: 'API interface between Tesco and Cisco', estimated_hours:300, current_hours:0, date_started:'2011-02-02 00:00:00.000000', date_ended:'2013-05-05 00:00:00.000000')
 Project.create(title: 'Build bespoke mass-tax-calculating software', estimated_hours:400, current_hours:0, date_started:'2011-05-01 00:00:00.000000', date_ended:'2014-03-02 00:00:00.000000')
 Project.create(title: 'Language Localization System', estimated_hours:500, current_hours:0, date_started:'2010-01-01 00:00:00.000000', date_ended:'2016-08-09 00:00:00.000000')
 

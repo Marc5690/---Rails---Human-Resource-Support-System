@@ -1,0 +1,34 @@
+<% provide(:title, @user.name) %>
+<h1>Employee:</h1>
+<div class="row">
+  <div class="span6 offset2">
+    
+ <%= @user.name%> </br>
+    <%= @user.id%> </br>
+    <%= @user.name%> </br>
+  Current Task  <%= @user.task.title%> </br>
+    <%= link_to "More", @user%> </br>
+
+
+
+    <img src="<%=Gchart.line(#:size => '300x300', 
+              :size => '500x360', 
+              :title => "Hours of work done for #{@year}",
+              #:bg => 'efefef',
+          #    :chartArea => 'left:100',
+              :axis_with_labels => 'x,y',
+              :axis_labels => [@month_labels],
+              :max_value => 100,
+               :axis_range => [nil, [2,17,5]],
+             # :legend => ['Hours Worked'], #:bar_colors => '3300CC,3399FF',
+              :data => @empty_data)%>"/>
+
+
+    
+
+
+
+   <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>
+
+  </div>  </div>
+</div>

@@ -7,25 +7,133 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def select_employee
+    @all_users = User.all
+    @users = []
+    @all_users.each do |f|
+
+    @users << [f.name, f.id]
+    end
+  end
+
+
+  def view_records
+@user = User.find_by_id(params[:user_id])
+
+@hours_combined = @user.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+  end
+
+  def view_time_records
+       @user = User.find_by_id(params[:x])
+     @times = @user.time_and_attendances
+     @year = params[:date].fetch("year").to_i
+     @array = []
+     @array2 = []
+     @array3 = []
+
+
+
+
+    @month_labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+
+   @empty_data = []
+   @month_labels.each do |f|#Here, we are setting the default values for the data set to be used in the graph.
+   @empty_data << 0         #We set it to zero, because if the value is not changed (There were no absences on that day),
+   end                      #we simply leave it at zero.
+    
+  #  @times_by_month = []                       
+   
+  #  @dates = @times.group_by { |m| m.date.beginning_of_month }
+
+  #  @dates.each do |f|
+  #   if f[0].to_datetime.year == @year
+  #   @times_by_month << f
+  #   end 
+  #  end
+
+
+  # @times_by_month.each do |f|
+  #  @empty_data[f[0].to_date.month - 1] = f[1].count
+  # end
+
+
+
+
+
+ @hours = @times.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+ 
+
+
+
+
+   @hours.each do |f|
+     if f.date.year == @year
+     @array3 << f
+     else
+      #@array2 << f
+   
+ end
+end
+
+#Place total hours worked in the corresponding month position in the @empty_data array
+@array3.each do |f|
+  @empty_data[f.date.month.to_i - 1] += f.total_hours_worked
+end   
+
+
+
+
+
+
+
+
+  end
+
+  def view_absence_records
+     @user = User.find_by_id(params[:x])
+     @absences = @user.absences
+     @year = params[:date].fetch("year").to_i
+     @array = []
+     @array2 = []
+     @array3 = []
+
+
+    @month_labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+
+    @empty_data = []
+    @month_labels.each do |f|#Here, we are setting the default values for the data set to be used in the graph.
+    @empty_data << 0         #We set it to zero, because if the value is not changed (There were no absences on that day),
+    end                      #we simply leave it at zero.
+    
+    @absences_by_month = []                       
+   
+    @dates = @absences.group_by { |m| m.date.beginning_of_month }
+
+    @dates.each do |f|
+     if f[0].to_datetime.year == @year
+     @absences_by_month << f
+     end 
+    end
+
+
+   @absences_by_month.each do |f|
+    @empty_data[f[0].to_date.month - 1] = f[1].count
+   end
+
+  end
+
 def update
-@task = params[:d]#task
+@task_id = params[:d]#task
 @x = params[:x]
 @user = User.find_by_id(@x)
 
 
-@user.update_column(:task_id,@task)
+@user.update_column(:task_id,@task_id)
 
 
 redirect_to root_path
-
-
-
-
-
-
-
-
-
 
 #@x = params[:x]
 #@y = params[:y]
@@ -76,4 +184,17 @@ end
       render 'new'
     end
   end
+
+
+    def view_absence_select_year
+      @user = User.find_by_id(params[:x])
+      if params[:x] == nil 
+        redirect_to view_records_path
+        flash[:failure] = "You must select a user first"
+      end
+    end
+
+    def view_time_select_year
+      @user = User.find_by_id(params[:x])
+    end
 end

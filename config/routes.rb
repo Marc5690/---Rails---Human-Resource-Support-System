@@ -42,13 +42,30 @@ Mytwitter2::Application.routes.draw do
 
   match '/projectsearchemp', to: 'projects#choose_project'
   match '/projectforemp', to: 'projects#addemp'
- match '/projectempupdate', to: 'users#update'
+  match '/projectempupdate', to: 'users#update'
 
   match '/projectsaddemp', to: 'projects#addemp'
   match '/projectsupdate', to: 'projects#select_emp'#users#update'
   match '/projectstest2', to: 'projects#test2'
-  match '/projectsplanning', to: 'projects#month'
-  match '/projectsselect', to: 'projects#select_project'
+
+ # match '/projectsplanning', to: 'projects#task_by_month'
+ # match '/projectsselect', to: 'projects#select_task_by_month'
+
+  match '/projectsplanning', to: 'projects#planner_menu'
+
+  match '/plan_task_display_month', to: 'projects#task_by_month'
+  match '/plan_task_select_month', to: 'projects#select_task_by_month'
+
+  match '/plan_project_display_month', to: 'projects#project_by_month'
+  match '/plan_project_select_month', to: 'projects#select_project_by_month'
+
+  match '/plan_task_display_year', to: 'projects#task_by_year'
+  match '/plan_task_select_year', to: 'projects#select_task_by_year'
+
+  match '/plan_project_display_year', to: 'projects#project_by_year'
+  match '/plan_project_select_year', to: 'projects#select_project_by_year'
+  #match '/projectsselect', to: 'projects#select_task_by_month'
+
   match '/projectschoose', to: 'projects#choose_project'
   match '/projectschooseedit', to: 'projects#choose_project_edit'
   
@@ -76,14 +93,22 @@ Mytwitter2::Application.routes.draw do
   match '/absenceview', to: 'absences#display'
   match '/absencesearchadd', to: 'absences#searchadd'
   match '/absencesearchview', to: 'absences#searchview'
+  match '/absencesfill', to: 'absences#fill_absence'
   # match '/absencedisplay', to: 'absences#display'
   # match '/show', to: 'absences#show'
 
   #Employee Routes
-  resources :microposts, only: [:create, :destroy] 
-  resources :sessions, only: [:new, :create, :destroy]  # NEW LINE
-  match '/signin',  to: 'sessions#new'                  # NEW LINE
-  match '/signout', to: 'sessions#destroy', via: :delete    # NEW LINE
+  #resources :microposts, only: [:create, :destroy] 
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/select_employee', to: 'users#select_employee'
+
+  match '/view_records', to: 'users#view_records'
+  match '/view_time_records', to: 'users#view_time_records'
+  match '/select_time_year', to: 'users#view_time_select_year'
+  match '/select_absence_year', to: 'users#view_absence_select_year'
+  match '/view_absence_records', to: 'users#view_absence_records'
+  match '/signin',  to: 'sessions#new'                 
+  match '/signout', to: 'sessions#destroy', via: :delete    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

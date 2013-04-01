@@ -1,0 +1,60 @@
+<% provide(:title, "Overview") %>
+
+<h3>Overview </h3>
+      <%@y = params[:date]%>
+      <%#=@y.fetch("month")%>
+      <img src="<%#=Gchart.bar(  :size => '300x300', 
+              :title => "example title",
+              :bg => 'efefef',
+              :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF',
+              :data => [@array])%>"/></br></br></br></br></br></br>
+<%#unless @array.empty? %>
+      <img src="<%=Gchart.line(#:size => '300x300', 
+              :size => '500x360', 
+              :title => "Hours of work done for month",
+              #:bg => 'efefef',
+          #    :chartArea => 'left:100',
+              :axis_with_labels => 'x',
+              :axis_labels => [@days],
+               :axis_range => [nil, [2,17,5]],
+             # :legend => ['Hours Worked'], #:bar_colors => '3300CC,3399FF',
+              :data => @empty_data)%>"/>  @array3 @empty_data
+
+             <%# graph<img src="%><%#=Gchart.bar(:data => [@b.to_f, @project.estimated_hours.to_f], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => ['3300CC','3399FF'])%>"/>
+             <%#else%>
+             <%#=@hours%>
+</br></br></br><%=@array%></br></br></br>
+There are no records of that time.
+<%#@hours.each do |f|%>
+
+<%#=f.total_hours_worked%>
+
+<%#end%>
+</br></br>
+Record zero
+<%#@array.each do |f|%>
+<%#=f%>
+Record</br>
+<%#@a.each do |f|%>
+<%#=f.hours_worked%></br>
+<%#=f.date%>
+</br>
+<%#end%>
+</br></br></br>
+@array3
+
+<%=@array3%>
+
+</br></br></br>
+@array2
+<%=@array2%>
+
+</br></br></br>
+<% @hours.each do |f|%>
+  <%= f.date%></br>
+<%end%>
+
+</br></br></br></br></br></br>
+<%=@days%>
+</br></br></br></br></br></br>
+<%=@empty_data%>

@@ -43,6 +43,22 @@ class SkillsController < ApplicationController
 
 
    def employee
+
+    @all_users = User.all
+    @users = []
+    @all_users.each do |f|
+
+    @users << [f.name, f.id]
+    end
+
+
+    @all_skills = Skill.all
+    @skills = []
+    @all_skills.each do |f|
+
+    @skills << [f.skill_type, f.id]#params[:x]
+    end
+
    end
 
    def task

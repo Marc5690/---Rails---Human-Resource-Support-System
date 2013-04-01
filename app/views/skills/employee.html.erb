@@ -7,9 +7,11 @@
   <%#= label_tag(:x, "Task:") %>
   <%#= text_field_tag(:x )%>
   <%= label_tag(:x, "Skill:") %>
-  <%= text_field_tag(:x )%></br>
+  <%#= text_field_tag(:x )%></br>
+   <%= select_tag :x, options_for_select(@skills) %> </br>
   <%= label_tag(:y, "User:") %>
-  <%= text_field_tag(:y )%>
+  <%#= text_field_tag(:y )%>
+   <%= select_tag :y, options_for_select(@users) %> </br>
   <%= submit_tag("Continue") %>
    <%end%>   
 

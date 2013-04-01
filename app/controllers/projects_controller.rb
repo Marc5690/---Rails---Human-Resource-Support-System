@@ -7,14 +7,7 @@ class ProjectsController < ApplicationController
      @q = params[:q]
   end
  
- def choose_project
-@task = Task.all 
-@user = User.all
 
-#@x = params[:x]#user
-#@y = params[:y]#task
-
- end
 
 
  def addemp
@@ -128,17 +121,45 @@ def projectstest2
 end
 
   def show
+
+
     @project = Project.find_by_id(params[:id])
-    @today = ((((Time.now - @project.date_started)/60)/60)/24)
-    @fraction =((((Date.today - @project.date_started.to_date).to_f)/((@project.date_ended.to_date - @project.date_started.to_date).to_f))*100)
-#@work = Project.time_and_attendances.all
-@b = 0
+@EST = 0
+ 
+ @projects_tasks_pagination = @project.tasks.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+
+if @project.tasks.any?
+  @project_tasks = @project.tasks
+   # @estimated_hours_TA = 
+    @project_tasks.each do |f|
+     # if f.tasks.any?
+       # f.each. do |j|
+      @EST += f.estimated_hours
+    end
+  end
+#end
+
+    #Gets the seconds between now and the start of the project, then converts the seconds to days. How many days have passed.
+    @days_passed = ((((Time.now - @project.date_started)/60)/60)/24)
+
+    
+
+
+    #The total number of days it should take to finish the project
+@total_days = ((((@project.date_ended - @project.date_started)/60)/60)/24)
+
+    #Percentage of time passed for a project
+    @percentage_of_time_passed=((((Date.today - @project.date_started.to_date).to_f)/((@project.date_ended.to_date - @project.date_started.to_date).to_f))*100)
+
+
+@project_hours_worked = 0
  @project.time_and_attendances.each do |f| 
-@b += f.hours_worked
+@project_hours_worked += f.hours_worked
 
 end
+ #Percentage of work done
 
-  @tt = (@b.to_f/@project.estimated_hours.to_f)#*100#
+  @work_percentage = ((@project_hours_worked.to_f/@project.estimated_hours.to_f)*100)#*100#
       end
 
   def editproject2
@@ -152,6 +173,8 @@ end
 def display
   @project = Project.all
 end
+
+
   def test
 @task1 = Task.find_by_id(1)
     @task = Task.all#find_by_id(3)
@@ -232,10 +255,10 @@ end
     @skill = Skill.new
   end
 
-  def month
+  def task_by_month
     @task = params[:x]
-    @year = params[:y].to_i
-    @month = params[:z].to_i# DateTime.new(:month = params[:z])
+    @year = params[:date].fetch("year").to_i#params[:y].to_i
+    @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
     @task = Task.find_by_id(@task)
     @array = []
     @array2 = []#Original values
@@ -356,10 +379,247 @@ end
   end
 
   #@array.sort_by{|f| f}#time_and_attendance.date}
-  def select_project
-    @task = params[:x]
+  def select_task_by_month
+    @tasks_all = Task.all
+    @tasks_for_menu = []
+    @tasks_all.each do |f|
+
+    @tasks_for_menu << [f.title, f.id]#params[:x]
+    end
+    
     @year = params[:y]
     @month = params[:z]
   end
+
+
+def project_by_month
+    
+    @year = params[:date].fetch("year").to_i
+    @month = params[:date].fetch("month").to_i
+    @task = Project.find_by_id(params[:x])
+    @array = []
+    @array2 = []
+    @array3 = []
+
+  
+    @day = days_in_month(@month, @year)
+
+    @day1 = (1..@day)
+    @days = []
+    
+    @day1.each do |f|
+      @days << f#.to_s
+    end
+
+    @empty_data = []
+    @days.each do |f|
+    @empty_data << 0
+
+    end
+
+
+    @hours = @task.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+ 
+
+
+
+   @hours.each do |f|
+    if f.date.month == @month && if f.date.year == @year
+     @array3 << f
+     else
+      @array2 << f
+   end
+ else @array2 << f
+ end
+end
+
+
+@array3.each do |f|
+  @empty_data[f.date.day.to_i - 1] = f.total_hours_worked
+end   
+
+
+
+
+
+
+
+@a = @task.time_and_attendances.all
+
+
+
+    
+  
+  end
+
+  def select_project_by_month
+    @tasks_all = Project.all
+    @tasks_for_menu = []
+    @tasks_all.each do |f|
+
+    @tasks_for_menu << [f.title, f.id]
+    end
+    
+    @year = params[:y]
+    @month = params[:z]
+  end
+
+
+
+def task_by_year
+    #@task = params[:x]
+    @year = params[:date].fetch("year").to_i#params[:y].to_i
+   # @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
+    @task = Task.find_by_id(params[:x])
+    @array = []
+    @array2 = []#Original values
+    @array3 = []
+
+
+    #@day = days_in_month(@month, @year)
+@days = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+   # @day1 = (1..@day)
+   # @days = []
+    
+   # @day1.each do |f|
+   #   @days << f#.to_s
+   # end
+
+    @empty_data = []
+    @days.each do |f|
+    @empty_data << 0
+
+    end
+
+
+    @hours = @task.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+ 
+
+
+
+#if f.date.month == @month &&
+
+   @hours.each do |f|
+     if f.date.year == @year
+     @array3 << f
+     else
+      @array2 << f
+   #end
+ #else @array2 << f
+ end
+end
+
+
+@array3.each do |f|
+  @empty_data[f.date.month.to_i - 1] += f.total_hours_worked
+end   
+
+
+
+
+
+
+@a = @task.time_and_attendances.all
+end
+
+
+  def select_task_by_year
+    @tasks_all = Task.all
+    @tasks_for_menu = []
+    @tasks_all.each do |f|
+
+    @tasks_for_menu << [f.title, f.id]#params[:x]
+    end
+    
+    @year = params[:y]
+    
+  end
+  
+
+  def select_task_by_month
+    @tasks_all = Task.all
+    @tasks_for_menu = []
+    @tasks_all.each do |f|
+
+    @tasks_for_menu << [f.title, f.id]#params[:x]
+    end
+    
+    @year = params[:y]
+    @month = params[:z]
+  end
+
+
+
+def project_by_year
+    #@task = params[:x]
+    @year = params[:date].fetch("year").to_i#params[:y].to_i
+   # @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
+    @task = Project.find_by_id(params[:x])
+    @array = []
+    @array2 = []#Original values
+    @array3 = []
+
+
+    #@day = days_in_month(@month, @year)
+@days = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+   # @day1 = (1..@day)
+   # @days = []
+    
+   # @day1.each do |f|
+   #   @days << f#.to_s
+   # end
+
+    @empty_data = []
+    @days.each do |f|
+    @empty_data << 0
+
+    end
+
+
+    @hours = @task.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+ 
+
+
+
+#if f.date.month == @month &&
+
+   @hours.each do |f|
+     if f.date.year == @year
+     @array3 << f
+     else
+      @array2 << f
+   #end
+ #else @array2 << f
+ end
+end
+
+#Place total hours worked in the corresponding month position in the @empty_data array
+@array3.each do |f|
+  @empty_data[f.date.month.to_i - 1] += f.total_hours_worked
+end   
+
+
+
+
+
+
+@a = @task.time_and_attendances.all
+end
+
+
+  def select_project_by_year
+    @tasks_all = Project.all
+    @tasks_for_menu = []
+    @tasks_all.each do |f|
+
+    @tasks_for_menu << [f.title, f.id]#params[:x]
+    end
+    
+    @year = params[:y]
+    
+  end
+  
+
+
 
 end

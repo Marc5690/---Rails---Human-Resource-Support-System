@@ -6,58 +6,22 @@
   <aside class="span4">
     <section>
 
-<img src="<%=Gchart.bar(  :size => '300x300', 
-              :title => "example title",
-              :bg => 'efefef',
-              :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF',
-              :data => [10, 30, 120, 45, 72])%>"/>
+<% if @project.tasks.any? %>
+<%#=@days_passed.to_i%>
+<%#=@project.date_started%>
+<%#=@project.date_ended%>
+<%#=@percentage_of_time_passed%>
+<%#=@work_percentage%>
+<%#=@project_hours_worked.to_i%>
 
-              graph<img src="<%=Gchart.bar(:data => [@b.to_f, @project.estimated_hours.to_f], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => ['3300CC','3399FF'])%>"/>
-
-              <%#:max_value => 1000,%>
-<%= @fraction%>
-
-
-:data => [0, 40, 10, 70, 20],   :title => 'keynote', :theme => :keynote)%>
-      <%# Gchart.line(:data => [0, 40, 10, 70, 20])%>
- <img src="<%=Gchart.bar(:data => [[@fraction,@project.estimated_hours],[@fraction,@project.estimated_hours]])%>"/>   
-<img src="<%=Gchart.bar(:data => [[1,2,4,67,100,41,234],[45,23,67,12,67,300, 250]])%>"/>
-<%#= Gchart.bar('800x200', "Bar Chart", :vertical, false) do |bc|
-      bc.data "Trend 1", [5,4,3,1,3,5], '0000ff'
-      bc.data "Trend 2", [1,2,3,4,5,6], 'ff0000'
-      bc.data "Trend 3", [6,5,4,4,5,6], '00ff00'
-      puts "\nBar Chart"
-      puts bc.to_url
-    end
-
-    %>
-Percentage of time :<%=@fraction %>%</br></br>
-Percentage of work : <%=@tt%>
-   </br></br></br>
-     Time passed :<%=(@project.date_ended.to_date - @project.date_started.to_date).to_i%>
-
-</br></br>
-<%= (Date.today - @project.date_started.to_date).to_i %>
-</br></br>
-today<%=@today%>
-</br></br>
-     <%= number_to_percentage((Date.today - @project.date_started.to_date).to_f / (@project.date_ended.to_date - @project.date_started.to_date).to_f)%>
-      
-
-      </br></br></br></br>
-
-      
+    Project ID:  <%= @project.id%></br>
+  Title:  <%= @project.title%></br>
+Start Date:<%= @project.date_started.to_date%></br>
+End Date:<%= @project.date_ended.to_date%></br>
+Estimated Hours:<%= @project.estimated_hours%></br>
+EST: <%=@EST%></br>
 
 
-    </br>
-      <%= @project.id%></br>
-<%= @project.date_started.to_date%></br>
-<%= @project.date_ended.to_date%></br>
-<%= @project.title%></br>
-<%= @project.estimated_hours%></br>
-<%= @project.current_hours%></br>
-#readable_inspect
-#distance_of_time_in_words
 Time left:<%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTime.now)%></br>
 
 <%@b = 0%>
@@ -69,15 +33,65 @@ Time left:<%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTim
 <%#end%>
 <%end%>
 
-Total time spent: <%= @b%>
+Total hours worked: <%= @b%>
 </br></br></br>
+<ol>
+<% @projects_tasks_pagination.each do |f| %>
+Title: <%= f.title %></br>
+Start date: <%= f.start_date %></br>
+End date: <%= f.end_date %></br>
+Description: <%= f.description %></br>
+<%= link_to "See Task Details", f %></br></br>
+<%end%>
+</ol>
 
-<% @project.tasks.each do |f| %>
-Title: <%= f.title %>
-Start date: <%= f.start_date %>
-End date: <%= f.end_date %>
-Description: <%= f.description %>
-<%= link_to "See Task Details", f %>
+
+
+
+
+ <%= will_paginate @projects_tasks_pagination, :previous_label => t("<-"), :next_label => t("->") %>
+      <%= page_entries_info @projects_tasks_pagination %>
+
+Percentage of time :<%=@percentage_of_time_passed%>%</br></br>
+Percentage of work : <%=@work_percentage %>
+   </br></br></br>
+     Time passed :<%=(@project.date_ended.to_date - @project.date_started.to_date).to_i%>
+
+</br></br>
+<%= (Date.today - @project.date_started.to_date).to_i %>
+</br></br>
+today<%=@today%>
+</br></br>
+     <%= number_to_percentage((Date.today - @project.date_started.to_date).to_f / (@project.date_ended.to_date - @project.date_started.to_date).to_f)%>
+
+    </br></br> 
+
+
+                     <img src="<%=Gchart.bar(:title => "#{@percentage_of_time_passed.to_i} %", :data => [[ @days_passed.to_f, 0],[0, @total_days.to_f]], :legend => ['Days Passed', 'Total days'], :labels => [@days_passed.to_i, @total_days.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
+
+
+
+             <img src="<%=Gchart.bar(:title => "#{@work_percentage.to_i} %", :data => [[@project_hours_worked.to_f, 0],[0, @project.estimated_hours.to_f]], :legend => ['Hours Done', 'Estimated Hours'], :labels => [@project_hours_worked.to_i,@project.estimated_hours.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
+
+
+
+
+
+
+</br></br></br></br></br>
+<img src="<%=Gchart.meter(:size => '450x300', :title => "Progress on workload", :labels => "#{@work_percentage.to_f.round(2)}", :data => [@project_hours_worked.to_i], :max_value => @project.estimated_hours.to_i )%>"/>
+</br></br></br></br></br>
+<img src="<%=Gchart.meter(:size => '450x300', :title => "Time passed", :labels => "#{@percentage_of_time_passed.to_f.round(2)}", :data => [@days_passed.to_i], :max_value => @total_days.to_i )%>"/>
+
+    </br></br></br></br>
+
+      
+
+      
+<%else%>
+
+No tasks have been added to this project.
+
 <%end%>
 
 

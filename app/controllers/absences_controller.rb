@@ -14,6 +14,17 @@ class AbsencesController < ApplicationController
 
     
   end
+
+
+  def fill_absence
+    @absences = Absence.all
+    @f = []
+    @future = @absences.each do |f|
+    if f.date.future?
+      @f << f
+    end
+  end
+  end
   
   def destroy
     #@absence = absence

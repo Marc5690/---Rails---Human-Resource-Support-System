@@ -3,11 +3,13 @@
 <h3>Overview </h3>
       <ol>
         <% @project.each do |f|  %>
-<%=f.title%>
-<%= link_to "See Detail", f%>
-</br>
+        Project ID:  <%= f.id%></br>
+        Title: <%=f.title%></br>
+        Start Date:<%= f.date_started.to_date%></br>
+        End Date:<%= f.date_ended.to_date%></br>
+        Estimated Hours:<%= f.estimated_hours%></br>
+        EST: <%#=@EST%></br>
+        <%= link_to "See Detail", f%>
+        </br></br>
         <%end%>
-
-
-        <%= render @project %>
       </ol>
