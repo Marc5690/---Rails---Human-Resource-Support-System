@@ -15,14 +15,14 @@ end
 
 def display_sent
   @user = current_user
-  @sent_messages = []
-  @p = PrivateMessage.all
-  @sent = @p.each do |f|
-    if f.sender ==  @user.id
-    @sent_messages << f
-  else
-  end
-   end
+  @sent_messages = @user.sent_messages#[]
+ # @p = PrivateMessage.all
+ # @sent = @p.each do |f|
+ #   if f.sender ==  @user.id
+ #   @sent_messages << f
+ # else
+ # end
+ #  end
 
 
 end
@@ -30,13 +30,13 @@ end
 def display_received
   @user = current_user
 #@sender = User.find_by_id(f.sender)
-@received_messages = []
-    @received = PrivateMessage.all.each do |f|
-    if f.receiver == @user.id
-      @received_messages << f
-    else
-      end
-    end
+@received_messages = @user.received_messages
+ #   @received = PrivateMessage.all.each do |f|
+ #   if f.receiver == @user.id
+ #     @received_messages << f
+ #   else
+ #     end
+ #   end
 
 
 

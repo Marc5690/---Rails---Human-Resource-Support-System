@@ -1,0 +1,31 @@
+<% provide(:title, 'Absence Management') %>
+
+
+<div class="row">
+  <div class="span6 offset2">
+    <%#= form_for(@employee) do |f| %>
+<%#= render 'shared/error_messages' %> 
+     <div style="white-space: nowrap">
+        <%#=@task%>
+        <%#=@task.id%>
+        <%#=@user.task%>
+<%unless @available_employees == nil || @employees == nil || @employees.empty? || @available_employees.empty? %> 
+        <%#=@absence%>
+        <%#unless @available_employees.empty? %>
+     	<%=form_for @absence do |f|%>
+        <%= f.label :User %>
+        <%#= f.text_field :tempuser %>
+        <%= f.select :tempuser, options_for_select(@available_employees) %> </br>
+
+        <%= f.submit "Update Absence Record", class: "btn btn-large btn-primary" %>
+     	<%end%>	<%#end%>	<%#end%>
+
+
+         <%= link_to "Return", root_path, class: "btn btn-large btn-primary" %></br></br>
+<%else%>
+
+There are no available employees
+<%end%>
+  </div>  </div>
+
+</div>

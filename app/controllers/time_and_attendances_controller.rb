@@ -1,4 +1,6 @@
 class TimeAndAttendancesController < ApplicationController
+   include TimeAndAttendancesHelper
+
   def add
     @timeandattendance = TimeAndAttendance.new
     @q = params[:q]
@@ -62,8 +64,39 @@ end
 
    def addemptime
      @user = current_user
-@timeandattendance = TimeAndAttendance.new
+     @task = @user.task
+@timeandattendance = TimeAndAttendance.new 
+
+#if @user.temporary_positions.any? && @user.temporary_positions.each do |f|
+#if temporary_positions? @user
   
+  @user.temporary_positions.each do |g|
+ if g.date == Date.today#.day
+    @task = g.user.task if g.user.task
+  else
+    @task = @user.task
+end
+#else
+
+ # end
+end
+
+
+
+
+#end
+#end
+#end
+
+#@user.temporary_positions.each do |f|
+#@task = Task.find_by_id(f.id)
+#elsif @user.task
+#  @task = @user.task
+#else 
+#  @task = nil
+
+
+
   end
 
   def destroy

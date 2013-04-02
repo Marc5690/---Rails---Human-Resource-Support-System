@@ -3,10 +3,45 @@
 <div class="row">
   <div class="span6 offset2">
     <div style="white-space: nowrap">
-  <% @f.each do |l| %>
-  <%=l.date%></br>
-  <%=link_to "See more", l%></br>
-  <%end%>
+  <%# @f.each do |l| %>
+  <%#=l.date%></br>
+    <%#=l.user%></br>
+  <%#=link_to "See more", l%></br>
+  <%#end%>
+<%@f = User.all%>
+
+      <%@f.each do |f|%></br></br>
+      <%if f.temporary_positions%>
+      <%f.temporary_positions.each do |t|%>
+      <%=t.id%></br></br>
+      <%=t.date%></br></br>
+      <%end%><%end%><%end%>
+
+
+      <%@f.each do |f|%></br></br>
+      <%if f.absences%>
+      <%f.absences.each do |t|%>
+      <%=t.id%></br></br>
+      <%=t.date%></br></br>
+      <%=t.user.name%></br></br>
+      <%=link_to "Fill in", fill_path(:absence_id => t.id)%></br>
+      <%end%><%end%><%end%>
+
+  <%#Absence.find_by_id(params[:id])%></br></br>
+      
+      <%#@f.temporary_positions.each do |f|%>
+      <%#=f.id%></br>
+       <%#=f.date%></br>
+        <%#=f.reason%></br>
+         <%#=f.id%></br>
+      <%#end%>
+
+<%#Absence.all.each do |f|%>
+      <%#=f.id%></br>
+               <%#=link_to "Fill in", f%></br>
+     
+      <%#end%>
+
     </div>
   </div>
 </div>

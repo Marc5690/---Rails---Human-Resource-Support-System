@@ -94,6 +94,7 @@ Mytwitter2::Application.routes.draw do
   match '/absencesearchadd', to: 'absences#searchadd'
   match '/absencesearchview', to: 'absences#searchview'
   match '/absencesfill', to: 'absences#fill_absence'
+  match '/fill', to: 'absences#fill'
   # match '/absencedisplay', to: 'absences#display'
   # match '/show', to: 'absences#show'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312120038) do
+ActiveRecord::Schema.define(:version => 20130401184840) do
 
   create_table "absences", :force => true do |t|
     t.string   "status"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130312120038) do
     t.integer  "user_id"
     t.string   "form"
     t.datetime "date"
+    t.integer  "tempuser"
   end
 
   create_table "noticeboards", :force => true do |t|

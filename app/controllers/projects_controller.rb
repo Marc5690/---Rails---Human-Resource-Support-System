@@ -60,8 +60,10 @@ end
 def select_emp
 @task = Task.find_by_id(params[:y])
 @skills = []
+if @task.skills.any?
  @task.skills.all.each do |f|
 @skills << f
+end
 end
 
 @users = []

@@ -5,12 +5,15 @@ class User < ActiveRecord::Base
   :salary_scale, :pay_center, :task_id, :admin, :password, :password_confirmation
 
   has_secure_password
-  has_many :absences, dependent: :destroy
+  has_many :absences
   has_many :time_and_attendances
-  has_many :received_messages, :class_name => "private_messages", :foreign_key => "receiver"
-  has_many :sent_messages, :class_name => "private_messages", :foreign_key => "sender"
-  
+  has_many :received_messages, :class_name => "PrivateMessage", :foreign_key => "receiver"
+  has_many :sent_messages, :class_name => "PrivateMessage", :foreign_key => "sender"
+  has_many :temporary_positions, :class_name => "Absence", :foreign_key => "tempuser"
   belongs_to :task
+  
+ # delegate :team, :to => :task
+
   has_and_belongs_to_many :skills
 
   before_save do |user| 

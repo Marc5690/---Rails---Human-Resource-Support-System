@@ -16,9 +16,9 @@ belongs_to :project#, :through => :task #Polymorphic http://guides.rubyonrails.o
   #end
 
 
-validates :date, :hours_worked, :task, :user_id, :task_id, presence: true                               #:project_id,
+validates :date, :hours_worked, :task, :user_id, :task_id, presence: true                             
+validates :date, :uniqueness => {:scope => :user_id}
 
-#validates :date, format:
 
 before_save do |timeandattendance| 
          @task = Task.find_by_id(timeandattendance.task_id.to_i)

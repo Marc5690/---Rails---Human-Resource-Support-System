@@ -1,16 +1,15 @@
 module AbsencesHelper
 
-  #@current_emp
-
-  #def current_emp=(user)
-  #  @current_emp  = :q
-  #end
-
-  #def current_emp
-  #  if @current_user.nil?
-  #     @current_user = 
-  #         User.find_by_id(:q) 
-  #  end
-  #  @current_emp
-  #end
+  def temporary_positions?(user, absence)
+    if user.temporary_positions.any?
+      user.temporary_positions.each do |temp| 
+        if temp.date == absence.date #Check to ensure that the user does not have any other temporary positions on that day
+        return false
+      else 
+        return true
+        end
+      end
+    end
+    
+  end
 end

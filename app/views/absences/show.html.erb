@@ -3,18 +3,16 @@
 
 <div class="row">
   <div class="span6 offset2">
-    <%#= form_for(@employee) do |f| %>
-<%#= render 'shared/error_messages' %> 
      <div style="white-space: nowrap">
+        
 
-     	<h1>Absence Recored Added!</h1>
-         <%= link_to "Return", root_path, class: "btn btn-large btn-primary" %></br></br>
+        <%=@absence.id%></br>
+        <%=@absence.reason%></br>
+        <%=@absence.status%></br>
+        <%=@absence.date%></br>
+        <%=@absence.form%></br>
+        
 
-<%#= link_to "Enter", show_path , class: "btn btn-info btn-small" %>
-<%#= link_to "Enter", show_path , class: "btn btn-info btn-small" %>
-            
-
-      
-    <%# end %>
   </div>  </div>
+
 </div>
