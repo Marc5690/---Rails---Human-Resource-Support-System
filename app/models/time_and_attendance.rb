@@ -1,23 +1,17 @@
 class TimeAndAttendance < ActiveRecord::Base
 
-	attr_accessible :date, :hours_worked, :project_id, :task, :user_id, :task_id
+	attr_accessible :date, :hours_worked, :project_id, :user_id, :task_id#,  :task_id
 
 belongs_to :user
 belongs_to :task
-belongs_to :project#, :through => :task #Polymorphic http://guides.rubyonrails.org/association_basics.html
-#validate :validatedate? :date
-
-  #private
-
-  #def validatedate?
-  #  if !mydate.is_a?(Date)
-  #    errors.add(:mydate, 'must be a valid date') 
-  #  end
-  #end
+belongs_to :project
 
 
-validates :date, :hours_worked, :task, :user_id, :task_id, presence: true                             
-validates :date, :uniqueness => {:scope => :user_id}
+validates :date, :hours_worked, :task, :task_id, presence: true  #Not valiating user id or project. User id will always                           
+validates :date,  :uniqueness => {:scope => :user_id}#, :message => "User already has a Time and Attendance record for that date."            #exist and project is acquired in callback below 
+validates_numericality_of :hours_worked, :only_integer => true, :message => "can only be whole number."
+validates_numericality_of :task_id, :only_integer => true, :message => "can only be whole number."
+validates_inclusion_of :hours_worked, :in => 1..24, :message => "An employee cannot possibly have worked more than 24 hours and should not input records for days where they have worked less than an hour"
 
 
 before_save do |timeandattendance| 

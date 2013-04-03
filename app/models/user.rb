@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
         user.email = email.downcase 
         user.remember_token = SecureRandom.urlsafe_base64
         end
+validates_numericality_of :personnel_number, :only_integer => true, :message => "can only be whole number."
+
 
 validates :personnel_number, :address, 
   :telephone, :date_of_birth, :sex, :commencement, :termination, 

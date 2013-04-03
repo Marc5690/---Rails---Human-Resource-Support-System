@@ -7,7 +7,7 @@
 </script>
 
     <%= form_for @task do |f| %>
-<%#= render 'shared/error_messages' %> 
+<%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
 <%#= f.label :Identification_Number %>
       <%#= f.text_field :name %>
@@ -21,8 +21,13 @@
       <%= f.text_field :estimated_hours %>
        <%= f.label :Description %>
       <%= f.text_area :description %>
+      <%#unless @projects.empty?%>
       <%= f.label :Project %>
-       <%=f.select( "project_id", @project.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
+      <%= f.select :project_id, options_for_select(@projects) %> 
+      <%#else%>
+<%#redirect_to root_path%>
+      <%#end%>
+       <%#=f.select( "project_id", @project.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.select_tag :q, options_for_select(@array) %> 
       <%#= f.text_field :project_id %>
       

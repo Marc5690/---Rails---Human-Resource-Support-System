@@ -4,7 +4,7 @@
   <div class="span6 offset2">
    
 
-<%= form_tag(view_time_records_path(:x => @user.id)) do %>
+<%= form_tag(view_time_records_path(:user_id => @user.id)) do %>
   
   <%= label_tag(:y, "Year:") %>
   <%#= text_field_tag(:y )%>

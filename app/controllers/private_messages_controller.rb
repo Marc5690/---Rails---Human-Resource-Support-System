@@ -2,7 +2,12 @@ class PrivateMessagesController < ApplicationController
  # before_filter :signed_in_user, only: [:create, :destroy]
 def new
   @private = PrivateMessage.new
-  @receiver = params[:q]
+  #@receiver = params[:q]
+  @users = []
+     @users_all = User.all
+     @users_all.each do |f|
+     @users << [f.name, f.id]
+    end
 end
 
 def index 

@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login
 
+  #def not_found
+  #raise ActionController::RoutingError.new('Not Found')
+#end
+
+
+
 private
 
   def require_login

@@ -4,10 +4,9 @@ class AbsencesController < ApplicationController
 
   def add
     @absence = Absence.new
-    @current_emp = params[:q]
-
-    #3
-    #######@absence.user_id = @current_emp
+   # @current_emp = params[:q]
+    @current_emp = (params[:employee_id])
+    
   end
   
   def display
@@ -55,16 +54,25 @@ end
   end
  
   def create
-    @current_emp = params[:q]
+    #@current_emp = params[:employee_id]
    
     @absence = Absence.new(params[:absence])
     if @absence.save
       flash[:success] = "Record added!" 
       redirect_to root_path
+    elsif  @absence.user_id == nil# !defined?(@absence.user_id)#@current_emp)# == nil
+     # @current_emp = (params[:employee_id])
+    #else
+      redirect_to absencesearchadd_path
+      flash[:failure] = "Please select an employee"
+    #end
+
+
+      
    else
-    flash[:failure] = "Record could not be created!" 
-      redirect_to root_path
-     # render 'new'
+    #flash[:failure] = "Record could not be created!" 
+    #  redirect_to root_path
+      render 'absences/add'
     end
   end
 

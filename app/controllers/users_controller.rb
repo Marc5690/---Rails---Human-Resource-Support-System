@@ -18,13 +18,23 @@ class UsersController < ApplicationController
 
 
   def view_records
+    if params[:user_id] == nil
+      flash[:failure] = "You must select an employee"
+      redirect_to select_employee_path
+    else
 @user = User.find_by_id(params[:user_id])
 
 @hours_combined = @user.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+end
   end
 
   def view_time_records
-       @user = User.find_by_id(params[:x])
+    if params[:user_id] == nil || params[:date] == nil
+      redirect_to select_employee_path
+      flash[:failure] = "You must select an employee"
+    else
+
+       @user = User.find_by_id(params[:user_id])
      @times = @user.time_and_attendances
      @year = params[:date].fetch("year").to_i
      @array = []
@@ -74,6 +84,7 @@ class UsersController < ApplicationController
       #@array2 << f
    
  end
+
 end
 
 #Place total hours worked in the corresponding month position in the @empty_data array
@@ -82,7 +93,7 @@ end
 end   
 
 
-
+end
 
 
 
@@ -91,7 +102,11 @@ end
   end
 
   def view_absence_records
-     @user = User.find_by_id(params[:x])
+    if params[:user_id] == nil || params[:date] == nil
+      redirect_to select_employee_path
+      flash[:failure] = "You must select an employee"
+    else
+     @user = User.find_by_id(params[:user_id])
      @absences = @user.absences
      @year = params[:date].fetch("year").to_i
      @array = []
@@ -109,7 +124,7 @@ end
     
     @absences_by_month = []                       
    
-    @dates = @absences.group_by { |m| m.date.beginning_of_month }
+    @dates = @absences.group_by{ |m| m.date.beginning_of_month }
 
     @dates.each do |f|
      if f[0].to_datetime.year == @year
@@ -121,13 +136,13 @@ end
    @absences_by_month.each do |f|
     @empty_data[f[0].to_date.month - 1] = f[1].count
    end
-
+end
   end
 
 def update
 @task_id = params[:d]#task
-@x = params[:x]
-@user = User.find_by_id(@x)
+#@x = params[:user_id]
+@user = User.find_by_id(params[:x])
 
 
 @user.update_column(:task_id,@task_id)
@@ -187,14 +202,21 @@ end
 
 
     def view_absence_select_year
-      @user = User.find_by_id(params[:x])
-      if params[:x] == nil 
+     
+      if params[:user_id] == nil 
         redirect_to view_records_path
         flash[:failure] = "You must select a user first"
+      else
+         @user = User.find_by_id(params[:user_id])
       end
     end
 
     def view_time_select_year
-      @user = User.find_by_id(params[:x])
+      if params[:user_id] == nil 
+        redirect_to view_records_path
+        flash[:failure] = "You must select a user first"
+      else
+      @user = User.find_by_id(params[:user_id])
     end
+  end
 end

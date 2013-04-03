@@ -14,7 +14,7 @@ Users assigned to task:
 <%=f.name%>
      <%end%>
 </br></br></br></br>
-
+<%unless @available.empty?%>
 
      <%#=@available%>
  <%= form_tag(projectempupdate_path) do %>
@@ -32,7 +32,9 @@ Users assigned to task:
   <%= submit_tag("Continue") %>
 <%end%>
 
-    
+<%else%>
+
+   There are no available employees 
 <%#= form_tag(projectsplanning_path) do %>
   <%#= label_tag(:x, "Task:") %>
   <%#= text_field_tag(:x )%></br>
@@ -45,7 +47,7 @@ Users assigned to task:
 
        
       </div>
-      <%#end%>
+      <%end%>
     </section>
   </aside>
 </div>

@@ -16,9 +16,9 @@
 
 
   <%= form_tag("/absenceadd") do %>
-  <%= label_tag(:q, "Enter ID:") %>
+  <%= label_tag(:employee_id, "Enter ID:") %>
 
-  <%= select_tag :q, options_for_select(@array) %> 
+  <%= select_tag :employee_id, options_for_select(@array) %> 
   <%#= text_field_tag(:q )%>
   <%= submit_tag("Continue") %>
 <% end %>

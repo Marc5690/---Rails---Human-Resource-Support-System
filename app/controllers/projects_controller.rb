@@ -58,6 +58,15 @@ class ProjectsController < ApplicationController
 end
 
 def select_emp
+  if params[:y] == nil
+    flash[:failure] = "Please select a task"
+    redirect_to projectforemp_path
+  else
+
+
+
+  
+
 @task = Task.find_by_id(params[:y])
 @skills = []
 if @task.skills.any?
@@ -97,18 +106,27 @@ end
 
 
 #@task.skills
+end
 #@task.users
 
 end
 
 def update
 @project = Project.find_by_id(params[:id])
+# if @project.save 
+#      redirect_to root_path
+#      flash[:success] = "Project updated!"
+#    else
+#      render 'projects/choose_project_edit'
+#    end
+
 if @project.update_attributes(params[:project])
   flash[:success] = "Project Updated!"
   redirect_to root_path
 else
-  flash[:failure] = "Project was not updated!"
-  redirect_to root_path
+   render 'projects/choose_project_edit'
+ # flash[:failure] = "Project was not updated!"
+ # redirect_to root_path
 end
 
 end
@@ -233,6 +251,7 @@ end
   def choose_project_edit
     @project = Project.find_by_id(params[:q])
 
+
   end
 
   def neweditproject
@@ -244,8 +263,9 @@ end
       flash[:success] = "Project created!"
        redirect_to root_path
        else
-      flash[:failure] = "Project could not be created!"
-      redirect_to root_path
+     # flash[:failure] = "Project could not be created!"
+     # redirect_to root_path
+     render 'projects/new'
     end
   end
 
@@ -258,6 +278,10 @@ end
   end
 
   def task_by_month
+    if params[:date] == nil || params[:x] == nil
+      redirect_to projectsplanning_path
+flash[:failure] = "Please select an option."
+    else
     @task = params[:x]
     @year = params[:date].fetch("year").to_i#params[:y].to_i
     @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
@@ -377,7 +401,7 @@ end
 
     #end
     #end
-   #end
+   end
   end
 
   #@array.sort_by{|f| f}#time_and_attendance.date}
@@ -395,7 +419,10 @@ end
 
 
 def project_by_month
-    
+    if params[:date] == nil || params[:x] == nil
+      redirect_to projectsplanning_path
+flash[:failure] = "Please select an option."
+    else
     @year = params[:date].fetch("year").to_i
     @month = params[:date].fetch("month").to_i
     @task = Project.find_by_id(params[:x])
@@ -449,7 +476,7 @@ end
 @a = @task.time_and_attendances.all
 
 
-
+end
     
   
   end
@@ -469,6 +496,10 @@ end
 
 
 def task_by_year
+  if params[:date] == nil || params[:x] == nil
+      redirect_to projectsplanning_path
+flash[:failure] = "Please select an option."
+    else
     #@task = params[:x]
     @year = params[:date].fetch("year").to_i#params[:y].to_i
    # @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
@@ -523,7 +554,7 @@ end
 
 @a = @task.time_and_attendances.all
 end
-
+end
 
   def select_task_by_year
     @tasks_all = Task.all
@@ -553,6 +584,10 @@ end
 
 
 def project_by_year
+  if params[:date] == nil || params[:x] == nil
+      redirect_to projectsplanning_path
+flash[:failure] = "Please select an option."
+    else
     #@task = params[:x]
     @year = params[:date].fetch("year").to_i#params[:y].to_i
    # @month = params[:date].fetch("month").to_i#params[:z].to_i# DateTime.new(:month = params[:z])
@@ -608,7 +643,7 @@ end
 @a = @task.time_and_attendances.all
 end
 
-
+end
   def select_project_by_year
     @tasks_all = Project.all
     @tasks_for_menu = []

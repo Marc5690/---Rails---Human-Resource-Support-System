@@ -16,7 +16,7 @@
 <%#=f.content%>
 </br>
 </br>
-Outbox:</br></br>
+Inbox:</br></br>
 <%@received_messages.each do |f|%>
 <%=f.title%></br>
 <%@sender = User.find_by_id(f.sender)%>

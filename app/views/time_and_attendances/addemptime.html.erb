@@ -8,10 +8,10 @@
 <%#unless @task == nil%>
 Your current task is <%=@task.title%> for the project <%=@task.project.title%>
     <%= form_for @timeandattendance do |f| %>
-<%#= render 'shared/error_messages' %> 
+     <%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
       <%= f.label :Date %>
-<%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
+      <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
       <%#= f.text_field :date %>
       <%= f.label :Hours_Worked %>
       <%= f.text_field :hours_worked %>
@@ -21,7 +21,6 @@ Your current task is <%=@task.title%> for the project <%=@task.project.title%>
       <%#= f.text_field :task_id %>
       <%= f.hidden_field :task_id, :value => @task.id%>
       <%= f.hidden_field :user_id, :value => current_user.id%>
-      
       <%= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
    <% end %>
    <%#= link_to "Add Record", root_path, class: "btn btn-large btn-primary" %>

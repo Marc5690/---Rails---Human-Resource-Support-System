@@ -3,8 +3,13 @@ class TimeAndAttendancesController < ApplicationController
 
   def add
     @timeandattendance = TimeAndAttendance.new
-    @q = params[:q]
-    @task = Task.all
+    #@q = params[:q]
+
+@task = []
+    @task_all = Task.all
+    @task_all.each do |f|
+@task << [f.title, f.id]
+    end
   end
 
   def index 
@@ -15,13 +20,20 @@ class TimeAndAttendancesController < ApplicationController
 
 
   def create
+    @task = []
+    @task_all = Task.all
+    @task_all.each do |f|
+@task << [f.title, f.id]
+    end
+    
     @timeandattendance = TimeAndAttendance.new(params[:time_and_attendance])
     if @timeandattendance.save
       flash[:success] = "Record added!" 
       redirect_to root_path
    else
-      flash[:failure] = "Failed to add record" 
-      redirect_to root_path
+      #flash[:failure] = "Failed to add record" 
+      #redirect_to root_path
+      render 'time_and_attendances/add'
     end
   end
   

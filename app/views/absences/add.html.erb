@@ -9,13 +9,11 @@
 
 
     <%= form_for @absence do |f| %>
-<%#= render 'shared/error_messages' %> 
+<%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
       <%= f.label :Date %>
       <%#= f.text_field :date %>
       <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
-
-
       <%= f.label :Status %>
       <%= f.text_field :status %>
       <%= f.label :Reason %>

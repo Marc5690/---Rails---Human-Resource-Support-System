@@ -8,7 +8,7 @@
 
 
     <%= form_for @timeandattendance do |f| %>
-<%#= render 'shared/error_messages' %> 
+<%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
       <%= f.label :Date %>
       <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
@@ -24,10 +24,12 @@
 
       <% # hidden_field :project_id, :value => (Task.find_by_id(:task_id)).project_id %>
       <%= f.label :Task_Id %>
-      <%=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
+
+        <%= f.select :task_id, options_for_select(@task) %> 
+      <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.collection_select @Task %>
       <%#= f.text_field :task_id %>
-      <%= f.hidden_field :user_id, :value => @q%>
+      <%= f.hidden_field :user_id, :value => @current_emp.to_i%>
       
       <%= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
    <% end %>

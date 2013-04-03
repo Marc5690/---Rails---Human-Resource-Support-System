@@ -6,14 +6,18 @@
 <div class="row">
    <div style="white-space: nowrap">
    <h3> Welcome <%= @current_user.name %></h3>
+   <ul class="nav nav-list">
+  <li class="nav-header">Welcome!</li>
+  <li class="active"><%= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %></li></br>
+  
 
-<%= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "Absence Management", absences_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "Project Planner", projects_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "Add Employee Account", signup_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "Manage Skills", skills_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "View Employee Records", select_employee_path , class: "btn btn-info btn-small" %></br></br>
-<%= link_to "Message Centre", private_messages_path , class: "btn btn-info btn-small" %>
+<%#= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %>
+<li class="active"><%= link_to "Absence Management", absences_path , class: "btn btn-info btn-small" %></li></br>
+<li class="active"><%= link_to "Project Planner", projects_path , class: "btn btn-info btn-small" %></li></br>
+<li class="active"><%= link_to "Add Employee Account", signup_path , class: "btn btn-info btn-small" %></li></br>
+<li class="active"><%= link_to "Manage Skills", skills_path , class: "btn btn-info btn-small" %></li></br>
+<li class="active"><%= link_to "View Employee Records", select_employee_path , class: "btn btn-info btn-small" %></li></br>
+<li class="active"><%= link_to "Message Centre", private_messages_path , class: "btn btn-info btn-small" %></li></br>
 
   
 </div>
