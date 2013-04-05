@@ -33,6 +33,7 @@ GEM
     bootstrap-datepicker-rails (1.0.0.2)
       railties (>= 3.0)
     bootstrap-sass (2.0.0)
+    bootstrap_form (0.3.2)
     builder (3.0.4)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -68,7 +69,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.21)
+    mime-types (1.22)
     multi_json (1.7.2)
     nokogiri (1.5.9-x86-mingw32)
     polyglot (0.3.3)
@@ -147,6 +148,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-datepicker-rails
   bootstrap-sass (= 2.0.0)
+  bootstrap_form
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
   gchart

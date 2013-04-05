@@ -1,5 +1,5 @@
 <% provide(:title, 'Send a Private Message') %>
-<h1>Enter details below:</h1>
+
 
 <div class="row">
   <div class="span6 offset2">
@@ -16,12 +16,16 @@
 <%#=f.content%>
 </br>
 </br>
-Inbox:</br></br>
+
+<h3>Inbox:</h3></br></br>
 <%@received_messages.each do |f|%>
-<%=f.title%></br>
 <%@sender = User.find_by_id(f.sender)%>
-<%=@sender.name%></br>
-<%= link_to "Open", f, method: :get%></br></br>
+ <div class="well">
+<b>Title:</b><%=f.title%></br>
+<b>Sender ID:</b><%=@sender.id%></br>
+<b>Sender:</b><%=@sender.name%></br>
+<%= link_to "Open", f, method: :get%>
+</div></br></br>
 <%#= link_to "delete", f, method: :delete,
                                      data: { confirm: "Are you sure that you want to delete this micropost?" },
                                      title: f.content %>

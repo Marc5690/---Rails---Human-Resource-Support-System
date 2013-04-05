@@ -9,7 +9,7 @@
   <%= label_tag(:y, "Year:") %>
   <%#= text_field_tag(:y )%>
   <%= select_year(Date.today, :y=>"dateStarted") %></br>
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue",:class => "btn" %>
 
   <%#= link_to "View Time and Attendance Records", view_time_records_path(:x => @user.id) , class: "btn btn-info btn-small" %>
    <%end%>   

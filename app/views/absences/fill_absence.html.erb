@@ -1,30 +1,33 @@
-<% provide(:title, 'Select an Account to add an Absence Record for') %>
-<h1>Enter details below:</h1>
+<% provide(:title, 'Choose a record') %>
+<h1>Choose a record</h1>
 <div class="row">
   <div class="span6 offset2">
     <div style="white-space: nowrap">
   <%# @f.each do |l| %>
   <%#=l.date%></br>
-    <%#=l.user%></br>
-  <%#=link_to "See more", l%></br>
+    <%#=l.user%>
+  <%#=link_to "See more", l%>
   <%#end%>
 <%@f = User.all%>
 
-      <%@f.each do |f|%></br></br>
-      <%if f.temporary_positions%>
-      <%f.temporary_positions.each do |t|%>
-      <%=t.id%></br></br>
-      <%=t.date%></br></br>
-      <%end%><%end%><%end%>
+      <%#@f.each do |f|%>
+      <%#if f.temporary_positions%>
+      <%#f.temporary_positions.each do |t|%>
+      <%#=t.id%>
+      <%#=t.date%>
+      <%#end%><%#end%><%#end%>
 
 
       <%@f.each do |f|%></br></br>
       <%if f.absences%>
       <%f.absences.each do |t|%>
-      <%=t.id%></br></br>
-      <%=t.date%></br></br>
-      <%=t.user.name%></br></br>
+      <div class="well">
+      <b>ID:</b><%=t.id%></br></br>
+      <b>Date:</b><%=t.date%></br></br>
+      <b>User:</b><%=t.user.name%></br></br>
+      
       <%=link_to "Fill in", fill_path(:absence_id => t.id)%></br>
+      </div>
       <%end%><%end%><%end%>
 
   <%#Absence.find_by_id(params[:id])%></br></br>

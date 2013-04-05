@@ -8,19 +8,19 @@
   $('[data-behaviour~=datepicker]').datepicker()
 </script>
 
-        <%= form_for @project do |f| %>
+        <%= bootstrap_form_for @project do |f| %>
 <%= render 'shared/error_messages', object: f.object %> 
      
-      <%= f.label :Title %>
+      <%#= f.label :Title %>
       <%= f.text_field :title %>
 
-      <%= f.label :Date_Started %>
+      <%#= f.label :Date_Started %>
       <%= f.text_field :date_started, 'data-behaviour' => 'datepicker',:readonly => true  %>
 
-      <%= f.label :Date_Ended %>
+      <%#= f.label :Date_Ended %>
       <%= f.text_field :date_ended, 'data-behaviour' => 'datepicker',:readonly => true  %>
 
-      <%= f.label :Estimated_Hours %>
+      <%#= f.label :Estimated_Hours %>
       <%= f.text_field :estimated_hours %>
       <%#= f.label :Number_Of_Tasks%>
       <%#= f.text_field :number_of_tasks %>
@@ -30,7 +30,9 @@
   <%#= submit_tag("Continue") %>
       
       </br>
-      <%= f.submit "Update Project", class: "btn btn-large btn-primary"%>
+      <%= f.actions do %>
+      <%= f.submit "Update Project", class: "btn", disable_with: 'Updating Project...'%>
+<%end%>
 <%end%>
 
 

@@ -3,17 +3,26 @@ class AbsencesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
 
   def add
+    if params[:employee_id] == nil
+flash[:failure] = "You must seelct an employee"
+     redirect_to absencesearchadd_path
+   else
     @absence = Absence.new
-   # @current_emp = params[:q]
+
     @current_emp = (params[:employee_id])
-    
+    end
   end
   
   def display
-   @user = User.find_by_id(params[:q])
-   @current_emp = params[:q]
-    @absences = @user.absences.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
 
+    if params[:q] == nil
+      redirect_to absencesearchview_path
+      flash[:failure] = "You must select a user"
+    else
+   @user = User.find_by_id(params[:q])
+   #@current_emp = params[:q]
+    @absences = @user.absences.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+end
     
   end
 

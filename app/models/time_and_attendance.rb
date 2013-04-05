@@ -1,6 +1,6 @@
 class TimeAndAttendance < ActiveRecord::Base
 
-	attr_accessible :date, :hours_worked, :project_id, :user_id, :task_id#,  :task_id
+	attr_accessible :date, :hours_worked, :project_id, :user_id, :task_id, :company_id#,  :task_id
 
 belongs_to :user
 belongs_to :task
@@ -12,6 +12,8 @@ validates :date,  :uniqueness => {:scope => :user_id}#, :message => "User alread
 validates_numericality_of :hours_worked, :only_integer => true, :message => "can only be whole number."
 validates_numericality_of :task_id, :only_integer => true, :message => "can only be whole number."
 validates_inclusion_of :hours_worked, :in => 1..24, :message => "An employee cannot possibly have worked more than 24 hours and should not input records for days where they have worked less than an hour"
+
+   default_scope { where(company_id: Company.current_id) }
 
 
 before_save do |timeandattendance| 

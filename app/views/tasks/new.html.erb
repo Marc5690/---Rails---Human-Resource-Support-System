@@ -6,32 +6,34 @@
   $('[data-behaviour~=datepicker]').datepicker()
 </script>
 
-    <%= form_for @task do |f| %>
+    <%= bootstrap_form_for @task do |f| %>
 <%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
 <%#= f.label :Identification_Number %>
       <%#= f.text_field :name %>
-      <%= f.label :Title %>
+      <%#= f.label :Title %>
       <%= f.text_field :title %>
-       <%= f.label :Start_Date %>
+       <%#= f.label :Start_Date %>
       <%= f.text_field :start_date, 'data-behaviour' => 'datepicker',:readonly => true %>
-       <%= f.label :End_Date %>
+       <%#= f.label :End_Date %>
       <%= f.text_field :end_date, 'data-behaviour' => 'datepicker',:readonly => true %>
-      <%= f.label :Estimated_Hours %>
+      <%#= f.label :Estimated_Hours %>
       <%= f.text_field :estimated_hours %>
-       <%= f.label :Description %>
-      <%= f.text_area :description %>
+       <%#= f.label :Description %>
+      <%= f.text_area :description, :cols => "30", :rows => "10"  %>
       <%#unless @projects.empty?%>
-      <%= f.label :Project %>
+      <%#= f.label :Project %>
       <%= f.select :project_id, options_for_select(@projects) %> 
+      <%=f.hidden_field :company_id, :value => current_user.company_id%>
       <%#else%>
 <%#redirect_to root_path%>
       <%#end%>
        <%#=f.select( "project_id", @project.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.select_tag :q, options_for_select(@array) %> 
       <%#= f.text_field :project_id %>
-      
-               <%= f.submit "Add Task", class: "btn btn-large btn-primary" %></br>
+      <%= f.actions do %>
+               <%= f.submit "Add Task", class: "btn", disable_with: 'Saving Task...' %></br>
+   <% end %>
    <% end %>
 
    <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>

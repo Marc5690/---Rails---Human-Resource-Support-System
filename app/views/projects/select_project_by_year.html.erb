@@ -6,7 +6,7 @@
         <div style="white-space: nowrap">
       
 <%= form_tag(plan_project_display_year_path) do %>
-  <%= label_tag(:x, "Task:") %>
+  <%= label_tag(:x, "Project:") %>
   <%#= text_field_tag(:x )%></br>
   <%= select_tag :x, options_for_select(@tasks_for_menu) %> </br>
 <%#= select_month(Date.today, :z=>"dateStarted") %></br>
@@ -20,7 +20,7 @@
   <%#= text_field_tag(:y )%></br>
    <%#= label_tag(:z, "Month:") %>
   <%#= text_field_tag(:z )%></br>
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue", :class => "btn" %>
    <%end%>   
 
        

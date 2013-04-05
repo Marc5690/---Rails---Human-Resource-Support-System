@@ -6,7 +6,9 @@
   
 <% if @user.absences.any? %>
       <ol>
+        
         <%= render @absences %>
+   
       </ol>
  <%= will_paginate @absences, :previous_label => t("<-"), :next_label => t("->") %>
       <%= page_entries_info @absences %>
@@ -26,14 +28,11 @@
 @array << d.date
 
 end
-  %></br></br></br></br>
+  %>
+ 
 
-</br></br>
-  <%=@array %>
-</br></br></br></br></br></br></br></br>
-   <img src="<%=Gchart.bar(:data => [1,2], :legend => ['Hours Done', 'Estimated Hours'], :bar_colors => '3300CC,3399FF')%>"/>
-<%=@array%>
-      </h1>
+   
+    
   
 </div></div></div>
 

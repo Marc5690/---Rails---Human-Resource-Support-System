@@ -1,82 +1,32 @@
 <%#=time_select("article", "written_on", :prompt => {:hour => 'Choose hour', :minute => 'Choose minute', :second => 'Choose seconds'})%>
 <%#=time_select("article", "written_on", :prompt => {:hour => true})%> 
 <%#=time_select("article", "written_on", :prompt => true)%>
-<%=@py%>.id .first!
-<%=@py%>#.last.id
-</br></br></br></br></br></br></br>
-
-@a <%=@a%>
-
-</br></br></br></br></br></br></br>
-@t <%=@t%>
-</br></br></br></br></br></br></br>
-@project.each...</br>
-<% @project.each do |f| %>
-<%= f.id %>
-<%= f.time_and_attendances %>
- </br></br></br></br></br></br></br>
-
-<%end%>
-
-</br></br>
-<%= @g %></br></br>
-@p </br>
-<%= @p %>
-
-</br></br></br></br></br>
-@time:</br>
-<%= @time %>
-
-</br></br></br></br></br></br></br></br></br>
-@time2:</br>
-<%= @time2 %>
+<%#=@py%>
+<%#=@py%>
+ <div class="well">
+<b>ID:</b><%= project.id%></br>
+<b>Title:</b><%= project.title%></br>
+<%=link_to "See more", project%></br>
+</div>
+<%# @project.each do |f| %>
+<%#= f.id %>
+<%#= f.time_and_attendances %>
 
 
+<%#end%>
+<%#= @p %>
+<%#= @time %>
+<%#= @time2 %>
 
+<%#= distance_of_time_in_words(project.date_ended.to_datetime, DateTime.now)%>
 
+<%#=select_day(project.date_ended)%>
 
+<%#=project.date_ended%>
+ <%#=project.date_ended.to_datetime.readable_inspect%>
+       <%#=project.date_ended.to_datetime.past?%>
+<%#=project.date_ended.to_datetime.readable_inspect%>
+<%#=project.date_ended%>
+<%#= distance_of_time_in_words(project.date_ended.to_datetime, DateTime.now)%>
+<%#= DateTime.now.to_date.readable_inspect %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</br></br></br></br></br></br></br></br></br>
-<%= distance_of_time_in_words(project.date_ended.to_datetime, DateTime.now)%>
-</br>
-
-<%=select_day(project.date_ended)%>
-
-<%=project.date_ended%></br>
-Is <%=project.date_ended.to_datetime.readable_inspect%> in the past?
-       <%=project.date_ended.to_datetime.past?%></br>
-<%=project.date_ended.to_datetime.readable_inspect%></br></br></br></br></br></br>
-
-Distance: Now to <%=project.date_ended%></br></br>
-<%= distance_of_time_in_words(project.date_ended.to_datetime, DateTime.now)%>
-
-</br></br></br></br>
-<%= DateTime.now.to_date.readable_inspect %>
-</br></br></br></br></br></br>
-<% if project.date_ended.future? %>
-The time <%= project.date_ended %> has not yet passed
-
-<% elsif project.date_ended.past? %>
-The time <%= project.date_ended %> has already passed! Hurry up!
-
-<% else %>
-That's today!
-     <%end%>

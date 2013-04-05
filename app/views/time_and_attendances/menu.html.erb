@@ -1,15 +1,29 @@
 <% provide(:title, "Menu") %>
 <div class="row">
-   <div style="white-space: nowrap">
+    <aside class="span4">
  
    <div style="white-space: nowrap">
+   	 	<ul class="nav nav-list">
    	<% if current_user.admin == true%>
-   	<%= link_to "Add Time and Attendance record", addtime_path , class: "btn btn-large btn-primary" %></br></br>
+  
+
+ 
+  <li class="active"><%= link_to "Add Time and Attendance record", addtime_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+    <li class="active"><%= link_to "View Time and Attendance record", viewtime_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+   	<%#= link_to "Add Time and Attendance record", addtime_path , class: "btn btn-large btn-primary" %></br></br>
    	
-<%= link_to "View Time and Attendance record", viewtime_path , class: "btn btn-large btn-primary" %></br></br>
+<%#= link_to "View Time and Attendance record", viewtime_path , class: "btn btn-large btn-primary" %></br></br>
 <%else%>
-<%= link_to "Add Time and Attendance record", addemptimes_path , class: "btn btn-large btn-primary" %></br></br>
-<%= link_to "View Time and Attendance record", viewemptimes_path , class: "btn btn-large btn-primary" %></br></br>
+
+
+
+ 
+  <li class="active"><%= link_to "Add Time and Attendance record", addemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+    <li class="active"><%= link_to "View Time and Attendance record", viewemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+
+
+<%#= link_to "Add Time and Attendance record", addemptimes_path , class: "btn btn-large btn-primary" %></br></br>
+<%#= link_to "View Time and Attendance record", viewemptimes_path , class: "btn btn-large btn-primary" %></br></br>
 <%end%>
 
       </h1>

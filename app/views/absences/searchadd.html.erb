@@ -4,15 +4,7 @@
   <div class="span6 offset2">
     <div style="white-space: nowrap">
          
-         <%# @user.each do |user| %>
-<ol class="users">
-<%#= user.name %>
-<%#= user.id %>
-
-
-</ol>
- 
-<%# end %>
+         
 
 
   <%= form_tag("/absenceadd") do %>
@@ -20,7 +12,7 @@
 
   <%= select_tag :employee_id, options_for_select(@array) %> 
   <%#= text_field_tag(:q )%>
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue", :class => "btn" %>
 <% end %>
 
 <%#= link_to "Continue", absenceadd_path , class: "btn btn-info btn-small" %>

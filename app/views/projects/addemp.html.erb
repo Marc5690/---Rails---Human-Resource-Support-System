@@ -45,7 +45,7 @@
   <%#= text_field_tag(:x )%>
   <%= label_tag(:y, "Task:") %>
    <%= select_tag :y, options_for_select(@task) %> </br></br>
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue", :class => "btn" %>
    <%end%>   
 
  <%#end%>

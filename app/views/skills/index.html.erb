@@ -2,9 +2,19 @@
 <h1>Skill:</h1>
 <div class="row">
   <div class="span6 offset2">
-    <%= link_to "Create Skill", skillsadd_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Add Skill to task", taskskills_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Add Skill to employee", employeeskills_path, class: "btn btn-large btn-primary" %></br></br>
+
+
+  	<ul class="nav nav-list">
+
+  
+  <li class="active"><%= link_to "Create Skill", skillsadd_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Add Skill to task", taskskills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Add Skill to employee", employeeskills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+
+
+    <%#= link_to "Create Skill", skillsadd_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Add Skill to task", taskskills_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Add Skill to employee", employeeskills_path, class: "btn btn-large btn-primary" %></br></br>
 
    <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>
 

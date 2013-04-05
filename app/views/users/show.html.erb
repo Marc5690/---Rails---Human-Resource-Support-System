@@ -2,28 +2,29 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <h4>
-        <%= gravatar_for @user %></br></br></br>
-  Name:<%= @user.name %></br></br>
-  Email:<%=@user.email%></br></br>
-  Personnel Number:<%= @user.personnel_number %></br></br>
-  Address:<%= @user.address %></br></br>
-  Telephone: <%=@user.telephone%></br></br>
-  Date Of Birth:<%= @user.date_of_birth %></br></br>
-  Sex:<%= @user.sex %></br></br>
-  Commencement:<%=@user.commencement%></br></br>
-  Termination:<%= @user.termination%></br></br>
-  Insurance:<%= @user.insurance %></br></br>
-  Grade:<%=@user.grade%></br></br>
-  Post:<%= @user.post %></br></br>
-  Centre:<%= @user.centre %></br></br>
-  Division:<%=@user.division%></br></br>
-  Location:<%= @user.location %></br></br>
-  Salary Scale:<%= @user.salary_scale %></br></br>
-  Scale Point:<%=@user.scale_point%></br></br>
-  Pay Centre:<%= @user.pay_center%></br></br>
-  Reason For Employment:<%= @user.reason_for_employment%></br></br>
-      </h4>
+     
+        <div class="well">
+        <%#= gravatar_for @user %>
+  <h5>Name:</h5><%=@user.name %></br></br>
+  <h5>Email:</h5><%=@user.email%></br></br>
+  <h5>Personnel Number:</h5><%= @user.personnel_number %></br></br>
+  <h5>Address:</h5><%= @user.address %></br></br>
+  <h5>Telephone:</h5><%=@user.telephone%></br></br>
+  <h5>Date Of Birth:</h5><%= @user.date_of_birth %></br></br>
+  <h5>Sex:</h5><%= @user.sex %></br></br>
+  <h5>Commencement:</h5><%=@user.commencement%></br></br>
+  <h5>Termination:</h5><%= @user.termination%></br></br>
+  <h5>Insurance:</h5><%= @user.insurance %></br></br>
+  <h5>Grade:</h5><%=@user.grade%></br></br>
+  <h5>Post:</h5><%= @user.post %></br></br>
+  <h5>Centre:</h5><%= @user.centre %></br></br>
+  <h5>Division:</h5><%=@user.division%></br></br>
+  <h5>Location:</h5><%= @user.location %></br></br>
+  <h5>Salary Scale:</h5><%= @user.salary_scale %></br></br>
+  <h5>Scale Point:</h5><%=@user.scale_point%></br></br>
+  <h5>Pay Centre:</h5><%= @user.pay_center%></br></br>
+  <h5>Reason For Employment:</h5><%= @user.reason_for_employment%></br></br>
+      </div>
     </section>
   </aside>
    <div class="span8">

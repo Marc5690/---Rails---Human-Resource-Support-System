@@ -2,16 +2,28 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <h1>
-      	<%= link_to "New Project", projectsaddemployee_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Edit Project", projectschoose_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Add Tasks", projectstask_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Add skill to task",  taskskills_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Add Employees", projectforemp_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "TEST", projectstest_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "View Projects", projectsoverview_path, class: "btn btn-large btn-primary" %></br></br>
-        <%= link_to "Project Planning",  projectsplanning_path, class: "btn btn-large btn-primary" %>
-     </h1>
+     
+        <ul class="nav nav-list">
+
+  <li class="active"><%= link_to "New Project", projectsaddemployee_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Edit Project", projectschoose_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Add Task",  projectstask_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Add Skill To Task", taskskills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Add Employees", projectforemp_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Test", projectstest_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "View Projects", projectsoverview_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Project Planning", projectsplanning_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+      	<%#= link_to "New Project", projectsaddemployee_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Edit Project", projectschoose_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Add Tasks", projectstask_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Add skill to task",  taskskills_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Add Employees", projectforemp_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "TEST", projectstest_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "View Projects", projectsoverview_path, class: "btn btn-large btn-primary" %></br></br>
+        <%#= link_to "Project Planning",  projectsplanning_path, class: "btn btn-large btn-primary" %>
+
+
+    
     </section>
   </aside>
 </div>

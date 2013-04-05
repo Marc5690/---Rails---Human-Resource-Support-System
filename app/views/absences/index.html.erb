@@ -1,12 +1,18 @@
 <% provide(:title, 'Absence Management') %>
 <div class="row">
   <div class="span6 offset2">
-    <%#= form_for(@employee) do |f| %>
-<%#= render 'shared/error_messages' %> 
      <div style="white-space: nowrap">
-         <%= link_to "Add Absence Record", absencesearchadd_path, class: "btn btn-large btn-primary" %></br></br>
-<%= link_to "View Absence Record", absencesearchview_path,class: "btn btn-large btn-primary" %></br></br>
-<%= link_to "Fill Absence", absencesfill_path,class: "btn btn-large btn-primary" %></br></br>
+
+     	<ul class="nav nav-list">
+
+  <li class="active"><%= link_to "Add Absence Record", absencesearchadd_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+<li class="active"><%= link_to "View Absence Record", absencesearchview_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+<li class="active"><%= link_to "Fill Absence", absencesfill_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+
+
+         <%#= link_to "Add Absence Record", absencesearchadd_path, class: "btn btn-large btn-primary" %></br></br>
+<%#= link_to "View Absence Record", absencesearchview_path,class: "btn btn-large btn-primary" %></br></br>
+<%#= link_to "Fill Absence", absencesfill_path,class: "btn btn-large btn-primary" %></br></br>
 
 
   </div>  </div>

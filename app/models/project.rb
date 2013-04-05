@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
-	attr_accessible  :date_started, :date_ended, :title, :estimated_hours # :current_hours
+	attr_accessible  :date_started, :date_ended, :title, :company_id, :estimated_hours # :current_hours
     has_many :tasks, :foreign_key => "project_id"
     has_many :time_and_attendances, :foreign_key => "project_id"
-
+   default_scope { where(company_id: Company.current_id) }
 
    # validates :date, :uniqueness => {:scope => :user_id}
     validates :date_started, :date_ended, :title, :estimated_hours , presence: true 

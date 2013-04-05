@@ -17,7 +17,7 @@
   <%= select_tag :q, options_for_select(@array) %> </br>
   <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
 
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue",  class: "btn"%>
 <%end%>
 
     

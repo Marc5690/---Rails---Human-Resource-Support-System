@@ -7,31 +7,38 @@
 </script>
 
 
-    <%= form_for @timeandattendance do |f| %>
+    <%= bootstrap_form_for @timeandattendance do |f| %>
 <%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
-      <%= f.label :Date %>
+      <%#= f.label :Date %>
       <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
 
      <%# :value=>Date.today.strftime('%m-%d-%Y'), :id =>"dp5"%>  
       <%#:name_of_the_date_column, :value=>Date.today.strftime('%m-%d-%Y'), :id =>"dp5"%> 
       <%#text_field :date, :input_html => { data: {behaviour: "datepicker"}} %> 
 
-      <%= f.label :Hours_Worked %>
+      <%#= f.label :Hours_Worked %>
       <%= f.text_field :hours_worked %>
       <%#= f.label :Project_Id %>
       <%#= f.text_field :project_id %>
 
-      <% # hidden_field :project_id, :value => (Task.find_by_id(:task_id)).project_id %>
-      <%= f.label :Task_Id %>
+      <%# hidden_field :project_id, :value => (Task.find_by_id(:task_id)).project_id %>
+      <%#= f.label :Task_Id %>
 
-        <%= f.select :task_id, options_for_select(@task) %> 
+        <%= f.select :task_id, options_for_select(@task), label: 'Task' %> 
       <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.collection_select @Task %>
       <%#= f.text_field :task_id %>
-      <%= f.hidden_field :user_id, :value => @current_emp.to_i%>
+      <%= f.hidden_field :user_id, :value => current_user.id%>
+      <%=f.hidden_field :company_id, :value => current_user.company_id%>
       
-      <%= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
+      <%= f.actions do %>
+      <%= f.submit "Add Record", class: "btn", disable_with: 'Saving...' %>
+     
+    <%#= f.primary 'Create My Account', disable_with: 'Saving...' %>
+  <% end %>
+
+      <%#= f.submit "Add Record", class: "btn" %></br>
    <% end %>
    <%#= link_to "Add Record", root_path, class: "btn btn-large btn-primary"   data-behaviour='datepicker'   %>
 

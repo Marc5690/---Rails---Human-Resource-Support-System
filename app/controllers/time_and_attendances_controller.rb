@@ -132,9 +132,13 @@ end
   end
 
   def edit2
+    if params[:q] == nil
+      redirect_to viewtime_path
+      flash[:failure] = "You must select a user"
+    else
   @user = User.find_by_id(params[:q])#params[:q])
   @time_and_attendances = @user.time_and_attendances.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
-  
+  end
   end
 
   def editrec

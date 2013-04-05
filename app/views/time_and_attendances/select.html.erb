@@ -43,7 +43,8 @@
 
   <%# {|r| [ r.name, r.id ] }, { :include_blank => true})%>
   <%#= text_field_tag(:q) %>
-  <%= submit_tag("Continue") %>
+  <%= submit_tag "Continue", :class => "btn"  %>
+      
 <% end %>
 <%#= link_to "Continue", addtime2_path , class: "btn btn-info btn-small" %>
 

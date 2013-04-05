@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401184840) do
+ActiveRecord::Schema.define(:version => 20130405140247) do
 
   create_table "absences", :force => true do |t|
     t.string   "status"
@@ -22,12 +22,21 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.string   "form"
     t.datetime "date"
     t.integer  "tempuser"
+    t.integer  "company_id"
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "subdomain"
   end
 
   create_table "noticeboards", :force => true do |t|
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   create_table "private_messages", :force => true do |t|
@@ -38,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.datetime "date"
+    t.integer  "company_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -48,12 +58,14 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.integer  "estimated_hours"
     t.integer  "current_hours"
     t.datetime "date_started"
+    t.integer  "company_id"
   end
 
   create_table "skills", :force => true do |t|
     t.string   "skill_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   create_table "skills_tasks", :id => false, :force => true do |t|
@@ -86,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.integer  "project_id"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "company_id"
   end
 
   create_table "time_and_attendances", :force => true do |t|
@@ -96,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.integer  "task_id"
+    t.integer  "company_id"
   end
 
   create_table "users", :force => true do |t|
@@ -125,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20130401184840) do
     t.text     "reason_for_employment"
     t.boolean  "admin"
     t.integer  "task_id"
+    t.integer  "company_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

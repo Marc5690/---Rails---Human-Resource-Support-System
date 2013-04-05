@@ -7,13 +7,21 @@
    
      <div style="white-space: nowrap">
       
-     
+     <ul class="nav nav-list">
+<%#=@current_user1.name%></br>
+<%#=@current_user.name%>
+  
+  <li class="active"><%= link_to "Create Message", private_messages_create_path, {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Sent Messages", private_messages_sent_path, {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%= link_to "Received Messages", private_messages_received_path, {:style=>'color:#303030;', :class => "btn"} %></li></br>
+ 
+
       </br>
-      <%= link_to "Create Message", private_messages_create_path, class: "btn btn-large btn-primary" %>
+      <%#= link_to "Create Message", private_messages_create_path, class: "btn btn-large btn-primary" %>
      </br></br>
-     <%= link_to "Sent Messages", private_messages_sent_path, class: "btn btn-large btn-primary" %>
+     <%#= link_to "Sent Messages", private_messages_sent_path, class: "btn btn-large btn-primary" %>
       </br></br>
-     <%= link_to "Received Messages", private_messages_received_path, class: "btn btn-large btn-primary" %>
+     <%#= link_to "Received Messages", private_messages_received_path, class: "btn btn-large btn-primary" %>
       </div>
     </div>
  </div>

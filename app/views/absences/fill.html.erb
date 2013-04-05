@@ -12,16 +12,16 @@
 <%unless @available_employees == nil || @employees == nil || @employees.empty? || @available_employees.empty? %> 
         <%#=@absence%>
         <%#unless @available_employees.empty? %>
-     	<%=form_for @absence do |f|%>
-        <%= f.label :User %>
+     	<%=bootstrap_form_for @absence do |f|%>
+        <%#= f.label :User %>
         <%#= f.text_field :tempuser %>
-        <%= f.select :tempuser, options_for_select(@available_employees) %> </br>
+        <%= f.select :tempuser, options_for_select(@available_employees), label: 'User' %> </br>
 
-        <%= f.submit "Update Absence Record", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Update Absence Record", class: "btn", disable_with: 'Saving...'  %>
      	<%end%>	<%#end%>	<%#end%>
 
 
-         <%= link_to "Return", root_path, class: "btn btn-large btn-primary" %></br></br>
+         <%#= link_to "Return", root_path, class: "btn"%></br></br>
 <%else%>
 
 There are no available employees

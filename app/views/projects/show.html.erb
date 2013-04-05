@@ -2,9 +2,7 @@
 <%# require 'gchart' %>
 <%#require 'google_chart'%>
 <% provide(:title, "Project") %>
-<div class="row">
-  <aside class="span4">
-    <section>
+
 
 <% if @project.tasks.any? %>
 <%#=@days_passed.to_i%>
@@ -13,17 +11,6 @@
 <%#=@percentage_of_time_passed%>
 <%#=@work_percentage%>
 <%#=@project_hours_worked.to_i%>
-
-    Project ID:  <%= @project.id%></br>
-  Title:  <%= @project.title%></br>
-Start Date:<%= @project.date_started.to_date%></br>
-End Date:<%= @project.date_ended.to_date%></br>
-Estimated Hours:<%= @project.estimated_hours%></br>
-EST: <%=@EST%></br>
-
-
-Time left:<%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTime.now)%></br>
-
 <%@b = 0%>
 <% @project.time_and_attendances.each do |f| %>
 <%# f.tasks.each do |g| %>
@@ -33,24 +20,51 @@ Time left:<%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTim
 <%#end%>
 <%end%>
 
-Total hours worked: <%= @b%>
+<div class="row">
+    <section>
+      <aside class="span4">
+
+ <div class="well">
+        <b>Project ID:</b><%= @project.id%></br>
+        <b>Title:</b><%=@project.title%></br>
+        <b>Start Date:</b><%= @project.date_started.to_date%></br>
+        <b>End Date:</b><%= @project.date_ended.to_date%></br>
+        <b>Estimated Hours:</b><%= @project.estimated_hours%></br>
+        <b>EST:</b> <%=@EST%></br>
+        <b>Time left:</b><%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTime.now)%></br>
+        <b>Total hours worked:</b><%= @b%>
+        </div>
+
+
+
+
+ </aside>
+    </section>
+  </div>
+<aside class="span200">
+    <section>
+
+
 </br></br></br>
-<ol>
+<h3>Tasks</h3>
+<ol>  <div class="scroll">
 <% @projects_tasks_pagination.each do |f| %>
-Title: <%= f.title %></br>
-Start date: <%= f.start_date %></br>
-End date: <%= f.end_date %></br>
-Description: <%= f.description %></br>
+<div class="well">
+<b>Title:</b><%= f.title %></br>
+<b>Start date:</b><%= f.start_date %></br>
+<b>End date:</b><%= f.end_date %></br>
+<b>Description:</b><%= f.description %></br>
 <%= link_to "See Task Details", f %></br></br>
+</div>
 <%end%>
-</ol>
+</ol></div>
 
 
 
 
 
- <%= will_paginate @projects_tasks_pagination, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @projects_tasks_pagination %>
+ <%#= will_paginate @projects_tasks_pagination, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @projects_tasks_pagination %>
 
 Percentage of time :<%=@percentage_of_time_passed%>%</br></br>
 Percentage of work : <%=@work_percentage %>
@@ -65,7 +79,10 @@ today<%=@today%>
      <%= number_to_percentage((Date.today - @project.date_started.to_date).to_f / (@project.date_ended.to_date - @project.date_started.to_date).to_f)%>
 
     </br></br> 
-
+    </aside>
+    </section>
+<aside class="span6">
+    <section>
 
                      <img src="<%=Gchart.bar(:title => "#{@percentage_of_time_passed.to_i} %", :data => [[ @days_passed.to_f, 0],[0, @total_days.to_f]], :legend => ['Days Passed', 'Total days'], :labels => [@days_passed.to_i, @total_days.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
 
@@ -74,8 +91,11 @@ today<%=@today%>
              <img src="<%=Gchart.bar(:title => "#{@work_percentage.to_i} %", :data => [[@project_hours_worked.to_f, 0],[0, @project.estimated_hours.to_f]], :legend => ['Hours Done', 'Estimated Hours'], :labels => [@project_hours_worked.to_i,@project.estimated_hours.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
 
 
-
-
+ 
+    </section>
+   </aside>  
+    <section>
+ <aside class="span16">
 
 
 </br></br></br></br></br>
@@ -85,7 +105,8 @@ today<%=@today%>
 
     </br></br></br></br>
 
-      
+      </aside>
+    </section>
 
       
 <%else%>

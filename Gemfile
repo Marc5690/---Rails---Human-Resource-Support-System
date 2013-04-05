@@ -7,6 +7,7 @@ gem 'will_paginate', '3.0.3'
 gem 'gchart'
 gem 'googlecharts'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap_form'
 
 #gem 'google_chart'
 # Bundle edge Rails instead:

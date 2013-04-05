@@ -12,7 +12,8 @@
   <%= label_tag(:y, "Task:") %>
   <%= select_tag :y, options_for_select(@tasks) %> 
   <%#= text_field_tag(:y )%></br>
-  <%= submit_tag("Continue") %>
+  
+  <%= submit_tag "Continue", :class => "btn" %>
    <%end%> 
 
    <%#= link_to "Add task", menu_path, class: "btn btn-large btn-primary" %>

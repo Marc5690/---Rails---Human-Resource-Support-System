@@ -4,23 +4,28 @@
 <div class="row">
   <div class="span6 offset2">
 <%unless @users.empty?%>
-    <%= form_for(@private, :html => { :class => "navbar-form pull-left" }) do |f|   %>
-    
+    <%= bootstrap_form_for(@private, :html => { :class => "navbar-form pull-left" }) do |f|   %>
+    <%#= twitter_bootstrap_form_for@private do |f|   %>
     <%#= form_for(@private, :html => { :style => 'background-color:red;' }) do |f| %>
-<%#= render 'shared/error_messages' %> 
+<%= render 'shared/error_messages', object: f.object  %> 
      <div style="white-space: nowrap">
       <form class="navbar-search pull-left">
       <%= f.label :To %>
       <%#= f.text_field :receiver %>
       <%= select_tag :receiver, options_for_select(@users) %> </br>
-      <%= f.label :Title %>
-      <%= f.text_field :title %>
-      <%= f.label :Content %>
+      <%#= f.label :Title %>
+      <%= f.text_field :title, :size => "3x1" %>
+      <%#= f.label :Content %>
       <%= f.text_area :content, :cols => "30", :rows => "10"  %>
       <%=f.hidden_field :date, :value => DateTime.now%>
       <%=f.hidden_field :sender, :value => current_user.id%>
+      <%=f.hidden_field :company_id, :value => current_user.company_id%>
+      <%= f.actions do %>
+      <%= f.submit "Send Message", class: "btn", disable_with: 'Sending...' %>
      
-      <%= f.submit "Send Message", class: "btn btn-large btn-primary" %>
+    <%#= f.primary 'Create My Account', disable_with: 'Saving...' %>
+  <% end %>
+
       <%end%>
       <%else%>
 There are no other employees that you can send private messages to.

@@ -146,7 +146,7 @@ end
     @project = Project.find_by_id(params[:id])
 @EST = 0
  
- @projects_tasks_pagination = @project.tasks.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+ @projects_tasks_pagination = @project.tasks#.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
 
 if @project.tasks.any?
   @project_tasks = @project.tasks

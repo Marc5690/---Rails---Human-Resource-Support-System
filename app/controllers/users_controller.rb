@@ -190,11 +190,8 @@ end
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"    # NEW LINE
-       redirect_to root_path
-       #render :action => :mainmenu
-       # render :controller => :static_pages :action => :menu
-      #redirect_to menu_path#@user
+      flash[:success] = "Account Created!"    
+      redirect_to root_path
     else
       render 'new'
     end

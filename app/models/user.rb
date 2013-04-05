@@ -2,7 +2,12 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :personnel_number, :address, 
   :telephone, :date_of_birth, :sex, :commencement, :termination, 
   :insurance, :grade, :centre, :post, :division, :location, 
-  :salary_scale, :pay_center, :task_id, :admin, :password, :password_confirmation
+  :salary_scale, :pay_center, :task_id, :admin, :password, :password_confirmation, :company_id
+
+
+   validates_uniqueness_of :email, scope: :company_id
+
+   default_scope { where(company_id: Company.current_id) }
 
   has_secure_password
   has_many :absences
