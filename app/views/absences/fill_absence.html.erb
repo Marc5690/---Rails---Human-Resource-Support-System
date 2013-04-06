@@ -22,10 +22,11 @@
       <%if f.absences%>
       <%f.absences.each do |t|%>
       <div class="well">
+        <%if t.date.future?%>
       <b>ID:</b><%=t.id%></br></br>
       <b>Date:</b><%=t.date%></br></br>
       <b>User:</b><%=t.user.name%></br></br>
-      
+      <%end%>
       <%=link_to "Fill in", fill_path(:absence_id => t.id)%></br>
       </div>
       <%end%><%end%><%end%>

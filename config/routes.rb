@@ -1,5 +1,13 @@
+require 'grape'
+
 Mytwitter2::Application.routes.draw do
-  
+  #constraints :subdomain => 'apple' do
+  mount App::API => "/api"
+#end
+
+
+
+
   resources :users
   resources :absences
   resources :projects

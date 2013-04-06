@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    backports (2.6.7)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-datepicker-rails (1.0.0.2)
       railties (>= 3.0)
@@ -51,6 +52,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    descendants_tracker (0.0.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -58,6 +60,17 @@ GEM
     ffi (1.6.0-x86-mingw32)
     gchart (1.0.0)
     googlecharts (1.6.8)
+    grape (0.4.0)
+      activesupport
+      builder
+      hashie (>= 1.2.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      rack (>= 1.3.0)
+      rack-accept
+      rack-mount
+      virtus
+    hashie (2.0.3)
     hike (1.2.1)
     i18n (0.6.4)
     journey (1.0.4)
@@ -71,11 +84,16 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.22)
     multi_json (1.7.2)
+    multi_xml (0.5.3)
     nokogiri (1.5.9-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.5)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -136,6 +154,9 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    virtus (0.5.4)
+      backports (~> 2.6.1)
+      descendants_tracker (~> 0.0.1)
     websocket (1.0.7)
     will_paginate (3.0.3)
     xpath (0.1.4)
@@ -153,6 +174,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   gchart
   googlecharts
+  grape
   jquery-rails
   rails (= 3.2.1)
   rspec-rails (= 2.10.0)

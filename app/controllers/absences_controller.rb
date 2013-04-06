@@ -28,22 +28,22 @@ end
 
 
   def fill_absence
-    @user = User.find(1)
+   # @user = User.find(1)
     @absences = Absence.all
-    @f = []
+   # @f = []
     @future = @absences.each do |f|
     if f.date.future?
       @f << f
     end
     end
 
-@f.each do |f|
-  if f.tempuser == @user.id
-end
-  end
+#@f.each do |f|
+#  if f.tempuser == @user.id
+#end
+#  end
 
 
-  @user = User.find_by_id(1)
+#  @user = User.find_by_id(1)
   end
   
   def destroy
