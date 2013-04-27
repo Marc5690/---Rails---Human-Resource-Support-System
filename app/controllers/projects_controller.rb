@@ -84,16 +84,31 @@ end
 @user = User.all
 
 @employees = []
- 
- @user.each do |f|
+
+if @task.skills.exists?
+  @user.each do |f|
    f.skills.each do |g|
     if @task.skills.include?(g)
-      @employees << f if f.task_id != @task.id
-    
+      @employees << f if f.task_id != @task.id #end
+    elsif @task.skills.empty?
+      @employees << f if f.task_id != @task.id #end
+    else
+      @employees = nil
+    #end
    end
-
-
   end
+  
+  end
+
+else
+@user.each do |f|
+  
+      @employees << f if f.task_id != @task.id 
+ 
+end
+end
+end 
+
 @available =[]
 
   @employees.each do |f|
@@ -101,15 +116,10 @@ end
     end
 
 
-@d = params[:y].to_i#(Task.find_by_id(params[:y].to_i)).id#).to_i
+@d = params[:y].to_i
 end
 
 
-#@task.skills
-end
-#@task.users
-
-end
 
 def update
 @project = Project.find_by_id(params[:id])
@@ -189,6 +199,16 @@ end
 @task = Task.new
 
   end
+
+   def choose_task
+@task_all = Task.all
+@task = []
+@task_all.each do |task|
+  @task << [task.title, task.id]
+end
+
+  end
+
 
 def display
   @project = Project.all

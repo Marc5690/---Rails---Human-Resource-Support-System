@@ -8,18 +8,29 @@ gem 'gchart'
 gem 'googlecharts'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap_form'
+gem 'validates_timeliness'
+#gem 'range_validator'#############################################################################
+#gem 'sqlite3'
 
 #gem 'google_chart'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+#group :development, :test do
+#gem 'sqlite3', '1.3.5'
+#gem 'rspec-rails', '2.10.0'
+#end
 
 group :development, :test do
 gem 'sqlite3', '1.3.5'
 gem 'rspec-rails', '2.10.0'
 end
 
+
 group :test do
 	gem 'capybara', '1.1.2'
+	#gem 'nokogiri', '1.5.9'
+
 end
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,12 +41,17 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.0.4'
 end
 
 gem 'grape'
-
+#gem 'cloudfoundry-jquery-rails'
 gem 'jquery-rails'
+
+
+# For Ruby 1.9 Cloud Foundry requires a tweak to the jquery-rails gem.
+#
+
 #gem 'gruff'
 #gem 'rmagick'
 

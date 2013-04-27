@@ -1,0 +1,25 @@
+<% provide(:title, "Task") %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1></h1>
+        <div style="white-space: nowrap">
+   
+ 
+
+
+     <%= form_tag(taskupdate_path) do %>
+
+  <%= label_tag(:task_id, "Task:") %>
+  <%= select_tag :task_id, options_for_select(@task) %> </br>
+
+  <%= submit_tag "Continue",  class: "btn"%>
+<%end%>
+
+    
+
+       </div>
+   
+    </section>
+  </aside>
+</div>

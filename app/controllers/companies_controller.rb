@@ -1,9 +1,11 @@
-companiesController < ApplicationController
+class CompaniesController < ApplicationController
 skip_before_filter :require_login
 
+ end
+ 
   #def new
   #end
-
+#default_scope { where(company_id: Company.current_id) }
 #def create
 #    user = User.find_by_email(params[:session][:email].downcase)
 #    if user && user.authenticate(params[:session][:password])
@@ -18,9 +20,10 @@ skip_before_filter :require_login
 #   def destroy
 #    sign_out
 #    redirect_to root_url
-#  end
+ 
 
   
-end
+#end
+
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405140247) do
+ActiveRecord::Schema.define(:version => 20130427082009) do
 
   create_table "absences", :force => true do |t|
     t.string   "status"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20130405140247) do
     t.datetime "date"
     t.integer  "tempuser"
     t.integer  "company_id"
+    t.datetime "date_ended"
+    t.integer  "task_id"
   end
 
   create_table "companies", :force => true do |t|
@@ -101,6 +103,11 @@ ActiveRecord::Schema.define(:version => 20130405140247) do
     t.integer  "company_id"
   end
 
+  create_table "tasks_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+  end
+
   create_table "time_and_attendances", :force => true do |t|
     t.integer  "hours_worked"
     t.datetime "created_at"
@@ -144,5 +151,10 @@ ActiveRecord::Schema.define(:version => 20130405140247) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "users_tasks", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+  end
 
 end

@@ -8,7 +8,7 @@
     <%#=l.user%>
   <%#=link_to "See more", l%>
   <%#end%>
-<%@f = User.all%>
+<%#@f = User.all%>
 
       <%#@f.each do |f|%>
       <%#if f.temporary_positions%>
@@ -18,33 +18,19 @@
       <%#end%><%#end%><%#end%>
 
 
-      <%@f.each do |f|%></br></br>
-      <%if f.absences%>
-      <%f.absences.each do |t|%>
+      <%@unfilled_absence.each do |t|%></br></br>
+      
       <div class="well">
-        <%if t.date.future?%>
+       
       <b>ID:</b><%=t.id%></br></br>
       <b>Date:</b><%=t.date%></br></br>
       <b>User:</b><%=t.user.name%></br></br>
-      <%end%>
+      <%#end%>
       <%=link_to "Fill in", fill_path(:absence_id => t.id)%></br>
       </div>
-      <%end%><%end%><%end%>
+     <%end%>
 
-  <%#Absence.find_by_id(params[:id])%></br></br>
-      
-      <%#@f.temporary_positions.each do |f|%>
-      <%#=f.id%></br>
-       <%#=f.date%></br>
-        <%#=f.reason%></br>
-         <%#=f.id%></br>
-      <%#end%>
 
-<%#Absence.all.each do |f|%>
-      <%#=f.id%></br>
-               <%#=link_to "Fill in", f%></br>
-     
-      <%#end%>
 
     </div>
   </div>

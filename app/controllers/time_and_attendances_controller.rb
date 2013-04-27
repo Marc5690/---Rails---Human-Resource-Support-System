@@ -20,11 +20,23 @@ class TimeAndAttendancesController < ApplicationController
 
 
   def create
-    @task = []
-    @task_all = Task.all
-    @task_all.each do |f|
-@task << [f.title, f.id]
+  #  @task = []
+  #  @task_all = Task.all
+  #  @task_all.each do |f|
+#@task << [f.title, f.id]
+#    end
+
+
+     @user = current_user
+     #@task = @user.task
+      @task = []
+    # @users_all = User.all
+     @user.tasks.each do |f|
+     @task << [f.title, f.id]
     end
+
+
+
     
     @timeandattendance = TimeAndAttendance.new(params[:time_and_attendance])
     if @timeandattendance.save
@@ -67,7 +79,7 @@ end
 @data = []
 
 @hours.each do |f|
-  if f.date.month == 1#Time.now.month
+  if f.date.month == Time.now.month###################################CHANGE#####################################
 @label << f.date.to_date.to_s
 @data << f.total_hours_worked
 end
@@ -76,22 +88,43 @@ end
 
    def addemptime
      @user = current_user
-     @task = @user.task
+     #@task = @user.task
+      @tasks = []
+    # @users_all = User.all
+     @user.tasks.each do |f|
+     @tasks << [f.title, f.id]
+    end
+
+    if @user.temporary_positions.any?
+      @user.temporary_positions.each do |f|
+        if (f.date..f.date_ended).cover?(Time.now)
+          f.user.tasks.each do |g|
+            unless @user.tasks.include?(g)
+          @tasks << [g.title, g.id]
+        end
+          end
+        end
+      end
+end
 @timeandattendance = TimeAndAttendance.new 
 
 #if @user.temporary_positions.any? && @user.temporary_positions.each do |f|
 #if temporary_positions? @user
   
-  @user.temporary_positions.each do |g|
- if g.date == Date.today#.day
-    @task = g.user.task if g.user.task
-  else
-    @task = @user.task
-end
+ # @user.temporary_positions.each do |g|
+ #if g.date == Date.today#.day
+ #   @task = g.user.task if g.user.task
+ # else
+ #   @task = @user.task
+#end
+
+
+
+
 #else
 
  # end
-end
+#end
 
 
 

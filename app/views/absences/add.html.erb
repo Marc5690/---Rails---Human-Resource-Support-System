@@ -20,7 +20,7 @@
       <%= f.text_field :reason %>
       <%#= f.label :Type_of_Absence%>
       <%= f.select :form, [['Authorized','authorized'],['Illness','illness'],['Holiday','holiday']], label: 'Type of absence' %>
-      <%=f.hidden_field :user_id, :value => @current_emp%>
+      <%=f.hidden_field :user_id, :value => @current_employee%>
 
        <%=f.hidden_field :company_id, :value => current_user.company_id.to_i%>  
      

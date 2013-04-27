@@ -1,0 +1,38 @@
+<% provide(:title, 'Add an Absence Record') %>
+<h1>Enter details below:</h1>
+
+<div class="row">
+  <div class="span6 offset2">
+     <script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker()
+</script>
+
+
+    <%= bootstrap_form_for @absence do |f| %>
+<%= render 'shared/error_messages', object: f.object  %> 
+     <div style="white-space: nowrap">
+      <%#= f.label :Date %>
+      <%#= f.text_field :date %>
+      <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true %>
+      <%= f.text_field :date_ended, 'data-behaviour' => 'datepicker',:readonly => true %>
+      <%#= f.label :Status %>
+      <%= f.text_field :status %>
+      <%#= f.label :Reason %>
+      <%= f.text_field :reason %>
+      <%#= f.label :Type_of_Absence%>
+      <%= f.select :form, [['Authorized','authorized'],['Illness','illness'],['Holiday','holiday']], label: 'Type of absence' %>
+      <%=f.hidden_field :user_id, :value => @selected_employee%>
+
+       <%=f.hidden_field :company_id, :value => current_user.company_id.to_i%>  
+     
+      <%= f.actions do %>
+      <%= f.submit "Save Absence Record", class: "btn", disable_with: 'Saving...' %>
+     
+    <%#= f.primary 'Create My Account', disable_with: 'Saving...' %>
+  <% end %>
+
+      <%#= f.submit "Add Absence Record", class: "btn" %>
+      <%end%>
+      </div>
+    </div>
+ </div>

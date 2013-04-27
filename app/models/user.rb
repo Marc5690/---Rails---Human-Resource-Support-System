@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   has_many :received_messages, :class_name => "PrivateMessage", :foreign_key => "receiver"
   has_many :sent_messages, :class_name => "PrivateMessage", :foreign_key => "sender"
   has_many :temporary_positions, :class_name => "Absence", :foreign_key => "tempuser"
-  belongs_to :task
+  #belongs_to :task  
+  has_and_belongs_to_many :tasks
   
  # delegate :team, :to => :task
 
@@ -29,7 +30,7 @@ validates_numericality_of :personnel_number, :only_integer => true, :message => 
 
 
 validates :personnel_number, :address, 
-  :telephone, :date_of_birth, :sex, :commencement, :termination, 
+  :telephone, :sex,# :commencement, :termination, #:date_of_birth,
   :insurance, :grade, :centre, :post, :division, :location, 
   :salary_scale, :pay_center, presence: true
 

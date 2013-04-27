@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-	 attr_accessible :name, :subdomain
+  attr_accessible :name, :subdomain
   
   def self.current_id=(id)
     Thread.current[:company_id] = id

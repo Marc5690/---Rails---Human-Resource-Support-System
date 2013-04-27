@@ -15,7 +15,7 @@
   
   <li class="active"> <%= link_to "View Absence Records", select_absence_year_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
   <li class="active"> <%= link_to "View Time And Attendance Records", select_time_year_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-
+  <li class="active"> <%= link_to "Edit this employee's details?", edit_employee_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
     <%#= link_to "View Absence Records", select_absence_year_path(:user_id => @user.id) , class: "btn btn-info btn-small" %>
     <%#= link_to "View Time And Attendance Records", select_time_year_path(:user_id => @user.id) , class: "btn btn-info btn-small" %>
 

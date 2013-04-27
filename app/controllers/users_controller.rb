@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     else
 @user = User.find_by_id(params[:user_id])
 
-@hours_combined = @user.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
+#@hours_combined = @user.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
 end
   end
 
@@ -140,16 +140,30 @@ end
   end
 
 def update
-@task_id = params[:d]#task
-#@x = params[:user_id]
-@user = User.find_by_id(params[:x])
 
+  if params[:user_id] == nil
+     # @task_id = params[:d]#task
+      @task = Task.find_by_id(params[:d])
+      @user = User.find_by_id(params[:x])
 
-@user.update_column(:task_id,@task_id)
-
-
-redirect_to root_path
-
+       if @task.users << @user#@user.update_column(:task_id,@task_id)
+        flash[:success] = "Successfully assigned user!"
+        redirect_to root_path
+       else
+        flash[:failure] = "Could not assign user to task"
+        render'projects/select_emp'
+       end
+  elsif params[:x] == nil
+       @user = User.find_by_id[:user_id]
+        
+        if @user.update_attributes(params[:user])
+         flash[:success] = "Successfully updated user account!"
+         redirect_to root_path
+        else
+         flash[:failure] = "Could not update user account"
+         render'users/edit_employee'#direct_to root_path
+       end
+  end
 #@x = params[:x]
 #@y = params[:y]
 
@@ -215,5 +229,9 @@ end
       else
       @user = User.find_by_id(params[:user_id])
     end
+  end
+
+  def edit_employee
+    @user = User.find_by_id(params[:user_id])
   end
 end

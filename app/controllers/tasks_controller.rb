@@ -65,5 +65,20 @@ end
     @task = Task.new
   end
   
+  def edit_task
+    @task = Task.find_by_id(params[:task_id])
+  end
+
+  def update
+  @task = Task.find_by_id(params[:id])
+  if @task.update_attributes(params[:task])
+  flash[:success] = "Task Updated!"
+  redirect_to root_path
+else
+   render 'projects/choose_task'
+ # flash[:failure] = "Project was not updated!"
+ # redirect_to root_path
+end
+  end
 
 end

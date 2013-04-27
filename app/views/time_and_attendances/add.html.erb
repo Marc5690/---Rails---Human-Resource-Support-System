@@ -6,6 +6,8 @@
   $('[data-behaviour~=datepicker]').datepicker()
 </script>
 
+<%#= javascript_include_tag "application" %>
+
 
     <%= bootstrap_form_for @timeandattendance do |f| %>
 <%= render 'shared/error_messages', object: f.object  %> 
@@ -26,6 +28,7 @@
       <%#= f.label :Task_Id %>
 
         <%= f.select :task_id, options_for_select(@task), label: 'Task' %> 
+        
       <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.collection_select @Task %>
       <%#= f.text_field :task_id %>

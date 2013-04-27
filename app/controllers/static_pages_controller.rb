@@ -10,7 +10,7 @@ require 'will_paginate/array'
 
 @notice = Noticeboard.new
 
-
+@user = User.new
 
 end
 

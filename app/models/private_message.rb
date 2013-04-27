@@ -7,7 +7,6 @@ class PrivateMessage < ActiveRecord::Base
 default_scope { where(company_id: Company.current_id) }
   
 
-#default_scope where(:company_id => (User.find_by_id(1)).company_id )# current_user.company_id)
 
 #has_and_belongs_to_many :users
 has_many :users#receiver, :class_name => "User", :foreign_key => "receiver"

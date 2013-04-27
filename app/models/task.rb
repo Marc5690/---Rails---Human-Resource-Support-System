@@ -4,7 +4,8 @@ class Task < ActiveRecord::Base
 
 belongs_to :project
 has_many :time_and_attendances, :foreign_key => "task_id"
-has_many :users, :class_name => "User",:foreign_key => "task_id"
+#has_many :users, :class_name => "User",:foreign_key => "task_id" 
+has_and_belongs_to_many :users
 has_and_belongs_to_many :skills
 
    default_scope { where(company_id: Company.current_id) }

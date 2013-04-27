@@ -20,7 +20,6 @@ Mytwitter2::Application.routes.draw do
   resources :skills
   resources :skills_users
   resources :skills_tasks
-  #Evertime a form has an error, check the resources
 
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new'
@@ -35,6 +34,7 @@ Mytwitter2::Application.routes.draw do
   match '/addtime2', to: 'time_and_attendances#add'
   match '/viewtime', to: 'time_and_attendances#editrec'
   match '/viewtime2', to: 'time_and_attendances#edit2'
+  
   #Time and Attendance routes for employee
   #match '/times', to: 'time_and_attendances#emptime'
   match '/viewemptimes', to: 'time_and_attendances#emptime'
@@ -51,6 +51,7 @@ Mytwitter2::Application.routes.draw do
   match '/projectsearchemp', to: 'projects#choose_project'
   match '/projectforemp', to: 'projects#addemp'
   match '/projectempupdate', to: 'users#update'
+  match '/taskupdatechoose', to: 'projects#choose_task'
 
   match '/projectsaddemp', to: 'projects#addemp'
   match '/projectsupdate', to: 'projects#select_emp'#users#update'
@@ -79,6 +80,8 @@ Mytwitter2::Application.routes.draw do
   
   #Task routes
   match '/projectstask', to: 'tasks#new'
+  match '/taskupdate', to: 'tasks#edit_task'
+
   #Skills route
   match '/skills', to: 'skills#index'
   match '/skillsadd', to: 'skills#new'
@@ -97,9 +100,9 @@ Mytwitter2::Application.routes.draw do
   
   #Absence Record Routes
   match '/absences', to: 'absences#index'
-  match '/absenceadd', to: 'absences#add'
+  match '/absence_search_add_new', to: 'absences#new'
+  match '/absence_search_add', to: 'absences#search_employees_absence_add'
   match '/absenceview', to: 'absences#display'
-  match '/absencesearchadd', to: 'absences#searchadd'
   match '/absencesearchview', to: 'absences#searchview'
   match '/absencesfill', to: 'absences#fill_absence'
   match '/fill', to: 'absences#fill'
@@ -110,6 +113,7 @@ Mytwitter2::Application.routes.draw do
   #resources :microposts, only: [:create, :destroy] 
   resources :sessions, only: [:new, :create, :destroy]
   match '/select_employee', to: 'users#select_employee'
+  match '/edit_employee', to: 'users#edit_employee'
 
   match '/view_records', to: 'users#view_records'
   match '/view_time_records', to: 'users#view_time_records'

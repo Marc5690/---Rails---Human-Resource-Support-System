@@ -2,16 +2,63 @@ class AbsencesController < ApplicationController
   include AbsencesHelper
   before_filter :signed_in_user, only: [:create, :destroy]
 
-  def add
-    if params[:employee_id] == nil
-flash[:failure] = "You must seelct an employee"
-     redirect_to absencesearchadd_path
-   else
+  def search_employees_absence_add#Searchadd
+    #@user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+ 
+     # @current_emp2 = params[:q]
+
+      @userall = User.all
+    @users = []
+
+    @userall.each do |f|
+      @users << [f.name, f.id]
+    end
+
+
+  end
+
+  def new
+   # if params[:employee_id] == nil
+   #  flash[:failure] = "You must select an employee"
+   #  redirect_to absence_search_add_path
+   #else
     @absence = Absence.new
 
-    @current_emp = (params[:employee_id])
+   #if @performed_render = false 
+    @selected_employee = (params[:employee_id])
+   if (params.has_key?(:employee_id)) #@performed_render = true
+    @selected_employee = (params[:employee_id])
+    # if (params[:absence][:user_id]) != nil
+   elsif (params.has_key?(:absence))
+    @selected_employee = (params[:absence][:user_id])
+     #else
+     
+   #redirect_to root_path
+   #flash[:failure] = "An error occurred"
+  end
+   # end
+  end
+
+   def create
+    #@current_emp = params[:employee_id]
+    
+   
+    @absence = Absence.new(params[:absence])
+    if 
+      @absence.save
+      flash[:success] = "Record added!" 
+      redirect_to root_path
+    elsif  @absence.user_id == nil# !defined?(@absence.user_id)#@current_emp)# == nil
+ render 'absences/new'
+     # redirect_to absence_search_add_path
+     # flash[:failure] = "Please select an employee"
+     
+   else
+      render 'absences/new'
     end
   end
+
+
   
   def display
 
@@ -30,10 +77,11 @@ end
   def fill_absence
    # @user = User.find(1)
     @absences = Absence.all
-   # @f = []
-    @future = @absences.each do |f|
-    if f.date.future?
-      @f << f
+    @unfilled_absence = []
+    #@future = 
+    @absences.each do |f|
+    if f.date.future? && f.tempuser == nil || 0
+      @unfilled_absence << f
     end
     end
 
@@ -62,28 +110,7 @@ end
   def menu
   end
  
-  def create
-    #@current_emp = params[:employee_id]
-   
-    @absence = Absence.new(params[:absence])
-    if @absence.save
-      flash[:success] = "Record added!" 
-      redirect_to root_path
-    elsif  @absence.user_id == nil# !defined?(@absence.user_id)#@current_emp)# == nil
-     # @current_emp = (params[:employee_id])
-    #else
-      redirect_to absencesearchadd_path
-      flash[:failure] = "Please select an employee"
-    #end
-
-
-      
-   else
-    #flash[:failure] = "Record could not be created!" 
-    #  redirect_to root_path
-      render 'absences/add'
-    end
-  end
+ 
 
   def fill
     @absence = Absence.find_by_id(params[:absence_id])
@@ -157,20 +184,7 @@ else
  end
   end
 
-  def searchadd
-    @user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
  
-      @current_emp2 = params[:q]
-
-      @userall = User.all
-    @array = []
-
-    @userall.each do |f|
-      @array << [f.name, f.id]
-    end
-
-
-  end
  
   def searchview
      @user = User.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
