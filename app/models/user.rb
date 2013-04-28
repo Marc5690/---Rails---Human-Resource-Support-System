@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :personnel_number, :address, 
   :telephone, :date_of_birth, :sex, :commencement, :termination, 
   :insurance, :grade, :centre, :post, :division, :location, 
-  :salary_scale, :pay_center, :task_id, :admin, :password, :password_confirmation, :company_id
+  :salary_scale, :pay_center, :task, :admin, :password, :password_confirmation, :company_id
 
 
    validates_uniqueness_of :email, scope: :company_id

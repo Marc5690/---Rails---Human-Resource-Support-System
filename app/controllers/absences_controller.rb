@@ -117,7 +117,7 @@ end
     @available_employees = []
     @employees = []
     @user = @absence.user
-    @task = @user.task
+    @tasks = @user.tasks
     @userall = User.all
 
 
@@ -127,24 +127,70 @@ end
 #     end
 #   end
 
-if @task
+if @tasks.any?#If user has any tasks
 
   @userall.each do |f|
-  if f.skills.any? && !temporary_positions?(f, @absence) 
-     f.skills.each do |g|     
-         if @task.skills.any? && @task.skills.include?(g)#At this line, we have filtered through all users 
-           @employees << f if f.task_id != @task.id      #to make sure that they have the right skills for the job,
-         end                                             #do not have any other temporary positions on that day, and
+  if f.skills.any? && !temporary_positions?(f, @absence) #If user has skills and does not have to fill this absence already
+     f.skills.each do |g| 
+      @tasks.each do |h|    #iterate through the tasks skills and users skills
+         if h.skills.any? && h.skills.include?(g)#At this line, we have filtered through all users 
+           @employees << f if f.tasks.each do |f| 
+           if f.id != h.id   
+           return true
+           else return false   #to make sure that they have the right skills for the job,
+         end
+end         end                                             #do not have any other temporary positions on that day, and
      end                                                 #that they are not already assigned to that task.
   end
-  end                                               
+  end        
+end
+
+
+
+ # if @task
+#
+#  @userall.each do |f|
+#  if f.skills.any? && !temporary_positions?(f, @absence) 
+#     f.skills.each do |g|     
+#         if @task.skills.any? && @task.skills.include?(g)#At this line, we have filtered through all users 
+#           @employees << f if f.task_id != @task.id      #to make sure that they have the right skills for the job,
+#         end                                             #do not have any other temporary positions on that day, and
+#     end                                                 #that they are not already assigned to that task.
+#  end
+#  end       
+
+
                                                          
       
 
-  @employees.each do |f|#We then place this list of filtered employees into @available_employees to be use din the drop-down menu
+  @employees.each do |f|#We then place this list of filtered employees into @available_employees to be used in the drop-down menu
       @available_employees << [f.name, f.id]
     end
+elsif @tasks == nil
+  @users = User.all
 
+@users.each do |f|
+if !temporary_positions?(f, @absence) 
+  @employees << f
+end
+end
+
+
+elsif @tasks.any? && @tasks.skills.present? == false
+@users = User.all
+
+@users.each do |f|
+if !temporary_positions?(f, @absence) 
+  @employees << f
+end
+end
+  
+
+
+   @employees.each do |f|#We then place this list of filtered employees into @available_employees to be used in the drop-down menu
+      @available_employees << [f.name, f.id]
+    end  
+  
 else
 #If the task does not exist, then we set the variables to nil.
 @available_employees = nil

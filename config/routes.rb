@@ -50,7 +50,7 @@ Mytwitter2::Application.routes.draw do
 
   match '/projectsearchemp', to: 'projects#choose_project'
   match '/projectforemp', to: 'projects#addemp'
-  match '/projectempupdate', to: 'users#update'
+  match '/projectempupdate', to: 'projects#add_user_to_task'
   match '/taskupdatechoose', to: 'projects#choose_task'
 
   match '/projectsaddemp', to: 'projects#addemp'

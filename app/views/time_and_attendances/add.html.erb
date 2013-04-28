@@ -32,7 +32,7 @@
       <%#=f.select( "task_id", @task.collect {|r| [ r.title, r.id ] }, { :include_blank => true })%>
       <%#= f.collection_select @Task %>
       <%#= f.text_field :task_id %>
-      <%= f.hidden_field :user_id, :value => current_user.id%>
+      <%= f.hidden_field :user_id, :value => @selected_user%>
       <%=f.hidden_field :company_id, :value => current_user.company_id%>
       
       <%= f.actions do %>

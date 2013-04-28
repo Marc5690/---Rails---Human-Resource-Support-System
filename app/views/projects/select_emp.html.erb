@@ -9,9 +9,18 @@
 <%=f.skill_type%>
      <%end%></br></br>
 
+<%#@t = Task.find_by_id(9)%>
+<%#@t.users << User.find_by_id(5)%>
+<%#=@task.%>
 Users assigned to task:
- <%@users.each do |f|%>
+<%if @task.users.empty?%>
+None.
+<%else%>
+ <%@task.users.each do |f|%>
 <%=f.name%>
+     <%end%>
+     <%#@u.each do |x|%>
+     <%#=x.name%>
      <%end%>
 </br></br></br></br>
 <%unless @available.empty?%>

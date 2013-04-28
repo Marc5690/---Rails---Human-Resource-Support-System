@@ -15,6 +15,7 @@
      	<%=bootstrap_form_for @absence do |f|%>
         <%#= f.label :User %>
         <%#= f.text_field :tempuser %>
+        
         <%= f.select :tempuser, options_for_select(@available_employees), label: 'User' %> </br>
 
         <%= f.submit "Update Absence Record", class: "btn", disable_with: 'Saving...'  %>
@@ -24,7 +25,7 @@
          <%#= link_to "Return", root_path, class: "btn"%></br></br>
 <%else%>
 
-There are no available employees
+There are no available employees, or the absent employee has no tasks for others to work on.
 <%end%>
   </div>  </div>
 

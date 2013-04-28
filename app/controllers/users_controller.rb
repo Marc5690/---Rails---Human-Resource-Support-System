@@ -141,19 +141,7 @@ end
 
 def update
 
-  if params[:user_id] == nil
-     # @task_id = params[:d]#task
-      @task = Task.find_by_id(params[:d])
-      @user = User.find_by_id(params[:x])
-
-       if @task.users << @user#@user.update_column(:task_id,@task_id)
-        flash[:success] = "Successfully assigned user!"
-        redirect_to root_path
-       else
-        flash[:failure] = "Could not assign user to task"
-        render'projects/select_emp'
-       end
-  elsif params[:x] == nil
+  #elsif params[:x] == nil && params[:y] == nil
        @user = User.find_by_id[:user_id]
         
         if @user.update_attributes(params[:user])

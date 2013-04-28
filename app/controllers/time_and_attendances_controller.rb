@@ -2,14 +2,41 @@ class TimeAndAttendancesController < ApplicationController
    include TimeAndAttendancesHelper
 
   def add
+    if params[:q] == nil
+      redirect_to addtime_path
+    end
     @timeandattendance = TimeAndAttendance.new
-    #@q = params[:q]
+    @selected_user = params[:q]
 
 @task = []
-    @task_all = Task.all
-    @task_all.each do |f|
+    #@task_all = Task.all
+    @user = User.find_by_id(params[:q])
+    @tasks = @user.tasks
+    @tasks.each do |f|
 @task << [f.title, f.id]
     end
+
+if @user.temporary_positions.any?
+      @user.temporary_positions.each do |f|
+        if (f.date..f.date_ended).cover?(Time.now)
+          f.user.tasks.each do |g|
+            unless @user.tasks.include?(g)
+          @task << [g.title, g.id]
+        end
+          end
+        end
+      end
+end
+  #  @temps = @user.temporary_positions
+
+   # @temps.each do |g|
+   #   g.user.tasks.each do |h|
+       #  unless @user.tasks.include?(h)############
+     # @task << [h.title, h.id] unless @task.include?([h.title, h.id])
+    #end
+    #  end
+    #  end
+   #   @task.find_by_id(g.user.#########################LEFT OFF HERE YESTERDAY
   end
 
   def index 

@@ -82,19 +82,27 @@ end
 
 
 @user = User.all
-
+@u = @user - @task.users
 @employees = []
+#@employees = []
+#@employees = []
 
 if @task.skills.exists?
-  @user.each do |f|
-   f.skills.each do |g|
-    if @task.skills.include?(g)
-      @employees << f if f.task_id != @task.id #end
+#@employees = []
+  @u.each do |f|
+    if f.skills.any?
+     f.skills.each do |g|
+    if @task.skills.include?(g) #&& f != nil
+     # if f != nil
+     @employees = []
+      @employees << f unless f.tasks.include?(@task)
+      #f   #unless f.skills == nil#if f.tasks.each do |y| y.id != @task.id end
+     # end
     elsif @task.skills.empty?
-      @employees << f if f.task_id != @task.id #end
+      @employees << f #if f.task_id != @task.id
     else
       @employees = nil
-    #end
+    end
    end
   end
   
@@ -103,18 +111,20 @@ if @task.skills.exists?
 else
 @user.each do |f|
   
-      @employees << f if f.task_id != @task.id 
+      @employees << f unless f.tasks.include?(@task)#if f.task_id != @task.id 
  
 end
 end
 end 
 
 @available =[]
-
+unless @employees == nil
   @employees.each do |f|
       @available << [f.name, f.id]
     end
-
+else 
+  @employees = nil
+end
 
 @d = params[:y].to_i
 end
@@ -287,6 +297,28 @@ end
      # redirect_to root_path
      render 'projects/new'
     end
+  end
+
+  def add_user_to_task
+     # if params[:user_id] == nil
+     # @task_id = params[:d]#task
+      @task = Task.find_by_id(params[:d])
+      @user = User.find_by_id(params[:x])
+
+       #if 
+
+    
+
+
+    @task.users << @user
+
+       #).save#@user.update_column(:task_id,@task_id)
+      # flash[:success] = "Successfully assigned user!"
+      #  redirect_to root_path
+       #else
+       # flash[:failure] = "Could not assign user to task"
+       # render'projects/select_emp'
+       #end
   end
 
   def addtask

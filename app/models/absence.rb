@@ -2,7 +2,7 @@ class Absence < ActiveRecord::Base
 	attr_accessible :date, :date_ended, :status, :reason, :form, :user_id, :tempuser, :company_id
 	belongs_to :user
 	default_scope { where(company_id: Company.current_id) }
-   # validates :date, :uniqueness => {:scope => :user_id}
+  validates :date, :uniqueness => {:scope => :user_id}
     
 #validates_datetime
 
