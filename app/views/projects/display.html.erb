@@ -4,12 +4,10 @@
       <ol>
         <% @project.each do |f|  %>
           <div class="well">
-        <b>Project ID:</b><%= f.id%></br>
         <b>Title:</b><%=f.title%></br>
         <b>Start Date:</b><%= f.date_started.to_date%></br>
         <b>End Date:</b><%= f.date_ended.to_date%></br>
         <b>Estimated Hours:</b><%= f.estimated_hours%></br>
-        <b>EST:</b> <%#=@EST%></br>
         <%= link_to "See Detail", f%>
         </br></br>
     </div>

@@ -5,9 +5,11 @@
       <nav>
         <ul class="nav pull-right" >
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Help", help_path %></li>
-          <li><%= link_to "About",   about_path %></li>
-          <li><%#= link_to "Contact", contact_path %></li>
+          <%#= link_to "Help", help_path %>
+          <li><%= link_to "Help", root_path, :id => 'a', "data-toggle" => "modal", 'data-target' => '#myModal' %> </li>
+           <li><%= link_to "About", root_path, :id => 'b', "data-toggle" => "modal", 'data-target' => '#myAboutModal' %> </li>
+          <%#= link_to "About", about_path %>
+          <%#= link_to "Contact", contact_path %>
           <% if signed_in? %>
           <li><%= link_to "Profile", current_user %></li>
           <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
@@ -19,3 +21,35 @@
     </div>
   </div>
 </header>
+
+
+<div id="myModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="HelpLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="HelpLabel">Help</h3>
+  </div>
+  <div class="modal-body">
+    <p>If you require any help or assistance with this application, please sends your questions or queries to this <a href="mailto:20040384@mail.wit.ie?Subject=Human%20Resource%20Support%20System" target="_blank">e-mail</a></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+
+
+
+<div id="myAboutModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="AboutLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="AboutLabel">About</h3>
+  </div>
+  <div class="modal-body">
+    <p>The Human Resource Support System is a student-created application. It's first version was completed in the second quarter of 2013, and further versions will be implemented in the future. The Github account for this project can be found <a href="https://github.com/Marc5690/Human-Resource-Support-System"target="_blank">here</a></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+

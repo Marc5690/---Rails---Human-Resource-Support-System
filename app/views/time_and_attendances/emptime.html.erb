@@ -1,19 +1,38 @@
-<% provide(:title, 'Edit an Employee Record') %>
-<h1>Enter the ID of the record you want to delete:</h1>
+<% provide(:title, 'Time And Attendance Records') %>
 <div class="row">
   <div class="span6 offset2">
     <div style="white-space: nowrap">
        
        <% if @user.time_and_attendances.any? %>
-<h3>Time and Attendance Records </h3>
-      <ol>
-        <%= render @time_and_attendances %>
-      </ol>
-<%= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @time_and_attendances %>
+
+      <caption><b>Viewing Time and Attendance Records </b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
+  
+
+ <th>Date</th><th>Hours</th><th>Project</th><th>Task</th>
+   
+    
+        <% @time_and_attendances.each do |f| %>
+<tr class="success">
+    <td><%=f.date.to_date%></td>
+    <td><%=f.hours_worked%></td>
+    <td><%=f.project.title%></td>
+    <td><%=f.task.title%></td>
+<td><%#= link_to "Add an Absence Record", absence_search_add_new_path(:employee_id => f.id)%></td>
+<td><%#= link_to "View Absence Records", absenceview_path(:q => f.id)%></td>
+        <%end%></tr>
+       </div>
+        </table>
+      </div>
+        <%#= render @time_and_attendances %>
+
+      <%#= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @time_and_attendances %>
 
 
-      <img src="<%=Gchart.pie(:size => '500x360', 
+      <img src="<%#=Gchart.pie(:size => '500x360', 
               :title => "Workload for this month",
               :labels => @label,
               :data => @data)%>"/>
@@ -24,8 +43,9 @@
 
 <h2> No time and attendance records found!</h2>
  
-    <% end %>
-<%= link_to "Home", root_path , class: "btn btn-info btn-small" %>
+   
+<%= link_to "Home", root_path , class: "btn" %>
+ <% end %>
   </div>
   </div>
 </div>

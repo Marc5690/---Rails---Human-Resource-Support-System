@@ -1,22 +1,24 @@
 <% provide(:title, 'Edit Time and Attendance Record') %>
-<h1>Edit Time and Attendance Record:</h1>
+<h2>Edit Time and Attendance Record:</h2>
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker()
+</script>
 <div class="row">
   <div class="span6 offset2">
-    <%= form_for(Employee.new) do |f| %>
+    <%= bootstrap_form_for(TimeAndAttendance.find(params[:format])) do |f| %>
 <%#= render 'shared/error_messages' %> 
      <div style="white-space: nowrap">
-<%= f.label :Date %>
-             <%= f.text_field :name %>
-            <%= f.label :Hours_Worked %>
-      <%= f.text_field :name %>
-       <%= f.label :Task %>
-      <%= f.text_field :name %>
-       <%= f.label :Project %>
-      <%= f.text_field :name %>
-      
-               <%#= f.submit "Add Record", class: "btn btn-large btn-primary" %></br>
-   <% end %>
-   <%= link_to "Update Record", menu_path, class: "btn btn-large btn-primary" %>
+     
+      <%= f.text_field :date, 'data-behaviour' => 'datepicker',:readonly => true, :autoclose => true%>
+      <%= f.text_field :hours_worked %>
+      <%= f.text_field :task_id %>
+      <%= f.text_field :project_id %>
+ 
+      <%= f.actions do %>
+      <%= f.submit "Update Record", class: "btn",  disable_with: 'Updating...' %>
+      <% end %>    
+    <%#= f.primary 'Create My Account', disable_with: 'Saving...' %>
+  <% end %>
 
   </div>  </div>
 </div>

@@ -22,7 +22,6 @@
 <%@sender = User.find_by_id(f.sender)%>
  <div class="well">
 <b>Title:</b><%=f.title%></br>
-<b>Sender ID:</b><%=@sender.id%></br>
 <b>Sender:</b><%=@sender.name%></br>
 <%= link_to "Open", f, method: :get%>
 </div></br></br>

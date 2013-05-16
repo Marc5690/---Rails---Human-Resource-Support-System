@@ -11,10 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427082009) do
+ActiveRecord::Schema.define(:version => 20130428233449) do
 
   create_table "absences", :force => true do |t|
-    t.string   "status"
     t.text     "reason"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -24,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130427082009) do
     t.integer  "tempuser"
     t.integer  "company_id"
     t.datetime "date_ended"
-    t.integer  "task_id"
   end
 
   create_table "companies", :force => true do |t|
@@ -57,10 +55,9 @@ ActiveRecord::Schema.define(:version => 20130427082009) do
     t.datetime "updated_at",      :null => false
     t.datetime "date_ended"
     t.string   "title"
-    t.integer  "estimated_hours"
-    t.integer  "current_hours"
     t.datetime "date_started"
     t.integer  "company_id"
+    t.integer  "estimated_hours"
   end
 
   create_table "skills", :force => true do |t|
@@ -80,23 +77,12 @@ ActiveRecord::Schema.define(:version => 20130427082009) do
     t.integer "user_id"
   end
 
-  create_table "subtasks", :force => true do |t|
-    t.string   "title"
-    t.integer  "percentage"
-    t.boolean  "completed"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.integer  "estimated_hours"
-    t.integer  "current_hours"
     t.text     "description"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.float    "percentage"
     t.integer  "project_id"
     t.datetime "start_date"
     t.datetime "end_date"
@@ -122,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20130427082009) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "personnel_number"
@@ -132,20 +118,11 @@ ActiveRecord::Schema.define(:version => 20130427082009) do
     t.integer  "date_of_birth"
     t.string   "sex"
     t.integer  "commencement"
-    t.integer  "termination"
-    t.integer  "actual_termination"
     t.text     "insurance"
     t.string   "grade"
-    t.string   "post"
-    t.string   "centre"
     t.string   "division"
-    t.string   "location"
     t.integer  "salary_scale"
-    t.integer  "scale_point"
-    t.string   "pay_center"
-    t.text     "reason_for_employment"
     t.boolean  "admin"
-    t.integer  "task_id"
     t.integer  "company_id"
   end
 

@@ -1,7 +1,7 @@
 require 'grape'
 
-module App
 
+module App
 
 
 #class API < Grape::API
@@ -60,9 +60,9 @@ helpers do
     end
   end
 
-def userauthenticate(user, company, password)
-  @user = User.unscoped.find_by_id(user)
-   if @user.company_id == (company) && @user.try(:authenticate, (password))
+def userauthenticate(id, company, password)
+  @user = User.unscoped.find_by_id(id)
+   if @user.company_id == company.to_i && @user.try(:authenticate, (password))  
 return true
 else 
   return false
@@ -111,12 +111,12 @@ else
 
 end#End helpers
 
-resource :companies do
+#resource :companies do
 
-get do
-Company.all
-end#End endpoint
-end#End resource
+#get do
+#Company.all
+#end#End endpoint
+#end#End resource
 
  #constraints(:company => 1) do
     # Versioning: api.domain.com/v1/
@@ -152,7 +152,7 @@ end
     end#End endpoint
 
 
-     get ':id/:company/:password/absences' do    
+     get ':user/:company/:password/absences' do    
        if userexists params[:id]
 
       @user = User.unscoped.find_by_id(params[:id])

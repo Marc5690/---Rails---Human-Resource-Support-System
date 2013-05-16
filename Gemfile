@@ -10,8 +10,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap_form'
 gem 'validates_timeliness'
 #gem 'range_validator'#############################################################################
-#gem 'sqlite3'
-
+gem 'sqlite3'
+#gem 'grape-swagger', '0.3.0'
 #gem 'google_chart'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -22,13 +22,13 @@ gem 'validates_timeliness'
 #end
 
 group :development, :test do
-gem 'sqlite3', '1.3.5'
+#gem 'sqlite3', '1.3.5'
 gem 'rspec-rails', '2.10.0'
 end
 
 
 group :test do
-	gem 'capybara', '1.1.2'
+	#gem 'capybara', '1.1.2'
 	#gem 'nokogiri', '1.5.9'
 
 end
@@ -44,9 +44,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.4'
 end
 
-gem 'grape'
-#gem 'cloudfoundry-jquery-rails'
-gem 'jquery-rails'
+gem 'grape'#, '>= 0.2.2'
+gem 'cloudfoundry-jquery-rails'
+#gem 'jquery-rails'
 
 
 # For Ruby 1.9 Cloud Foundry requires a tweak to the jquery-rails gem.

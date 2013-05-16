@@ -2,31 +2,56 @@
 
 
 <div class="row">
-  <div class="span6 offset2">
-    <%#= form_for(@employee) do |f| %>
-<%#= render 'shared/error_messages' %> 
-     <div style="white-space: nowrap">
-        <%#=@task%>
-        <%#=@task.id%>
-        <%#=@user.task%>
-<%unless @available_employees == nil || @employees == nil || @employees.empty? || @available_employees.empty? %> 
-        <%#=@absence%>
-        <%#unless @available_employees.empty? %>
-     	<%=bootstrap_form_for @absence do |f|%>
-        <%#= f.label :User %>
-        <%#= f.text_field :tempuser %>
+  <div class="span2">
         
-        <%= f.select :tempuser, options_for_select(@available_employees), label: 'User' %> </br>
+<%unless @available_employees == nil || @employees == nil || @employees.empty? || @available_employees.empty? %> 
 
-        <%= f.submit "Update Absence Record", class: "btn", disable_with: 'Saving...'  %>
-     	<%end%>	<%#end%>	<%#end%>
+
+<caption><b>Fill Absence </b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
+  
+
+ <th>Name</th><th>Days Absent</th><th>Absence Days</th><th>Fill In</th>
+        <% @available_employees.each do |f| %>
+        <%if f[2]>f[1]%>
+<tr class="success">
+    <td><%=f[0].name%></td>
+    <td><%=f[1]%></td>
+    <td><%=(@absence.date.to_date..@absence.date_ended.to_date).count%></td>
+    <%=form_for @absence do |h|%>
+    <%=h.hidden_field :tempuser, :value => f[2].to_i%>
+    <td><%= h.submit "Update Absence Record", class: "btn", disable_with: 'Saving...'  %> </td>
+    <%end%> 
+         <%end%> 
+        <%end%></tr>
+       </div>
+        </table>
+
 
 
          <%#= link_to "Return", root_path, class: "btn"%></br></br>
 <%else%>
 
-There are no available employees, or the absent employee has no tasks for others to work on.
 <%end%>
-  </div>  </div>
+  </div>  
 
-</div>
+
+  <div class="span11">
+<caption><b>The following employees would be available</br> if they were not absent for the entirety</br>of this absence.</b></caption></br>
+      <div class="scroll">
+<table class="table table-condensed">
+<th>Name</th><th>Days Absent</th><th>Absence Days</th>
+        <% @available_employees.each do |f| %>
+        <%if f[2]<=f[1]%>
+<tr class="success">
+    <td><%=f[0].name%></td>
+    <td><%=f[1]%></td>
+    <td><%=(@absence.date.to_date..@absence.date_ended.to_date).count%></td>
+
+         <%end%> 
+    
+        <%end%></tr>
+       </div>
+        </table>

@@ -43,7 +43,10 @@ end
   end
  def show
   @time_and_attendance = TimeAndAttendance.find_by_id(params[:id])
- end
+  @user = @time_and_attendance.user
+   @project = @time_and_attendance.project
+    @task = @time_and_attendance.task
+end
 
 
   def create
@@ -79,11 +82,22 @@ end
   def delete
   end
 
+  def update
+    @time = TimeAndAttendance.find_by_id(params[:id])
+   if @time.update_attributes(params[:time_and_attendance])
+    flash[:success]  = "Record updated!" 
+    redirect_to root_path
+    else
+      flash[:failure] = "Failed to update record" 
+      redirect_to root_path
+  end 
+end
+
   def emptime
      @user = current_user
 @time = @user.time_and_attendances
 
-@time_and_attendances = @time.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+@time_and_attendances = @time#.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
 
 
 
@@ -117,6 +131,8 @@ end
      @user = current_user
      #@task = @user.task
       @tasks = []
+      @absentee_user = []
+      @temporary_tasks = []
     # @users_all = User.all
      @user.tasks.each do |f|
      @tasks << [f.title, f.id]
@@ -125,9 +141,12 @@ end
     if @user.temporary_positions.any?
       @user.temporary_positions.each do |f|
         if (f.date..f.date_ended).cover?(Time.now)
-          f.user.tasks.each do |g|
+         @absentee= User.find_by_id(f.user_id)
+          @absentee.tasks.each do |g|
             unless @user.tasks.include?(g)
           @tasks << [g.title, g.id]
+          @temporary_tasks << [g.title, g.id]
+          @absentee_user = @absentee
         end
           end
         end
@@ -197,7 +216,7 @@ end
       flash[:failure] = "You must select a user"
     else
   @user = User.find_by_id(params[:q])#params[:q])
-  @time_and_attendances = @user.time_and_attendances.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
+  @time_and_attendances = @user.time_and_attendances.find(:all, :order => "date").reverse#.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
   end
   end
 
@@ -213,7 +232,8 @@ end
 
   end
 
-  def menu
+ def menu
+    @user = User.all
   end
 
   def select

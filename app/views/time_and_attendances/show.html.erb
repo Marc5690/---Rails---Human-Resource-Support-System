@@ -1,11 +1,12 @@
 <% provide(:title, "Time and Attendance") %>
 <div class="row">
    <div style="white-space: nowrap">
-   	Record ID: <%= @time_and_attendance.id %></br>
-   	Belongs to user: <%= @time_and_attendance.user_id %></br>
-   	Belongs to project:<%= @time_and_attendance.project_id %></br>
-   	Belongs to task:<%= @time_and_attendance.task_id %></br>
+   	<div class="well">
 
+    <b>Record ID:</b> <%= @time_and_attendance.id %></br>
+   	<b>Belongs to user:</b> <%= @user.name %></br>
+   	<b>Belongs to project:</b><%= @project.title %></br>
+   	<b>Belongs to task:</b><%= @task.title %></br>
 
- </div></div>
+ </div></div></div>
 

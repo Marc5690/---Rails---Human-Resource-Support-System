@@ -16,14 +16,23 @@ validates_numericality_of :estimated_hours, :project_id, :only_integer => true, 
 #validates_inclusion_of :hours_worked, :in => 1..24, :message => "An employee cannot possibly have worked more than 24 hours and should not input records for days where they have worked less than an hour"
 
    validate :date_started_before_date_ended
-
+   validate :start_date_within_project_dates
+   validate :end_date_within_project_dates
 
     def date_started_before_date_ended
     	return unless start_date and end_date
   errors.add(:start_date, "must be before end time") unless start_date < end_date
   end 
 
+def start_date_within_project_dates
+	return unless start_date and end_date
+  errors.add(:start_date, "must be within projects date range") unless start_date > project.date_started# || end_date < project.date_ended
+  end 
 
 
+  def end_date_within_project_dates
+	return unless start_date and end_date
+  errors.add(:end_date, "must be within projects date range") unless  end_date < project.date_ended
+  end 
 
 end

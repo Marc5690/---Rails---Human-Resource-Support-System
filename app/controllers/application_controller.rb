@@ -10,7 +10,7 @@ prepend_before_filter :require_login
 
 ##################################################################################################
 
-prepend_around_filter :scope_current_company
+prepend_around_filter :scope_current_company#Company is lost between requests, so we use the Thread class to find it.
 #around_filter :scope_current_company
 #private
 
@@ -21,14 +21,15 @@ prepend_around_filter :scope_current_company
  # helper_method :current_user
   
   def current_company
-    Company.find_by_subdomain! request.subdomain
+    Company.find_by_subdomain! root_url#request.subdomain Set current company by the root url
   end
+
   helper_method :current_company
   
   def scope_current_company
-    Company.current_id = current_company.id
+    Company.current_id = current_company.id#current_id is defined in company model
     yield
-  ensure
+  ensure#Very last thing to be run in this clause, setting the id to nil
     Company.current_id = nil
   end
 

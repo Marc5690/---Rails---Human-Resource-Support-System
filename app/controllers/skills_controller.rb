@@ -25,6 +25,7 @@ class SkillsController < ApplicationController
     @user = User.find_by_id(params[:y])
 
     @user.skills << @skill
+    flash[:success] = "user successfully assigned skill"
     redirect_to root_path
    end
 

@@ -1,31 +1,93 @@
 <% provide(:title, "Project") %>
-<div class="row">
+
+
+
+<div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#projects" data-toggle="tab">Projects</a></li>
+        <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+        <li><a href="#history" data-toggle="tab">History</a></li>
+      </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="projects">
+          <div class="row">
   <aside class="span4">
     <section>
-     
-        <ul class="nav nav-list">
+      
+  <%= link_to "Create Project", projectsaddemployee_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "Update Project", projectschoose_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "View Projects", projectsoverview_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%#= link_to "Project Planning", projectsplanning_path , {:style=>'color:#303030;', :class => "btn"} %>
 
-  <li class="active"><%= link_to "New Project", projectsaddemployee_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Edit Project", projectschoose_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Add Task",  projectstask_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Edit Task", taskupdatechoose_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Add Skill To Task", taskskills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Add Employees", projectforemp_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Test", projectstest_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "View Projects", projectsoverview_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Project Planning", projectsplanning_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-      	<%#= link_to "New Project", projectsaddemployee_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "Edit Project", projectschoose_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "Add Tasks", projectstask_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "Add skill to task",  taskskills_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "Add Employees", projectforemp_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "TEST", projectstest_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "View Projects", projectsoverview_path, class: "btn btn-large btn-primary" %></br></br>
-        <%#= link_to "Project Planning",  projectsplanning_path, class: "btn btn-large btn-primary" %>
-
-
-    
-    </section>
-  </aside>
+</section>
+</aside>
+ <aside class="span4">
+    <section>
+       <div class="well">
+This area manages projects. You can create new projects, change them and view them.
 </div>
+</section>
+</aside>
+</div>
+        </div>
+        <div class="tab-pane" id="tasks">
+             <div class="row">
+  <aside class="span4">
+    <section>
+  <%= link_to "Add Task To Project",  projectstask_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "Update Task", taskupdatechoose_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "Assign Skill To Task", taskskills_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "Assign Employee To Task", projectforemp_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  </section>
+</aside>
+ <aside class="span4">
+    <section>
+       <div class="well">
+This area manages tasks. You can create new tasks for a project, change tasks, assign skills to a task and assign employees to a task.
+</div>
+</section>
+</aside>
+</div>
+        </div>
+        <div class="tab-pane" id="history">
+          <div class="row">
+  <aside class="span4">
+    <section>
+            
+  <%= link_to "History of Task by month", plan_task_select_month_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "History of Task by year", plan_task_select_year_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "History of Project by month", plan_project_select_month_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+  <%= link_to "History of Project by year", plan_project_select_year_path , {:style=>'color:#303030;', :class => "btn"} %></br></br>
+    </section>
+</aside>
+ <aside class="span4">
+    <section>
+     <div class="well">
+This area details the history of tasks and projects in graphical form. The span of the history can be either for a year or a month.
+</div>
+</section>
+</aside>
+</div>
+        </div>
+       
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+</div> <!-- container -->
+
+
+
+
+
+
+
+
+
+
 

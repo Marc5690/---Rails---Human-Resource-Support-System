@@ -1,10 +1,13 @@
 <% provide(:title, 'Choose a record') %>
-<h1>Choose a record</h1>
+
 <div class="row">
-  <div class="span6 offset2">
-    <div style="white-space: nowrap">
+<aside class="span4">
+    <section>
+      </br></br></br>
+  </br><h2>Fill in an Absence</h2>
+
   <%# @f.each do |l| %>
-  <%#=l.date%></br>
+  <%#=l.date%>
     <%#=l.user%>
   <%#=link_to "See more", l%>
   <%#end%>
@@ -16,21 +19,22 @@
       <%#=t.id%>
       <%#=t.date%>
       <%#end%><%#end%><%#end%>
-
-
-      <%@unfilled_absence.each do |t|%></br></br>
+    </section>
+  </aside>
+<aside class="span8">
+    <section>
+<div class="scroll">
+      <%@unfilled_absence.each do |t|%>
       
       <div class="well">
-       
-    
-      <b>Date:</b><%=t.date%></br></br>
-      <b>User:</b><%=t.user.name%></br></br>
-      <%#end%>
+      <b>Date:</b><%=t.date.to_date%></br>
+      <b>User:</b><%=(User.find_by_id(t.user_id)).name%></br>
       <%=link_to "Fill in", fill_path(:absence_id => t.id)%></br>
       </div>
      <%end%>
-
-
+</div>
+</section>
+  </aside>
 
     </div>
   </div>

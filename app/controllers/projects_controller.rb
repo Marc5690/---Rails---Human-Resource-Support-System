@@ -88,13 +88,13 @@ end
 #@employees = []
 
 if @task.skills.exists?
-#@employees = []
+@employees = []
   @u.each do |f|
     if f.skills.any?
      f.skills.each do |g|
     if @task.skills.include?(g) #&& f != nil
      # if f != nil
-     @employees = []
+    # @employees = []
       @employees << f unless f.tasks.include?(@task)
       #f   #unless f.skills == nil#if f.tasks.each do |y| y.id != @task.id end
      # end
@@ -164,10 +164,11 @@ end
 
 
     @project = Project.find_by_id(params[:id])
-@EST = 0
+
  
  @projects_tasks_pagination = @project.tasks#.paginate(:per_page => 5, :page => params[:page], :order => 'created_at desc')
-
+ 
+@EST = 0
 if @project.tasks.any?
   @project_tasks = @project.tasks
    # @estimated_hours_TA = 
@@ -198,8 +199,9 @@ if @project.tasks.any?
 
 end
  #Percentage of work done
+  @work_percentage = ((@project_hours_worked.to_f/@EST.to_f)*100)
 
-  @work_percentage = ((@project_hours_worked.to_f/@project.estimated_hours.to_f)*100)#*100#
+#  @work_percentage = ((@project_hours_worked.to_f/@project.estimated_hours.to_f)*100)#*100#
       end
 
   def editproject2
@@ -256,7 +258,7 @@ end
 @time = TimeAndAttendance.all(:select => "project_id").each {|x| x.project_id == @p}
 @a = TimeAndAttendance.all
 
-@py = TimeAndAttendance.where("id = 1")
+#@py = TimeAndAttendance.where("id = 1")
 @t = @a.each do |f|
   f.hours_worked
 end
@@ -313,8 +315,8 @@ end
     @task.users << @user
 
        #).save#@user.update_column(:task_id,@task_id)
-      # flash[:success] = "Successfully assigned user!"
-      #  redirect_to root_path
+       flash[:success] = "Successfully assigned user!"
+        redirect_to root_path
        #else
        # flash[:failure] = "Could not assign user to task"
        # render'projects/select_emp'

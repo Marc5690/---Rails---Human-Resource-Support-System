@@ -1,16 +1,36 @@
 <% provide(:title, 'Edit an Employee Record') %>
-<h1>Time and Attendance Records</h1>
+
 <div class="row">
   <div style="white-space: nowrap">
     <div class="span6 offset2">
        
        <% if @user.time_and_attendances.any? %>
 
-      <ol>
-        <%= render @time_and_attendances %>
-      </ol>
-      <%= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @time_and_attendances %>
+ <caption><b>Time and Attendance records for <%=@user.name%> </b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
+  
+
+ <th>Date</th><th>Hours</th><th>Project</th><th>Task</th><th>Delete</th><th>Update</th>
+   
+    
+        <% @time_and_attendances.each do |f| %>
+<tr class="success">
+    <td><%=f.date.to_date%></td>
+<td><%=f.hours_worked%></td>
+<td><%=f.project.title%></td>
+<td><%=f.task.title%></td>
+<td><%= link_to "delete", f, method: :delete,
+                                     data: { confirm: "Are you sure that you want to delete this record?" }
+                                      %></td>
+<td><%= link_to "edit", edittime_path(f)%></td>
+        <%end%></tr>
+       </div>
+        </table>
+     
+      <%#= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @time_and_attendances %>
 
       <% else %>
     
@@ -23,4 +43,3 @@
   </div>
    
 </div>
-

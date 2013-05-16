@@ -7,8 +7,9 @@ belongs_to :task
 belongs_to :project
 #:task, 
 
-validates :date, :hours_worked, :task_id, presence: true  #Not valiating user id or project. User id will always                           
-validates :date,  :uniqueness => {:scope => :user_id}#, :message => "User already has a Time and Attendance record for that date."            #exist and project is acquired in callback below 
+validates :date, :hours_worked, :task_id, presence: true  #Not valiating user id or project. User id will always exist and project is acquired in callback below                           
+validates :date, :task_id,  :uniqueness => {:scope => :user_id}#, :message => "User already has a Time and Attendance record for that date."            
+
 validates_numericality_of :hours_worked, :only_integer => true, :message => "can only be whole number."
 #validates_numericality_of :task_id, :only_integer => true, :message => "can only be whole number."
 validates_inclusion_of :hours_worked, :in => 1..24, :message => "An employee cannot possibly have worked more than 24 hours and should not input records for days where they have worked less than an hour"

@@ -1,4 +1,11 @@
 class Absence < ActiveRecord::Base
+
+  attr_accessor :skip_on_create_validation
+
+  def validate_on_create
+    unless skip_on_create_validation
+
+
 	attr_accessible :date, :date_ended, :status, :reason, :form, :user_id, :tempuser, :company_id
 	belongs_to :user
 	default_scope { where(company_id: Company.current_id) }
@@ -75,11 +82,17 @@ class Absence < ActiveRecord::Base
   end
 
   # -1 is when you have a nil id, so you will get all persisted user absences
-  # I think -1 could be omitted, but did not work for me, as far as I remember
   def siblings
+    #user = User.find_by_id(:user_id)
   	#user = absence.user
     user.absences.where('id != ?', id || -1)
   end
+
+
+
+
+
+
 
 
 
@@ -130,7 +143,7 @@ class Absence < ActiveRecord::Base
  # end
 
 
-    validates :date, :date_ended, :status, :reason, :form, :user_id, presence: true 
+    validates :date, :date_ended, :reason, :form, :user_id, presence: true 
     validates_numericality_of :user_id, :only_integer => true, :message => "can only be whole number."
 
 
@@ -218,6 +231,9 @@ class Absence < ActiveRecord::Base
 #  end
 #end
 #end
+
+ end
+  end
 
 
 end

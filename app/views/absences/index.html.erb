@@ -5,9 +5,35 @@
 
      	<ul class="nav nav-list">
 
-  <li class="active"><%= link_to "Add Absence Record", absence_search_add_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-<li class="active"><%= link_to "View Absence Record", absencesearchview_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-<li class="active"><%= link_to "Fill Absence", absencesfill_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li class="active"><%#= link_to "Add Absence Record", absence_search_add_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+<li class="active"><%#= link_to "View Absence Record", absencesearchview_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+
+
+ <caption><b>Time and Attendance </b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
+  
+
+ <th>Name</th><th>Add</th><th>View</th>
+   
+    
+        <% @user.each do |f| %>
+<tr class="success">
+    <td><%=f.name%></td>
+<td><%= link_to "Add an Absence Record", absence_search_add_new_path(:employee_id => f.id)%></td>
+<td><%= link_to "View Absence Records", absenceview_path(:q => f.id)%></td>
+        <%end%></tr>
+       </div>
+        </table>
+     
+<li><%= link_to "Fill an Absence", absencesfill_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+
+
+
+
+
+
 
 
          <%#= link_to "Add Absence Record", absencesearchadd_path, class: "btn btn-large btn-primary" %></br></br>

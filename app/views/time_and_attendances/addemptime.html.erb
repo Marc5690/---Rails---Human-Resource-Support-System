@@ -1,11 +1,12 @@
 <% provide(:title, 'Add Time and Attendance Record') %>
-<h1>Add Time and Attendance Record:</h1>
+<h2>Add Time and Attendance Record:</h2>
 <div class="row">
   <div class="span6 offset2">
      <script type="text/javascript">
   $('[data-behaviour~=datepicker]').datepicker()
 </script>
-<%unless @tasks == nil%>
+
+<%unless @tasks.empty?%>
 
     <%= form_for @timeandattendance do |f| %>
      <%= render 'shared/error_messages', object: f.object  %> 
@@ -25,6 +26,8 @@
       <%=f.hidden_field :company_id, :value => current_user.company_id%>
       <%= f.submit "Add Record", class: "btn" %></br>
    <% end %>
+   <%#=@temporary_tasks%>
+   <%#=@absentee_user%>
    <%#= link_to "Add Record", root_path, class: "btn btn-large btn-primary" %>
 
 <%else%>

@@ -1,9 +1,10 @@
 <% provide(:title, @user.name) %>
+ <div class="well">
 <div class="row">
   <aside class="span4">
     <section>
      
-        <div class="well">
+       
         <%#= gravatar_for @user %>
   <h5>Name:</h5><%=@user.name %></br></br>
   <h5>Email:</h5><%=@user.email%></br></br>
@@ -11,19 +12,18 @@
   <h5>Address:</h5><%= @user.address %></br></br>
   <h5>Telephone:</h5><%=@user.telephone%></br></br>
   <h5>Date Of Birth:</h5><%= @user.date_of_birth %></br></br>
-  <h5>Sex:</h5><%= @user.sex %></br></br>
+  
+  </section>
+  </aside>
+  <aside class="span16">
+    <section>
+      <h5>Sex:</h5><%= @user.sex %></br></br>
   <h5>Commencement:</h5><%=@user.commencement%></br></br>
-  <h5>Termination:</h5><%= @user.termination%></br></br>
   <h5>Insurance:</h5><%= @user.insurance %></br></br>
   <h5>Grade:</h5><%=@user.grade%></br></br>
-  <h5>Post:</h5><%= @user.post %></br></br>
-  <h5>Centre:</h5><%= @user.centre %></br></br>
   <h5>Division:</h5><%=@user.division%></br></br>
-  <h5>Location:</h5><%= @user.location %></br></br>
   <h5>Salary Scale:</h5><%= @user.salary_scale %></br></br>
-  <h5>Scale Point:</h5><%=@user.scale_point%></br></br>
-  <h5>Pay Centre:</h5><%= @user.pay_center%></br></br>
-  <h5>Reason For Employment:</h5><%= @user.reason_for_employment%></br></br>
+ 
       </div>
     </section>
   </aside>
@@ -32,4 +32,6 @@
     
   </div>
 </div>
+
+
 

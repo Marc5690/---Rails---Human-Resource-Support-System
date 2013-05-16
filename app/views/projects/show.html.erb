@@ -21,92 +21,96 @@
 <%end%>
 
 <div class="row">
-    <section>
-      <aside class="span4">
-
+   <aside class="span3">
+     <section>
  <div class="well">
-        <b>Project ID:</b><%= @project.id%></br>
         <b>Title:</b><%=@project.title%></br>
         <b>Start Date:</b><%= @project.date_started.to_date%></br>
         <b>End Date:</b><%= @project.date_ended.to_date%></br>
-        <b>Estimated Hours:</b><%= @project.estimated_hours%></br>
-        <b>EST:</b> <%=@EST%></br>
+        <b>Estimated Hours:</b> <%=@EST%></br>
         <b>Time left:</b><%= distance_of_time_in_words(@project.date_ended.to_datetime, DateTime.now)%></br>
         <b>Total hours worked:</b><%= @b%>
-        </div>
+ </div>
+
+    
+<div class="well">
+   <b>Users:</b></br>
+   <div class="smallscroll">
+    <%if @project.tasks%>
+    <%@project.tasks.each do |task|%>
+    <%if task.users%>
+     <%task.users.each do |user|%>
+     <%=user.name%></br>
+ </div></div>
+ <%end%><%end%><%end%><%end%>
 
 
+ <div class="well">
+    <b>Skills:</b></br>
+    <div class="smallscroll">
+     <%if @project.tasks%>
+    <%@project.tasks.each do |task|%>
+    <%if task.skills%>
+     <%task.skills.each do |skill|%>
+     <%=skill.skill_type%></br>
+ </div></div>
+ <%end%><%end%><%end%><%end%>
 
-
- </aside>
     </section>
-  </div>
-<aside class="span200">
+  </aside>
+<aside class="span5">
     <section>
 
 
-</br></br></br>
+
 <h3>Tasks</h3>
 <ol>  <div class="scroll">
 <% @projects_tasks_pagination.each do |f| %>
 <div class="well">
 <b>Title:</b><%= f.title %></br>
-<b>Start date:</b><%= f.start_date %></br>
-<b>End date:</b><%= f.end_date %></br>
+<b>Start date:</b><%= f.start_date.to_date %></br>
+<b>End date:</b><%= f.end_date.to_date %></br>
 <b>Description:</b><%= f.description %></br>
 <%= link_to "See Task Details", f %></br></br>
 </div>
-<%end%>
-</ol></div>
+<%end%> </div>
+</ol>
 
 
-
-
+ 
 
  <%#= will_paginate @projects_tasks_pagination, :previous_label => t("<-"), :next_label => t("->") %>
       <%#= page_entries_info @projects_tasks_pagination %>
 
-Percentage of time :<%=@percentage_of_time_passed%>%</br></br>
-Percentage of work : <%=@work_percentage %>
-   </br></br></br>
-     Time passed :<%=(@project.date_ended.to_date - @project.date_started.to_date).to_i%>
+<%#=@percentage_of_time_passed%>
+<%#=@work_percentage %>
 
-</br></br>
-<%= (Date.today - @project.date_started.to_date).to_i %>
-</br></br>
-today<%=@today%>
-</br></br>
-     <%= number_to_percentage((Date.today - @project.date_started.to_date).to_f / (@project.date_ended.to_date - @project.date_started.to_date).to_f)%>
+<%#=(@project.date_ended.to_date - @project.date_started.to_date).to_i%>
 
-    </br></br> 
-    </aside>
-    </section>
-<aside class="span6">
+<%#= (Date.today - @project.date_started.to_date).to_i %>
+
+<%#=@today%>
+
+     <%#= number_to_percentage((Date.today - @project.date_started.to_date).to_f / (@project.date_ended.to_date - @project.date_started.to_date).to_f)%> 
+
+   
+     </section>
+</aside>
+   
+      
+<aside class="span4">
     <section>
 
-                     <img src="<%=Gchart.bar(:title => "#{@percentage_of_time_passed.to_i} %", :data => [[ @days_passed.to_f, 0],[0, @total_days.to_f]], :legend => ['Days Passed', 'Total days'], :labels => [@days_passed.to_i, @total_days.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
+</br>
+<img src="<%=Gchart.meter(:size => '300x150', :title => "Progress on workload", :labels => "#{@work_percentage.to_f.round(2)}", :data => [@b.to_i], :max_value => @EST.to_i )%>"/>
+</br></br>
+<img src="<%=Gchart.meter(:size => '300x150', :title => "Time passed", :labels => "#{@percentage_of_time_passed.to_f.round(2)}", :data => [@days_passed.to_i], :max_value => @total_days.to_i )%>"/>
+</section> 
+ </aside>
+    
+    </br>
 
-
-
-             <img src="<%=Gchart.bar(:title => "#{@work_percentage.to_i} %", :data => [[@project_hours_worked.to_f, 0],[0, @project.estimated_hours.to_f]], :legend => ['Hours Done', 'Estimated Hours'], :labels => [@project_hours_worked.to_i,@project.estimated_hours.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
-
-
- 
-    </section>
-   </aside>  
-    <section>
- <aside class="span16">
-
-
-</br></br></br></br></br>
-<img src="<%=Gchart.meter(:size => '450x300', :title => "Progress on workload", :labels => "#{@work_percentage.to_f.round(2)}", :data => [@project_hours_worked.to_i], :max_value => @project.estimated_hours.to_i )%>"/>
-</br></br></br></br></br>
-<img src="<%=Gchart.meter(:size => '450x300', :title => "Time passed", :labels => "#{@percentage_of_time_passed.to_f.round(2)}", :data => [@days_passed.to_i], :max_value => @total_days.to_i )%>"/>
-
-    </br></br></br></br>
-
-      </aside>
-    </section>
+    
 
       
 <%else%>
@@ -121,3 +125,5 @@ No tasks have been added to this project.
   </aside>
 </div>
 
+<img src="<%#=Gchart.bar(:title => "#{@percentage_of_time_passed.to_i} %", :data => [[ @days_passed.to_f, 0],[0, @total_days.to_f]], :legend => ['Days Passed', 'Total days'], :labels => [@days_passed.to_i, @total_days.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>
+             <img src="<%#=Gchart.bar(:title => "#{@work_percentage.to_i} %", :data => [[@project_hours_worked.to_f, 0],[0, @EST.to_f]], :legend => ['Hours Done', 'Estimated Hours'], :labels => [@project_hours_worked.to_i,@EST.to_i], :bar_colors => ['3300CC','3399FF'])%>"/>

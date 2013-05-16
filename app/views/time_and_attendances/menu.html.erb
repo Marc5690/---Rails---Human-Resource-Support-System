@@ -5,11 +5,37 @@
    <div style="white-space: nowrap">
    	 	<ul class="nav nav-list">
    <%if current_user.admin == true%>
+
+     <%# if @user %>
+
+ <caption><b>Time and Attendance </b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
   
 
- 
-  <li class="active"><%= link_to "Add Time and Attendance record", addtime_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-    <li class="active"><%= link_to "View Time and Attendance record", viewtime_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+ <th>Name</th><th>Add</th><th>View</th>
+   
+    
+        <% @user.each do |f| %>
+<tr class="success">
+    <td><%=f.name%></td>
+<td><%= link_to "Add a Record", addtime2_path(:q => f.id)%></td>
+<td><%= link_to "View Records", viewtime2_path(:q => f.id)%></td>
+        <%end%></tr>
+       </div>
+        </table>
+     
+      <%#= will_paginate @time_and_attendances, :previous_label => t("<-"), :next_label => t("->") %>
+      <%#= page_entries_info @time_and_attendances %>
+
+      <%# else %>
+    
+   
+
+    <%# end %>
+
+
    	<%#= link_to "Add Time and Attendance record", addtime_path , class: "btn btn-large btn-primary" %></br></br>
    	
 <%#= link_to "View Time and Attendance record", viewtime_path , class: "btn btn-large btn-primary" %></br></br>
@@ -18,8 +44,8 @@
 
 
  
-  <li class="active"><%= link_to "Add Time and Attendance record", addemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-    <li class="active"><%= link_to "View Time and Attendance record", viewemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Add Time and Attendance record", addemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+    <li><%= link_to "View Time and Attendance record", viewemptimes_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
 
 
 <%#= link_to "Add Time and Attendance record", addemptimes_path , class: "btn btn-large btn-primary" %></br></br>

@@ -1,23 +1,36 @@
-<% provide(:title, @user.name) %>
-<h1>Employee:</h1>
-<div class="row">
-  <div class="span6 offset2">
+<% provide(:title, "Employees") %>
+
    
- <div class="well">
-   <b>ID:</b> <%= @user.id%> </br>
-   <b>Name:</b>  <%= @user.name%> </br>
-   <b>Current Task:</b> <%= @user.task.title%> </br>
-    <%= link_to "More", @user%> </br>
-</div>
 
-    <ul class="nav nav-list">
 
+
+    <% if @user %>
+
+<div class="row">
+  <div style="white-space: nowrap">
+    <div class="span6 offset2">
+
+ <caption><b>You are currently viewing all employees</b></caption></br>
+
+      <div class="widescroll">
+<table class="table table-condensed">
   
-  <li class="active"> <%= link_to "View Absence Records", select_absence_year_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"> <%= link_to "View Time And Attendance Records", select_time_year_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"> <%= link_to "Edit this employee's details?", edit_employee_path(:user_id => @user.id) , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-    <%#= link_to "View Absence Records", select_absence_year_path(:user_id => @user.id) , class: "btn btn-info btn-small" %>
-    <%#= link_to "View Time And Attendance Records", select_time_year_path(:user_id => @user.id) , class: "btn btn-info btn-small" %>
-
-  </div></div>
-
+ <th>Personnel Number</th><th>Name</th><th>Details</th><th>Update</th>    
+        <% @user.each do |f| %>
+<tr class="success">
+    <td><%=f.personnel_number%></br></td>
+<td><%=f.name%></br></td>
+<td><%= link_to "See Details", f%> </br></td>
+<td><%= link_to "Update Details", edit_employee_path(:user_id => f.id)%></td>
+        <%end%></tr>
+       </div>
+        </table>
+        </div>
+  </div> 
+</div>  
+      <% else %>
+<h2> No users found!</h2>
+    <% end %>
+  </div>
+  </div> 
+</div>

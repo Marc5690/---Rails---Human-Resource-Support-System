@@ -1,8 +1,11 @@
 require 'grape'
+#require 'grape-swagger'
 
 Mytwitter2::Application.routes.draw do
   #constraints :subdomain => 'apple' do
-  mount App::API => "/api"
+  mount App::API2 => "/api"
+
+#add_swagger_documentation :base_path => 'http://apple.lvh.me:3000/api'
 #end
 
 
@@ -32,6 +35,8 @@ Mytwitter2::Application.routes.draw do
   match '/timemenu', to: 'time_and_attendances#menu'
   match '/addtime', to: 'time_and_attendances#select'
   match '/addtime2', to: 'time_and_attendances#add'
+  match '/edittime', to: 'time_and_attendances#edit'
+  match '/updatetime', to: 'time_and_attendances#update'
   match '/viewtime', to: 'time_and_attendances#editrec'
   match '/viewtime2', to: 'time_and_attendances#edit2'
   

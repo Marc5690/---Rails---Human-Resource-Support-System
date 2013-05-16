@@ -13,7 +13,6 @@
 <%@recipient = User.find_by_id(f.receiver)%>
  <div class="well">
 <b>Title:</b><%=f.title%></br>
-<b>Recipient ID:</b><%=@recipient.id%></br>
 <b>Recipient:</b><%=@recipient.name%></br>
 <%= link_to "Open", f, method: :get%></br></br>
 </div>

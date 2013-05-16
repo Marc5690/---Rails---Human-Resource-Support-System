@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  
+
   def select_employee
     @all_users = User.all
     @users = []
@@ -18,14 +20,15 @@ class UsersController < ApplicationController
 
 
   def view_records
-    if params[:user_id] == nil
-      flash[:failure] = "You must select an employee"
-      redirect_to select_employee_path
-    else
-@user = User.find_by_id(params[:user_id])
+
+    #if params[:user_id] == nil
+    #  flash[:failure] = "You must select an employee"
+    #  redirect_to select_employee_path
+    #else
+@user = User.all# = User.find_by_id(params[:user_id])
 
 #@hours_combined = @user.time_and_attendances.select('date, sum(hours_worked) as total_hours_worked').group('date(date)')
-end
+#end
   end
 
   def view_time_records
@@ -142,13 +145,13 @@ end
 def update
 
   #elsif params[:x] == nil && params[:y] == nil
-       @user = User.find_by_id[:user_id]
+       @user = User.find_by_id(params[:id])
         
         if @user.update_attributes(params[:user])
          flash[:success] = "Successfully updated user account!"
          redirect_to root_path
         else
-         flash[:failure] = "Could not update user account"
+         #flash[:failure] = "Could not update user account"
          render'users/edit_employee'#direct_to root_path
        end
   end
@@ -187,7 +190,7 @@ def update
 #@user.update_column(:task_id, @x)
 
   #redirect_to root_path
-end
+#end
 
   def create
     @user = User.new(params[:user])

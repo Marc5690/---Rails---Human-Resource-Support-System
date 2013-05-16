@@ -1,26 +1,42 @@
 <% provide(:title, @user.name) %>
-<h1>Absence Records</h1>
-<div class="row">
-   <div style="white-space: nowrap">
-    <div class="span6 offset2">
-  
-<% if @user.absences.any? %>
-      <ol>
-        
-        <%= render @absences %>
-   
-      </ol>
- <%= will_paginate @absences, :previous_label => t("<-"), :next_label => t("->") %>
-      <%= page_entries_info @absences %>
 
+<div class="row">
+
+
+	<aside class="span4">
+    <section>
+<h2>Absence Records</h2>
+</section>
+</aside>
+ 
+<% if @user.absences.any? %>
+   <aside class="span8">
+    <section>
+ 
+<div class="scroll">
+      <ol>
+      	 <div class="well">
+        <%= render @absences %>
+        </div>
+      </ol>
+ </div>
+</section>
+</aside>
       <% else %>
-    
+     <aside class="span8">
+    <section>
+ 
+<div class="scroll">
+      <ol>
  
 
-<h2> No Absence records found!</h2>
- <%= link_to "Return to main menu", root_path, class: "btn btn-large btn-primary" %>
+<h3> No Absence records found!</h3></br></br></br>
+ <%= link_to "Return to main menu", root_path, class: "btn" %>
     <% end %>
-
+      </ol>
+ </div>
+</section>
+</aside>
 <%@array = [] %>
 <%@user.absences.each do |d|
 

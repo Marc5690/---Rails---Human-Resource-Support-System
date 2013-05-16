@@ -1,9 +1,8 @@
-<li>
+
   <span class="timestamp">
     <div class="well">
-      <b>ID:</b> <%=absence.id%></br>
-      <b>Date:</b> <%=absence.date.to_date%></br>
-      <b>Status:</b> <%=absence.status%></br>
+      <b>Start Date:</b> <%=absence.date.to_date%></br>
+      <b>End Date:</b> <%=absence.date_ended.to_date%></br>
       <b>Reason:</b> <%=absence.reason%></br>
       <b>Form:</b> <%=absence.form%></br>
        
@@ -14,4 +13,3 @@
       </div>
      </span>
   <%# end %>
-</li>

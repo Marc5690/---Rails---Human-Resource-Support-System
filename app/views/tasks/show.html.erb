@@ -1,31 +1,40 @@
-<% provide(:title, 'Add Task') %>
-<h1>Task:</h1>
-<div class="row">
-  <div class="span6 offset2">
-    
-  This task belongs to project:  <%=@task.project.title%>
-  </br></br>
-ID:<%= @task.id %></br>
-Title:<%= @task.title %></br>
-Start date:<%= @task.start_date.to_date %></br>
-End date:<%= @task.end_date.to_date %></br>
+<% provide(:title, 'Task') %>
+ <div class="row">
+   <aside class="span3">
+     <section>
 
-
-Description: <%= @task.description %></br></br>
+ <div class="well">
+<b>Title:</b><%= @task.title %></br>
+<b>Start date:</b><%= @task.start_date.to_date %></br>
+<b>End date:</b><%= @task.end_date.to_date %></br>
+<b>Description:</b> <%= @task.description %></br>
+<b>Belongs to project:</b>  <%=@task.project.title%></br>
+<b>Estimated hours:</b> <%= @task.estimated_hours %></br>
+<b>Total hours spent so far:</b> <%= @g%> hours </br>
+<b>Time left:</b><%= distance_of_time_in_words(@task.end_date.to_datetime, DateTime.now)%></br>
+</div>
 <% @g = 0%>
 <% @task.time_and_attendances.each do |f| %>
 <% @g += f.hours_worked %>
 <%end%>
 
-Estimated hours: <%= @task.estimated_hours %></br>
-Total hours spent on this task: <%= @g%> hours </br></br>
-Time left:<%= distance_of_time_in_words(@task.end_date.to_datetime, DateTime.now)%></br>
-</br></br></br>Time and Attendance Records for this task:</br>
+</section>
+</aside>
+
+ <aside class="span8">
+     <section>
+
+
+<b>Time and Attendance Records for this task:</b>
+<div class="scroll">
 <% @task.time_and_attendances.each do |f| %>
-Employee ID: <%= f.user_id %></br>
-Hours Worked: <%= f.hours_worked %></br>
-Date: <%= f.date %></br>
-<%= link_to "See Record Details", f %></br>
+<div class="well">
+	<%@user = User.find_by_id(f.user_id)%>
+<b>Employee Name:</b> <%= @user.name %></br>
+<b>Hours Worked:</b> <%= f.hours_worked %></br>
+<b>Date:</b> <%= f.date.to_date %></br>
+<%= link_to "See Record Details", f %>
+</div>
 <%end%>
 
   </div>  </div>

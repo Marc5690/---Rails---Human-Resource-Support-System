@@ -1,12 +1,11 @@
 <% provide(:title, @user.name) %>
-<h1>Employee:</h1>
+<h2><%= @user.name%></h2>
 <div class="row">
   <div class="span6 offset2">
-    <%= @user.name%> </br>
-    <%= @user.id%> </br>
-    <%= @user.name%> </br>
-  Current Task  <%= @user.task.title%> </br>
-    <%= link_to "More", @user%> </br>
+        
+    <%#= @user.name%> </br>
+    <%#= @user.id%> </br>
+  
 
 
 <%#=@absences%>

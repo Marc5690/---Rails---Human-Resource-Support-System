@@ -1,8 +1,5 @@
 <% if signed_in? && current_user.admin==true %>
  
-
-
-
  <div class="row">
     <aside class="span3">
 
@@ -10,25 +7,26 @@
 
    <div style="white-space: nowrap">
    <h2> Welcome, <%= current_user.name %></h2>
-   
    <ul class="nav nav-list">
 
   <li class="nav-header">Welcome!</li>
-  <li class="active"><%= link_to "Time and Attendance", timemenu_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Absence Management", absences_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Project Planner", projects_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Add Employee Account", signup_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Manage Skills", skills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "View Employee Records", select_employee_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Message Centre", private_messages_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <%#= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" %>
+  <li><%= link_to "Time and Attendance", timemenu_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Absence Management", absences_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Project Planner", projects_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Add Employee Account", signup_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Manage Skills", skills_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "View Employee Records", view_records_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Message Centre", private_messages_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <%#= link_to "Time and Attendance", timemenu_path , class: "btn btn-info btn-small" #################<li class="active">##############%>
 
   </ul>
 </div>
 </aside>
+
 <aside class="span16">
   <%unless @notice == nil%>
  <%=bootstrap_form_for @notice do |f|%>
+ 
  <%=f.text_area :content, :placeholder => Noticeboard.last.content.to_s, :rows=>18, :cols=>30, label: "Noticeboard" %>
 <%#=text_area :content, :placeholder => "This is the noticeboard", :rows=>18, :cols=>30, label: "Noticeboard" %>
  <%= f.actions do %>
@@ -48,11 +46,17 @@
 <aside class="span22">
     <div class="scroll">
  <%#=collection_select(:group, :id, @project, :id, :title, {}, :multiple => true, :size => 6)%>
- <%# unless @project == null%>
- <%= render @project%>
+ <% unless @danger == nil%>
+ <h2>The following projects are falling behind</h2>
+ <% @danger.each do |f|%>
+  <div class="well">
+<b>Title:</b><%= f.title%></br>
+<%=link_to "See more", f%></br>
+</div>
+ <%end%>
  <%#else%>
  
- <%#end%>
+ <%end%>
   <%#@project.each do |f|%>
  <%#if project_alerts f %>
 </div>
@@ -88,9 +92,9 @@
    <ul class="nav nav-list">
 
   <li class="nav-header">Welcome!</li>
-  <li class="active"><%= link_to "Message Center", private_messages_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "Time And Attendance", timemenu_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-  <li class="active"><%= link_to "View Record", current_user , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Message Center", private_messages_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "Time And Attendance", timemenu_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  <li><%= link_to "View Account Details", current_user , {:style=>'color:#303030;', :class => "btn"} %></li></br>
  
 
   </ul>
@@ -135,9 +139,8 @@
    <ul class="nav nav-list">
 
   <li class="nav-header">Welcome!</li>
-  <li class="active"><%= link_to "Sign In Here", signin_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-   <li class="active"><%#= link_to "Time and Attendance", signup_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
-
+  <li><%= link_to "Sign In Here", signin_path , {:style=>'color:#303030;', :class => "btn"} %></li></br>
+  
 
     <%#= link_to "Sign in here", signin_path, 
                                 class: "btn btn-large btn-primary" %>

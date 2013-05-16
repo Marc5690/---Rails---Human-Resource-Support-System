@@ -1,9 +1,11 @@
 <% provide(:title, 'Select Employee') %>
-<h1>Employee:</h1>
+
 <div class="row">
-  <div class="span6 offset2">
+  <aside class="span3">
+    <section>
+  
     <%= bootstrap_form_for(@user) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %> 
+   
 
     <%#= f.label :Personnel_Number %>
       <%= f.text_field :personnel_number %>
@@ -18,51 +20,61 @@
       <%= f.text_field :address %>
       <%#= f.label :Telephone %>
       <%= f.text_field :telephone%>
+
+   
       <%#= f.label :DOB %>
       <%#= f.text_field :date_of_birth %>
       <%= f.text_field :date_of_birth, 'data-behaviour' => 'datepicker',:readonly => true, :autoclose => true%>
-      <%#= f.label :Gender %>
-      <%= f.select(:sex, ["male","female"]) %>
-     <%#text_field :sex %>
-      <%#= f.label :Commencement %>
-      <%#= f.text_field :commencement %>
+        </section>
+  </aside>
+  <aside class="span16">
+    <section>
+          
+     
       <%= f.text_field :commencement, 'data-behaviour' => 'datepicker',:readonly => true %>
-      <%#= f.label :Termination %>
-      <%= f.text_field :termination %>
-      <%#= f.label :Insurance %>
+     
       <%= f.text_field :insurance %>
-      <%#= f.label :Grade %>
+           
       <%= f.text_field :grade %>
-      <%#= f.label :Centre %>
-      <%= f.text_field :centre %>
-      <%#= f.label :Post %>
-      <%= f.text_field :post %>
-      <%#= f.label :Division %>
+       
       <%= f.text_field :division %>
-      <%#= f.label :Location %>
-      <%= f.text_field :location %>
-      <%#= f.label :Salary_Scale %>
-      <%= f.text_field :salary_scale %>
-      <%#= f.label :Pay_Center %>
-      <%= f.text_field :pay_center %>
-      <%#= f.label :Admin? %>
-      <%= f.check_box :admin, label: "Admin?" %></br>
-      <%#= f.label :password %>
-      <%#= f.password_field :password %>
+
+       <%= f.text_field :salary_scale %>
+
+      <%= f.check_box :admin, label: "Manager?" %>
+
+      <%= f.select(:sex, ["male","female"]) %>
+        </section>
+  </aside>
+  <aside class="span20">
+    <section>
+  
+   
+     
+
+      <%= f.password_field :password, :cols => "5", :rows => "5"  %>
 
       <%#= f.label :password_confirmation, "Confirmation" %>
-      <%#= f.password_field :password_confirmation %>
-       <%#=f.hidden_field :company_id, :value => current_user.company_id%>
-
+      <%= f.password_field :password_confirmation, :cols => "5", :rows => "5"  %>
+     
        <%= f.actions do %>
 
-      <%= f.submit "Update this user", class: "btn", disable_with: 'Updating...' %>
-     
+      <%= f.submit "Update details", class: "btn", disable_with: 'Updating...' %>
+      <% end %>
+         <div class="scroll">
+ <%= render 'shared/error_messages', object: f.object %>
+ </div>
+        </section>
+  </aside>
+  <aside class="span2">
+    <section>
     <%#= f.primary 'Create My Account', disable_with: 'Saving...' %>
-  <% end %>
+  
 
 
 
     <% end %>
+  </section>
+  </aside>
   </div>  </div>
 </div>
