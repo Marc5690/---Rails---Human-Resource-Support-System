@@ -1,5 +1,3 @@
-## Human Resource Support System
-
-This project was created for the BSc (Hons) in Software Systems Development course, as the main year project.
+##This project was created for the BSc (Hons) in Software Systems Development course from the Waterford Institute of Technology, as the main year project.
 
 The Human Resource Support System is a web application that allow a company to create it's own set of records through the efforts of its employee's and managers, with the purpose of  facilitating project-management, communication and absence management. It is written in Rails and uses a variety of technologies, such as Google Charts, Bootstrap, Grape and CloudFoundry.
